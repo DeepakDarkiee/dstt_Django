@@ -303,7 +303,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="profile.html">My Profile</a>
 							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="login.html">Logout</a>
+							<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 						</div>
 					</li>
 				</ul>
@@ -315,7 +315,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="profile.html">My Profile</a>
 						<a class="dropdown-item" href="settings.html">Settings</a>
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 					</div>
 				</div>
 				<!-- /Mobile Menu -->
@@ -363,7 +363,7 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{% url 'employee' %}">All Employees</a></li>
+									<li><a href="{% url 'RegisterEmployee' %}">All Employees</a></li>
 									<li><a href="{% url 'holiday' %}">Holidays</a></li>
 									<li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="{% url 'leaves_employee' %}">Leaves (Employee)</a></li>
