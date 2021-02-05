@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <meta name="description" content="Smarthr - Bootstrap Admin Template">
+		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+        <meta name="robots" content="noindex, nofollow">
+        <title>Settings - HRMS admin template</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="/static/assets/css/style.css">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    </head>
+    <body>
+<!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div class="sidebar-menu">
+						<ul>
+							<li> 
+								<a href="{% url 'index' %}"><i class="la la-home"></i> <span>Back to Home</span></a>
+							</li>
+							<li class="menu-title">Settings</li>
+							<li class="active"> 
+								<a href="{% url 'settings' %}"><i class="la la-building"></i> <span>Company Settings</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'localization' %}"><i class="la la-clock-o"></i> <span>Localization</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'settingtheme' %}"><i class="la la-photo"></i> <span>Theme Settings</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'rolepermissions' %}"><i class="la la-key"></i> <span>Roles & Permissions</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'settingemail' %}"><i class="la la-at"></i> <span>Email Settings</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'settinginvoice' %}"><i class="la la-pencil-square"></i> <span>Invoice Settings</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'settingsalary' %}"><i class="la la-money"></i> <span>Salary Settings</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'settingnotification' %}"><i class="la la-globe"></i> <span>Notifications</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'changepasswordView' %}"><i class="la la-lock"></i> <span>Change Password</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'leavetype' %}"><i class="la la-cogs"></i> <span>Leave Type</span></a>
+							</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+			<!-- Sidebar -->
+</body>
+</html>

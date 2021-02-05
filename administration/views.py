@@ -44,3 +44,30 @@ class settingsView(TemplateView):
 class ticketView(TemplateView):
     template_name = "administration/ticket.html" 
    
+class localizationView(TemplateView):
+    template_name = "administration/localization.html" 
+   
+class SettingsThemeView(TemplateView):
+    template_name = "administration/settings_theme.html" 
+
+class RolePermissionsView(TemplateView):
+    template_name = "administration/roles_permissions.html" 
+
+class SettingEmailView(TemplateView):
+    template_name = "administration/setting_email.html" 
+   
+class SettingInvoiceView(TemplateView):
+    template_name = "administration/setting_invoice.html" 
+   
+class SettingSalaryView(TemplateView):
+    template_name = "administration/setting_salary.html" 
+   
+class SettingNotificationView(TemplateView):
+    template_name = "administration/setting_notifications.html" 
+   
+class ChangePasswordView(TemplateView):
+    template_name = "administration/setting_change_password.html" 
+
+class LeaveTypeView(TemplateView):
+    template_name = "administration/setting_leave_type.html" 
+   

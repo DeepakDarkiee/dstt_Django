@@ -1,6 +1,5 @@
 {% include 'administration/base.html' %}
 {% include 'administration/setting_base.html' %}
-
 {% block css %}
 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
@@ -14,11 +13,9 @@
 		<!-- Lineawesome CSS -->
         <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
 		
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
-		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="/static/assets/css/style.css">
+		
 {% endblock css %}
 {% block nav %}
 		<!-- Main Wrapper -->
@@ -323,106 +320,182 @@
 							<div class="page-header">
 								<div class="row">
 									<div class="col-sm-12">
-										<h3 class="page-title">Company Settings</h3>
+										<h3 class="page-title">Salary Settings</h3>
 									</div>
 								</div>
 							</div>
 							<!-- /Page Header -->
 							
 							<form>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Company Name <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" value="Dreamguy's Technologies">
+								
+								<!-- DA and HRA Settings -->
+								<div class="settings-widget">
+									<div class="h3 card-title with-switch">
+										DA and HRA 											
+										<div class="onoffswitch">
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch_hra" checked>
+											<label class="onoffswitch-label" for="switch_hra">
+												<span class="onoffswitch-inner"></span>
+												<span class="onoffswitch-switch"></span>
+											</label>
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Contact Person</label>
-											<input class="form-control " value="Daniel Porter" type="text">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>DA (%)</label>
+												<input type="text" class="form-control">
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Address</label>
-											<input class="form-control " value="3864 Quiet Valley Lane, Sherman Oaks, CA, 91403" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Country</label>
-											<select class="form-control select">
-												<option>USA</option>
-												<option>United Kingdom</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>City</label>
-											<input class="form-control" value="Sherman Oaks" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>State/Province</label>
-											<select class="form-control select">
-												<option>California</option>
-												<option>Alaska</option>
-												<option>Alabama</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Postal Code</label>
-											<input class="form-control" value="91403" type="text">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>HRA (%)</label>
+												<input class="form-control" type="text">
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Email</label>
-											<input class="form-control" value="danielporter@example.com" type="email">
+								<!-- /DA and HRA Settings -->
+								
+								<!-- Provident Fund Settings -->
+								<div class="settings-widget">
+									<div class="h3 card-title with-switch">
+										Provident Fund Settings 											
+										<div class="onoffswitch">
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch_pf" checked>
+											<label class="onoffswitch-label" for="switch_pf">
+												<span class="onoffswitch-inner"></span>
+												<span class="onoffswitch-switch"></span>
+											</label>
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Phone Number</label>
-											<input class="form-control" value="818-978-7102" type="text">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Employee Share (%)</label>
+												<input class="form-control" type="text">
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Mobile Number</label>
-											<input class="form-control" value="818-635-5579" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Fax</label>
-											<input class="form-control" value="818-978-7102" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Website Url</label>
-											<input class="form-control" value="https://www.example.com" type="text">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Organization Share (%)</label>
+												<input class="form-control" type="text">
+											</div>
 										</div>
 									</div>
 								</div>
+								<!-- /Provident Fund Settings -->
+								
+								<!-- ESI Settings -->
+								<div class="settings-widget">
+									<div class="h3 card-title with-switch">
+										ESI Settings 											
+										<div class="onoffswitch">
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch_esi">
+											<label class="onoffswitch-label" for="switch_esi">
+												<span class="onoffswitch-inner"></span>
+												<span class="onoffswitch-switch"></span>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Employee Share (%)</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Organization Share (%)</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /ESI Settings -->
+								
+								<!-- TDS Settings -->
+								<div class="settings-widget">
+									<div class="h3 card-title with-switch">
+										TDS&nbsp; <small class="form-text text-muted">Annual Salary</small>
+										<div class="onoffswitch">
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch_tds">
+											<label class="onoffswitch-label" for="switch_tds">
+												<span class="onoffswitch-inner"></span>
+												<span class="onoffswitch-switch"></span>
+											</label>
+										</div>
+									</div>
+									<div class="row row-sm">
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Salary From</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Salary To</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<div class="form-group">
+												<label>%</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<div class="form-group">
+												<label class="d-none d-sm-block">&nbsp;</label>
+												<button class="btn btn-danger btn-block set-btn" type="button"><i class="fa fa-trash-o"></i></button>
+											</div>
+										</div>
+									</div>
+									<div class="row row-sm">
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Salary From</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Salary To</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<div class="form-group">
+												<label>%</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<div class="form-group">
+												<label class="d-none d-sm-block">&nbsp;</label>
+												<button class="btn btn-danger btn-block set-btn" type="button"><i class="fa fa-trash-o"></i></button>
+											</div>
+										</div>
+									</div>
+									<div class="row row-sm">
+										<div class="col-sm-2 ml-auto">
+											<div class="form-group">
+												<button class="btn btn-primary btn-block" type="button"><i class="fa fa-plus"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /TDS Settings -->
+								
+								<!-- Submit Button -->
 								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Save</button>
+									<button class="btn btn-primary submit-btn" type="submit">Save</button>
 								</div>
-							</form>
+								<!-- /Submit Button -->
+								
+                            </form>
 						</div>
 					</div>
                 </div>
@@ -443,9 +516,9 @@
 
 		<!-- Slimscroll JS -->
 		<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
-		
-		<!-- Select2 JS -->
-		<script src="/static/assets/js/select2.min.js"></script>
 
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		
+    </body>
+</html>
