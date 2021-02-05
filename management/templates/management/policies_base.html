@@ -1,0 +1,72 @@
+{% block policies_base %}
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Policies</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Policies</li>
+								</ul>
+							</div>
+							<div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_policy"><i class="fa fa-plus"></i> Add Policy</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+{% endblock policies_base %}
+{% block policies_add %}
+<!-- Add Policy Modal -->
+				<div id="add_policy" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add Policy</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label>Policy Name <span class="text-danger">*</span></label>
+										<input class="form-control" type="text">
+									</div>
+									<div class="form-group">
+										<label>Description <span class="text-danger">*</span></label>
+										<textarea class="form-control" rows="4"></textarea>
+									</div>
+									<div class="form-group">
+										<label class="col-form-label">Department</label>
+										<select class="select">
+											<option>All Departments</option>
+											<option>Web Development</option>
+											<option>Marketing</option>
+											<option>IT Management</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Upload Policy <span class="text-danger">*</span></label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="policy_upload">
+											<label class="custom-file-label" for="policy_upload">Choose file</label>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add Policy Modal -->
+				
+{% endblock policies_add %}

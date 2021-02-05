@@ -1,0 +1,254 @@
+{% block users_base %}
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Users</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Users</li>
+								</ul>
+							</div>
+							<div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<!-- Search Filter -->
+					<div class="row filter-row">
+						<div class="col-sm-6 col-md-3">  
+							<div class="form-group form-focus">
+								<input type="text" class="form-control floating">
+								<label class="focus-label">Name</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3"> 
+							<div class="form-group form-focus select-focus">
+								<select class="select floating"> 
+									<option>Select Company</option>
+									<option>Global Technologies</option>
+									<option>Delta Infotech</option>
+								</select>
+								<label class="focus-label">Company</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3"> 
+							<div class="form-group form-focus select-focus">
+								<select class="select floating"> 
+									<option>Select Roll</option>
+									<option>Web Developer</option>
+									<option>Web Designer</option>
+									<option>Android Developer</option>
+									<option>Ios Developer</option>
+								</select>
+								<label class="focus-label">Role</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3">  
+							<a href="#" class="btn btn-success btn-block"> Search </a>  
+						</div>     
+                    </div>
+					<!-- /Search Filter -->
+					
+{% endblock users_base %}
+{% block users_add %}
+<!-- Add User Modal -->
+				<div id="add_user" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add User</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>First Name <span class="text-danger">*</span></label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Last Name</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Username <span class="text-danger">*</span></label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Email <span class="text-danger">*</span></label>
+												<input class="form-control" type="email">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Password</label>
+												<input class="form-control" type="password">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Confirm Password</label>
+												<input class="form-control" type="password">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Phone </label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Role</label>
+												<select class="select">
+													<option>Admin</option>
+													<option>Client</option>
+													<option>Employee</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Company</label>
+												<select class="select">
+													<option>Global Technologies</option>
+													<option>Delta Infotech</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">  
+											<div class="form-group">
+												<label>Employee ID <span class="text-danger">*</span></label>
+												<input type="text" class="form-control floating">
+											</div>
+									   </div>
+									</div>
+									<div class="table-responsive m-t-15">
+										<table class="table table-striped custom-table">
+											<thead>
+												<tr>
+													<th>Module Permission</th>
+													<th class="text-center">Read</th>
+													<th class="text-center">Write</th>
+													<th class="text-center">Create</th>
+													<th class="text-center">Delete</th>
+													<th class="text-center">Import</th>
+													<th class="text-center">Export</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Employee</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Holidays</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Leaves</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Events</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add User Modal -->
+{% endblock users_add %}

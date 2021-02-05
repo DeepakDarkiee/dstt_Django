@@ -1,0 +1,158 @@
+{% block jobs_base %}
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Jobs</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Jobs</li>
+								</ul>
+							</div>
+							<div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_job"><i class="fa fa-plus"></i> Add Job</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+{% endblock jobs_base %}
+{% block jobs_add %}
+<!-- Add Job Modal -->
+				<div id="add_job" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add Job</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Job Title</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Department</label>
+												<select class="select">
+													<option>-</option>
+													<option>Web Development</option>
+													<option>Application Development</option>
+													<option>IT Management</option>
+													<option>Accounts Management</option>
+													<option>Support Management</option>
+													<option>Marketing</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Job Location</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>No of Vacancies</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Experience</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Age</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Salary From</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Salary To</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Job Type</label>
+												<select class="select">
+													<option>Full Time</option>
+													<option>Part Time</option>
+													<option>Internship</option>
+													<option>Temporary</option>
+													<option>Remote</option>
+													<option>Others</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Status</label>
+												<select class="select">
+													<option>Open</option>
+													<option>Closed</option>
+													<option>Cancelled</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Start Date</label>
+												<input type="text" class="form-control datetimepicker">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Expired Date</label>
+												<input type="text" class="form-control datetimepicker">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Description</label>
+												<textarea class="form-control"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add Job Modal -->
+{% endblock jobs_add %}

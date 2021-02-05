@@ -1,0 +1,341 @@
+{% include 'administration/base.html' %}
+{% include 'administration/ticket_base.html' %}
+{% block css %}
+<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+		
+		<!-- Datatable CSS -->
+		<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="/static/assets/css/style.css">
+{% endblock css %}
+{% block ticket_base %}
+{% endblock ticket_base %}					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table mb-0 datatable">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Ticket Id</th>
+											<th>Ticket Subject</th>
+											<th>Assigned Staff</th>
+											<th>Created Date</th>
+											<th>Last Reply</th>
+											<th>Priority</th>
+											<th class="text-center">Status</th>
+											<th class="text-right">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td><a href="ticket-view.html">#TKT-0001</a></td>
+											<td>Laptop Issue</td>
+											<td>
+												<h2 class="table-avatar">
+													<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
+													<a href="#">John Smith</a>
+												</h2>
+											</td>
+											<td>5 Jan 2019 07:21 AM</td>
+											<td>5 Jan 2019 11.12 AM</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-danger"></i> High </a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> High</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-warning"></i> Medium</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Low</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-center">
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-danger"></i> New 
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Open</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Reopened</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> On Hold</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Closed</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> In Progress</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Cancelled</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_ticket"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_ticket"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td><a href="ticket-view.html">#TKT-0001</a></td>
+											<td>Internet Issue</td>
+											<td>
+												<h2 class="table-avatar">
+													<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-08.jpg"></a>
+													<a href="#">Catherine Manseau</a>
+												</h2>
+											</td>
+											<td>5 Jan 2019 07:21 AM</td>
+											<td>5 Jan 2019 11.12 AM</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-warning"></i> Medium </a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> High</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-warning"></i> Medium</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Low</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-center">
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-info"></i> Reopened 
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Open</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Reopened</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> On Hold</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Closed</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> In Progress</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Cancelled</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_ticket"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_ticket"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+                </div>
+				<!-- /Page Content -->
+				
+                {% block ticket_add %}
+				{% endblock ticket_add %}
+				<!-- Edit Ticket Modal -->
+				<div id="edit_ticket" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Edit Ticket</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Ticket Subject</label>
+												<input class="form-control" type="text" value="Laptop Issue">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Ticket Id</label>
+												<input class="form-control" type="text" readonly value="TKT-0001">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Assign Staff</label>
+												<select class="select">
+													<option>-</option>
+													<option selected>Mike Litorus</option>
+													<option>John Smith</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Client</label>
+												<select class="select">
+													<option>-</option>
+													<option >Delta Infotech</option>
+													<option selected>International Software Inc</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Priority</label>
+												<select class="select">
+													<option>High</option>
+													<option selected>Medium</option>
+													<option>Low</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>CC</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Assign</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Ticket Assignee</label>
+												<div class="project-members">
+													<a title="John Smith" data-placement="top" data-toggle="tooltip" href="#" class="avatar">
+														<img src="assets/img/profiles/avatar-02.jpg" alt="">
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Add Followers</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Ticket Followers</label>
+												<div class="project-members">
+													<a title="Richard Miles" data-toggle="tooltip" href="#" class="avatar">
+														<img src="assets/img/profiles/avatar-09.jpg" alt="">
+													</a>
+													<a title="John Smith" data-toggle="tooltip" href="#" class="avatar">
+														<img src="assets/img/profiles/avatar-10.jpg" alt="">
+													</a>
+													<a title="Mike Litorus" data-toggle="tooltip" href="#" class="avatar">
+														<img src="assets/img/profiles/avatar-05.jpg" alt="">
+													</a>
+													<a title="Wilmer Deluna" data-toggle="tooltip" href="#" class="avatar">
+														<img src="assets/img/profiles/avatar-11.jpg" alt="">
+													</a>
+													<span class="all-team">+2</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>Description</label>
+												<textarea class="form-control"></textarea>
+											</div>
+											<div class="form-group">
+												<label>Upload Files</label>
+												<input class="form-control" type="file">
+											</div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Edit Ticket Modal -->
+				
+				<!-- Delete Ticket Modal -->
+				<div class="modal custom-modal fade" id="delete_ticket" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-header">
+									<h3>Delete Ticket</h3>
+									<p>Are you sure want to delete?</p>
+								</div>
+								<div class="modal-btn delete-action">
+									<div class="row">
+										<div class="col-6">
+											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+										</div>
+										<div class="col-6">
+											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Delete Ticket Modal -->
+				
+            </div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+
+		<!-- jQuery -->
+        <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+		<!-- Bootstrap Core JS -->
+        <script src="/static/assets/js/popper.min.js"></script>
+        <script src="/static/assets/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JS -->
+		<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+		
+		<!-- Select2 JS -->
+		<script src="/static/assets/js/select2.min.js"></script>
+		
+		<!-- Datetimepicker JS -->
+		<script src="/static/assets/js/moment.min.js"></script>
+		<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+		
+		<!-- Datatable JS -->
+		<script src="/static/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- Custom JS -->
+		<script src="/static/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% block estimates_base %}
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Estimates</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Estimates</li>
+								</ul>
+							</div>
+							<div class="col-auto float-right ml-auto">
+								<a href="{% url 'estimatescreate' %}" class="btn add-btn"><i class="fa fa-plus"></i> Create Estimate</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<!-- Search Filter -->
+					<div class="row filter-row">
+						<div class="col-sm-6 col-md-3">  
+							<div class="form-group form-focus">
+								<div class="cal-icon">
+									<input class="form-control floating datetimepicker" type="text">
+								</div>
+								<label class="focus-label">From</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3">  
+							<div class="form-group form-focus">
+								<div class="cal-icon">
+									<input class="form-control floating datetimepicker" type="text">
+								</div>
+								<label class="focus-label">To</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3"> 
+							<div class="form-group form-focus select-focus">
+								<select class="select floating"> 
+									<option>Select Status</option>
+									<option>Accepted</option>
+									<option>Declined</option>
+									<option>Expired</option>
+								</select>
+								<label class="focus-label">Status</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-3">  
+							<a href="#" class="btn btn-success btn-block"> Search </a>  
+						</div>     
+                    </div>
+					<!-- /Search Filter -->
+
+{% endblock estimates_base %}
