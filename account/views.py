@@ -3,8 +3,10 @@ from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,HttpResponse
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 from django.views.generic import View
+from django.db import IntegrityError
+from django.contrib import messages
 
 # Sign Up View
 class SignInView(View):
@@ -29,4 +31,19 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
-    
+class RolesPermissions(View):
+    def post(self,request):
+        role_name = request.POST['role']
+        try:
+            group= Group.objects.create(name=role_name)
+        except IntegrityError as e:
+            messages.error(request,"already exist")
+        groups=Group.objects.all()
+        return render(request, "account/roles_permissions.html",{'groups':groups})
+    def get(self,request):
+        groups=Group.objects.all()
+        return render(request, "account/roles_permissions.html",{'groups':groups})
+
+
+
+        

@@ -5,7 +5,6 @@ from django.views import generic
 from django.views.generic import TemplateView,CreateView
 from .models import Employee
 from .forms import EmployeeForm
-
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -36,11 +35,6 @@ def RegisterEmployeeView(request):
         form = EmployeeForm()
         return render(request,'employee/employee.html',{'form':form})
             
-
-
-        
-    
-
     
 class AllEmployeeView(TemplateView):
     template_name = "employee/employee.html"
