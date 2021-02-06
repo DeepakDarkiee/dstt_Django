@@ -1,6 +1,5 @@
 {% include 'administration/base.html' %}
 {% include 'administration/setting_base.html' %}
-
 {% block css %}
 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
@@ -14,11 +13,13 @@
 		<!-- Lineawesome CSS -->
         <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
 		
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+		<!-- Datatable CSS -->
+		<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="/static/assets/css/style.css">
+		
+		
 {% endblock css %}
 {% block nav %}
 		<!-- Main Wrapper -->
@@ -316,117 +317,211 @@
 			
 				<!-- Page Content -->
                 <div class="content container-fluid">
-					<div class="row">
-						<div class="col-md-8 offset-md-2">
-						
-							<!-- Page Header -->
-							<div class="page-header">
-								<div class="row">
-									<div class="col-sm-12">
-										<h3 class="page-title">Company Settings</h3>
-									</div>
-								</div>
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Leave Type</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Leave Type</li>
+								</ul>
 							</div>
-							<!-- /Page Header -->
-							
-							<form>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Company Name <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" value="Dreamguy's Technologies">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Contact Person</label>
-											<input class="form-control " value="Daniel Porter" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Address</label>
-											<input class="form-control " value="3864 Quiet Valley Lane, Sherman Oaks, CA, 91403" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Country</label>
-											<select class="form-control select">
-												<option>USA</option>
-												<option>United Kingdom</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>City</label>
-											<input class="form-control" value="Sherman Oaks" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>State/Province</label>
-											<select class="form-control select">
-												<option>California</option>
-												<option>Alaska</option>
-												<option>Alabama</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Postal Code</label>
-											<input class="form-control" value="91403" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Email</label>
-											<input class="form-control" value="danielporter@example.com" type="email">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Phone Number</label>
-											<input class="form-control" value="818-978-7102" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Mobile Number</label>
-											<input class="form-control" value="818-635-5579" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Fax</label>
-											<input class="form-control" value="818-978-7102" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Website Url</label>
-											<input class="form-control" value="https://www.example.com" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Save</button>
-								</div>
-							</form>
+							<div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leavetype"><i class="fa fa-plus"></i> Add Leave Type</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table datatable mb-0">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Leave Type</th>
+											<th>Leave Days</th>
+											<th>Status</th>
+											<th class="text-right">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												1
+											</td>
+											<td>Casual Leave</td>
+											<td>12 Days</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-success"></i> Active
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a href="#" class="dropdown-item"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
+														<a href="#" class="dropdown-item"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leavetype"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_leavetype"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												2
+											</td>
+											<td>Medical Leave</td>
+											<td>12 Days</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leavetype"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_leavetype"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												3
+											</td>
+											<td>Loss of Pay</td>
+											<td>-</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-success"></i> Active
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
+													</div>
+												</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leavetype"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_leavetype"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
                 </div>
 				<!-- /Page Content -->
+				
+				<!-- Add Leavetype Modal -->
+				<div id="add_leavetype" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add Leave Type</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label>Leave Type <span class="text-danger">*</span></label>
+										<input class="form-control" type="text">
+									</div>
+									<div class="form-group">
+										<label>Number of days <span class="text-danger">*</span></label>
+										<input class="form-control" type="text">
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add Leavetype Modal -->
+				
+				<!-- Edit Leavetype Modal -->
+				<div id="edit_leavetype" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Edit Leave Type</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label>Leave Type <span class="text-danger">*</span></label>
+										<input class="form-control" type="text" value="Casual Leave">
+									</div>
+									<div class="form-group">
+										<label>Number of days <span class="text-danger">*</span></label>
+										<input class="form-control" type="text" value="12">
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Edit Leavetype Modal -->
+				
+				<!-- Delete Leavetype Modal -->
+				<div class="modal custom-modal fade" id="delete_leavetype" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-header">
+									<h3>Delete Leave Type</h3>
+									<p>Are you sure want to delete?</p>
+								</div>
+								<div class="modal-btn delete-action">
+									<div class="row">
+										<div class="col-6">
+											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+										</div>
+										<div class="col-6">
+											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Delete Leavetype Modal -->
 				
             </div>
 			<!-- /Page Wrapper -->
@@ -444,8 +539,12 @@
 		<!-- Slimscroll JS -->
 		<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
 		
-		<!-- Select2 JS -->
-		<script src="/static/assets/js/select2.min.js"></script>
+		<!-- Datatable JS -->
+		<script src="/static/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
 
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		
+    </body>
+</html>

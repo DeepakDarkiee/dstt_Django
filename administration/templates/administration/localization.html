@@ -1,6 +1,5 @@
 {% include 'administration/base.html' %}
 {% include 'administration/setting_base.html' %}
-
 {% block css %}
 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
@@ -19,6 +18,7 @@
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="/static/assets/css/style.css">
+		
 {% endblock css %}
 {% block nav %}
 		<!-- Main Wrapper -->
@@ -323,7 +323,7 @@
 							<div class="page-header">
 								<div class="row">
 									<div class="col-sm-12">
-										<h3 class="page-title">Company Settings</h3>
+										<h3 class="page-title">Basic Settings</h3>
 									</div>
 								</div>
 							</div>
@@ -333,96 +333,69 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>Company Name <span class="text-danger">*</span></label>
-											<input class="form-control" type="text" value="Dreamguy's Technologies">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Contact Person</label>
-											<input class="form-control " value="Daniel Porter" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Address</label>
-											<input class="form-control " value="3864 Quiet Valley Lane, Sherman Oaks, CA, 91403" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Country</label>
-											<select class="form-control select">
-												<option>USA</option>
+											<label>Default Country</label>
+											<select class="select">
+												<option selected="selected">USA</option>
 												<option>United Kingdom</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
+									<div class="col-sm-6">
 										<div class="form-group">
-											<label>City</label>
-											<input class="form-control" value="Sherman Oaks" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>State/Province</label>
-											<select class="form-control select">
-												<option>California</option>
-												<option>Alaska</option>
-												<option>Alabama</option>
+											<label>Date Format</label>
+											<select class="select">
+												<option value="d/m/Y">15/05/2016</option>
+												<option value="d.m.Y">15.05.2016</option>
+												<option value="d-m-Y">15-05-2016</option>
+												<option value="m/d/Y">05/15/2016</option>
+												<option value="Y/m/d">2016/05/15</option>
+												<option value="Y-m-d">2016-05-15</option>
+												<option value="M d Y">May 15 2016</option>
+												<option selected="selected" value="d M Y">15 May 2016</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-sm-6 col-md-6 col-lg-3">
-										<div class="form-group">
-											<label>Postal Code</label>
-											<input class="form-control" value="91403" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>Email</label>
-											<input class="form-control" value="danielporter@example.com" type="email">
+											<label>Timezone</label>
+											<select class="select">
+												<option>(UTC +5:30) Antarctica/Palmer</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>Phone Number</label>
-											<input class="form-control" value="818-978-7102" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Mobile Number</label>
-											<input class="form-control" value="818-635-5579" type="text">
+											<label>Default Language</label>
+											<select class="select">
+												<option selected="selected">English</option>
+												<option>French</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>Fax</label>
-											<input class="form-control" value="818-978-7102" type="text">
+											<label>Currency Code</label>
+											<select class="select">
+												<option selected="selected">USD</option>
+												<option>Pound</option>
+												<option>EURO</option>
+												<option>Ringgit</option>
+											</select>
 										</div>
 									</div>
-								</div>
-								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Currency Symbol</label>
+											<input class="form-control" readonly value="$" type="text">
+										</div>
+									</div>
 									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Website Url</label>
-											<input class="form-control" value="https://www.example.com" type="text">
+										<div class="submit-section">
+											<button class="btn btn-primary submit-btn">Save</button>
 										</div>
 									</div>
 								</div>
-								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Save</button>
-								</div>
-							</form>
+                            </form>
 						</div>
 					</div>
                 </div>
@@ -449,3 +422,6 @@
 
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		
+    </body>
+</html>
