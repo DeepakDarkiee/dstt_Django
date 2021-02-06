@@ -46,7 +46,7 @@ class RegisterRole(View):
         return render(request, "account/role.html",{'groups':groups})
 
 class AddRolePermission(TemplateView):
-    
+    print('hello')
     template_name = 'account/add_roles_permission.html'
 
 
