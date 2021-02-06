@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group, User
-from django.views.generic import View
+from django.views.generic import View,TemplateView
 from django.db import IntegrityError
 from django.contrib import messages
 
@@ -32,7 +32,7 @@ class LogoutView(View):
         return HttpResponseRedirect(settings.LOGIN_URL)
 
 
-class RolesPermissions(View):
+class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
         try:
@@ -40,10 +40,13 @@ class RolesPermissions(View):
         except IntegrityError as e:
             messages.error(request,"already exist")
         groups=Group.objects.all()
-        return render(request, "account/roles_permissions.html",{'groups':groups})
+        return render(request, "account/role.html",{'groups':groups})
     def get(self,request):
         groups=Group.objects.all()
-        return render(request, "account/roles_permissions.html",{'groups':groups})
+        return render(request, "account/role.html",{'groups':groups})
+
+class AddRolePermission(TemplateView):
+    template_name = 'account/add_roles_permission.html'
 
 
 

@@ -77,10 +77,77 @@
                                 <div class="modal-body">
                                     <form method ="POST" action="{% url 'RegisterEmployee' %}">
                                         {% csrf_token %}
-                                        {{form.as_p}}
-                                        <button type="submit" value="submit">submit</button>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                                    <input class="form-control" type="text" name="employee_first_name"  id="id_employee_first_name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Last Name</label>
+                                                    <input class="form-control" type="text" name="employee_last_name"  id="id_employee_last_name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Username <span class="text-danger">*</span></label>
+                                                    <input class="form-control" type="text" name="employee_username" id="id_employee_username">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                                                    <input class="form-control" type="email" name="employee_email" id="id_employee_email">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Password</label>
+                                                    <input class="form-control" type="password"  name="employee_password" id="id_employee_password">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Confirm Password</label>
+                                                    <input class="form-control" type="password" name="employee_confirm_password" id="id_employee_confirm_password">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">  
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control"  name="employee_id" id="id_employee_id">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">  
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+                                                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="employee_joining_date" required id="id_employee_joining_date"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Phone </label>
+                                                    <input class="form-control" type="text" name="employee_phone" id="id_employee_phone">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Department <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="employee_department" id="id_employee_department">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="submit-section">
+                                            <button type="submit" value="submit" class="btn btn-primary submit-btn">submit</button>
+                                        </div>
+                                    </div>
+                                       
                                     </form>
-                                </div>
+                                    
                             </div>
                         </div>
                     </div>
