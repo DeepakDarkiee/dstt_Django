@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group, User
-from django.views.generic import View,TemplateView
+from django.views.generic import View,TemplateView,UpdateView
 from django.db import IntegrityError
 from django.contrib import messages
 
@@ -45,8 +45,12 @@ class RegisterRole(View):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
 
-class AddRolePermission(TemplateView):
-    template_name = 'account/add_roles_permission.html'
+class AddRolePermission(UpdateView):
+    model = Group
+    fields =('Name')
+    context_object_name='role_update'
+    template_name = 'account/role.html'
+    success_url = reverse_lazy('role.html')
 
 
 
