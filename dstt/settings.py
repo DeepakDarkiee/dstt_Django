@@ -25,7 +25,7 @@ SECRET_KEY = '^2gq+gcpq@#4exlzp&tt*yl8@4%^6o7hf^kkzyz!5hpk_r0e^&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dstt.dsmie.com','www.dstt.dsmie.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
