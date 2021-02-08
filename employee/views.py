@@ -1,4 +1,6 @@
-from django.contrib.auth.models import User
+
+from account.models import User
+
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render,HttpResponse
 from django.views import generic
@@ -15,7 +17,6 @@ def RegisterEmployeeView(request):
         if form.is_valid():
             employee_first_name = form.cleaned_data['employee_first_name']
             employee_last_name = form.cleaned_data['employee_last_name']
-            employee_username = form.cleaned_data['employee_username']
             employee_email = form.cleaned_data['employee_email']
             employee_joining_date = form.cleaned_data['employee_joining_date']
             employee_department = form.cleaned_data['employee_department']
@@ -24,11 +25,11 @@ def RegisterEmployeeView(request):
             employee_id = form.cleaned_data['employee_id']
             employee_phone = form.cleaned_data['employee_phone']
             employee_joining_date = form.cleaned_data['employee_joining_date']
-            user = User.objects.create_user(username=employee_email,password=employee_password,email=employee_email,first_name=employee_first_name,last_name=employee_last_name)
+            user = User.objects.create_user(email=employee_email,password=employee_password)
             user.is_staff=False
             user.is_active=True
             user.save()
-            register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_username=employee_username,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
+            register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
             register_employee.save()
             return HttpResponse("saved")
     else:

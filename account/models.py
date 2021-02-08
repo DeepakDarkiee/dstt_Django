@@ -1,12 +1,8 @@
 from __future__ import unicode_literals
-from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 from django.contrib.auth.models import  AbstractUser, Group
-from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser, BaseUserManager
-import datetime
-from django.contrib.auth import get_user_model 
+from django.contrib.auth.models import  BaseUserManager
 
 
 Group.add_to_class('access_flag', models.BooleanField(default=True))
@@ -49,11 +45,8 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
-    
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
     objects = UserManager()
 
 
