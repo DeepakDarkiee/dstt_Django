@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import redirect, render,HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group, User
 from django.views.generic import View,TemplateView,UpdateView
 from django.db import IntegrityError
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 # Sign Up View
 class SignInView(View):
@@ -37,6 +38,7 @@ class RegisterRole(View):
         role_name = request.POST['role']
         try:
             group= Group.objects.create(name=role_name)
+            messages.success(request,f"{group} Created successfully")
         except IntegrityError as e:
             messages.error(request,"already exist")
         groups=Group.objects.all()
@@ -45,13 +47,18 @@ class RegisterRole(View):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
 
-class AddRolePermission(UpdateView):
-    model = Group
-    fields =('Name')
-    context_object_name='role_update'
-    template_name = 'account/role.html'
-    success_url = reverse_lazy('role.html')
+class RemoveRole(View):
+    def get(self,request,name):
+        try:
+            groups=Group.objects.get(name=name)          
+            groups.delete()
+            messages.success(request,f"{groups} deleted successfully")
 
+        except Group.DoesNotExist:
+            messages.error(request,"Role already Deleted or Not Created")
+        return HttpResponseRedirect('/role')
+    
+   
 
 
         

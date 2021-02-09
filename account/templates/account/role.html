@@ -57,13 +57,17 @@
 								<ul>
 									<li class="active">
 										<a href="{% url 'role' %}">{{role}}
+
 											<span class="role-action">
+											
 												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
 													<i class="material-icons">edit</i>
 												</span>
+												<a href="#">
 												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
-													<i class="material-icons">delete</i>
+													<i class="material-icons" onClick="getId('{{role}}')" >delete</i>
 												</span>
+											</a>
 											</span>
 										</a>
 									</li>
@@ -290,7 +294,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="deleterole" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -321,6 +325,12 @@
 
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		<script>
+			function getId(id) {
+				var a =document.getElementById('deleterole');
+				a.href = "/RemoveRole/"+id;
+			}
+		</script>
 		
     </body>
 </html>
