@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-# Sign Up View
+# Signs Up View
 class SignInView(View):
     def post(self,request):
         email = request.POST['email']
