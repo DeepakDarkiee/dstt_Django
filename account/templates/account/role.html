@@ -51,11 +51,13 @@
 					<div class="row">
 						<div class="col-sm-4 col-md-4 col-lg-4 col-xl-3">
 							<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add_role"><i class="fa fa-plus"></i> Add Roles</a>
-								<div class="roles-menu">
-                                	{% for role in groups %}
-									<ul>
-										<li class="active">
+							<div class="roles-menu">
+                                
+                                {% for role in groups %}
+								<ul>
+									<li class="active">
 										<a href="{% url 'rolepermission' %}">{{role}}
+
 											<span class="role-action">
 											<a href="#">
 												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
@@ -268,12 +270,14 @@
 								</button>
 							</div>
 							<div class="modal-body">
+							<form action="" method="get" id='managerole'>
+	
 									<div class="form-group">
 										<label>Role Name <span class="text-danger">*</span></label>
-										<input class="form-control"  type="text" name="role_update">
+										<input class="form-control" id="rolemanage" type="text" name="role" value="">
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn" id="managerole">Save</button>
+										<button type="submit" class="btn btn-primary submit-btn" >Save</button>
 									</div>
 							
 							</div>
@@ -333,9 +337,9 @@
 		</script>
 		<script>
 			function getId(id) {
-				alert(id)
-				var a =document.getElementById('managerole');
-				a.href = "/ManageRole/"+id;
+				var form =document.getElementById('managerole');
+				var input =document.getElementById('rolemanage').value=id;
+				form.action = "/ManageRole/"+id;
 			}
 		</script>
 		
