@@ -63,11 +63,12 @@ class RemoveRole(View):
 
 class ManageRole(View):
     def get(self,request,name):
-        groups=Group.objects.get(name=name)
-        groups.update('name')
-        messages.success(request,f"{groups} updated successfully")
-        return HttpResponseRedirect('/role')
+        pass
+        # groups=Group.objects.get(name=name)
+        # groups.update(name=name)
+        # messages.success(request,f"{groups} updated successfully")
+        # return HttpResponseRedirect('/role')
     
-            
+
        
            
