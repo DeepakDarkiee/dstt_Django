@@ -32,7 +32,10 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
+class RolePermissionView(TemplateView):
+    template_name = "account/add_roles_permission.html"
 
+# Roles
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
@@ -56,9 +59,15 @@ class RemoveRole(View):
 
         except Group.DoesNotExist:
             messages.error(request,"Role already Deleted or Not Created")
+        return HttpResponseRedirect('/role')     
+
+class ManageRole(View):
+    def get(self,request,name):
+        groups=Group.objects.get(name=name)
+        groups.update('groups')
+        messages.success(request,f"{groups} updated successfully")
         return HttpResponseRedirect('/role')
     
-   
-
-
-        
+            
+       
+           

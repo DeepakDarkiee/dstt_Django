@@ -10,3 +10,4 @@ urlpatterns = [
     path('RemoveRole/<str:name>',views.RemoveRole.as_view(),name='RemoveRole'),
 
 ]
+# url
