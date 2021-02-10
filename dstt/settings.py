@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'administration',
-    'account.apps.AccountConfig',
+    'account',
     'management',
     'performances',
     'employee',
@@ -130,3 +130,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
 AUTH_USER_MODEL = 'account.User'
+
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+}
