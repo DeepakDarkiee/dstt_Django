@@ -61,7 +61,7 @@
 											<span class="role-action">
 											<a href="#">
 												<span class="action-circle large" data-toggle="modal" data-target="#edit_role">
-													<i class="material-icons" onClick="getId('{{role}}')">edit</i>
+													<i class="material-icons">edit</i>
 												</span>
 											</a>
 												<a href="#">
@@ -274,7 +274,7 @@
 	
 									<div class="form-group">
 										<label>Role Name <span class="text-danger">*</span></label>
-										<input class="form-control" id="rolemanage" type="text" name="role" value="">
+										<input class="form-control"  type="text" name="role" value="">
 									</div>
 									<div class="submit-section">
 										<button type="submit" class="btn btn-primary submit-btn" >Save</button>
@@ -335,13 +335,7 @@
 				a.href = "/RemoveRole/"+id;
 			}
 		</script>
-		<script>
-			function getId(id) {
-				var form =document.getElementById('managerole');
-				var input =document.getElementById('rolemanage').value=id;
-				form.action = "/ManageRole/"+id;
-			}
-		</script>
+	
 		
     </body>
 </html>

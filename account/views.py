@@ -61,14 +61,3 @@ class RemoveRole(View):
             messages.error(request,"Role already Deleted or Not Created")
         return HttpResponseRedirect('/role')     
 
-class ManageRole(View):
-    def get(self,request,name):
-        pass
-        # groups=Group.objects.get(name=name)
-        # groups.update(name=name)
-        # messages.success(request,f"{groups} updated successfully")
-        # return HttpResponseRedirect('/role')
-    
-
-       
-           
