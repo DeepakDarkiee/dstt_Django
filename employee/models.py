@@ -17,6 +17,7 @@ class Employee(models.Model):
     employee_id=models.CharField(max_length=100)
     employee_phone=models.CharField(max_length=100)
     employee_created_date=models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return self.employee_email
