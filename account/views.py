@@ -74,6 +74,7 @@ class RolePermissionView(View):
         employee_write=request.POST['employee_write']
         employee_create=request.POST['employee_create']
         employee_delete=request.POST['employee_delete']
+        return HttpResponse("Yes")
         # print(role,employee_module,employee_read,employee_write,employee_create,employee_delete)
         
         
