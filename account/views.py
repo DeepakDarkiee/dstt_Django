@@ -51,7 +51,7 @@ class RegisterRole(View):
         return render(request, "account/role.html",{'groups':groups})
     def get(self,request):
         groups=Group.objects.all()
-        return render(request, "account/role.html",{'groups':groups})
+        return render(request, "account/role.html")
 
 class RemoveRole(View):
     def get(self,request,name):
@@ -63,6 +63,7 @@ class RemoveRole(View):
         except Group.DoesNotExist:
             messages.error(request,"Role already Deleted or Not Created")
         return HttpResponseRedirect('/role')     
+
 
 
 class RolePermissionView(View):
@@ -97,3 +98,7 @@ class RolePermissionView(View):
 #     jack = Member.objects.create(email='deepak@gmail.com')
 #     org_a_managers.add_member(jack)
 #     return  HttpResponse("Group True")
+
+    
+            
+       

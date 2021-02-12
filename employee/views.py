@@ -1,13 +1,22 @@
 
 from django.contrib.auth.models import Group
 from account.models import User
-from django.shortcuts import get_object_or_404, redirect, render
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import  redirect, render
+from django.shortcuts import render
 from django.views import generic
 from django.views.generic import TemplateView,CreateView
 from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
+
+from django.shortcuts import  render
+from django.shortcuts import render,HttpResponse
+from django.views import generic
+from django.views.generic import TemplateView,CreateView,ListView
+from .models import Employee,Department,Designation
+from .forms import DepartmentForm,DesignationForm
+from .forms import EmployeeForm
+
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -63,12 +72,28 @@ class AttendanceAdminView(TemplateView):
 
 class AttendanceEmployeeView(TemplateView):
     template_name = "employee/attendance_employee.html"
-
-class DepatmentsView(TemplateView):
+# ----------------------------------------Department----------------------------------------------------------------------------------
+class DepartmentCreateView(generic.CreateView):
+    model = Department
+    fields = ('department_department_name')
     template_name = "employee/departments.html"
+    success_url = ('/employee/departments')
+# ----------------------------------------Department----------------------------------------------------------------------------------
 
-class DesignationsView(TemplateView):
+# ----------------------------------------/Department----------------------------------------------------------------------------------
+class DesignationCreateView(generic.CreateView):
+    model = Designation
+    fields = ('designation_name', 'department_name')
     template_name = "employee/designations.html"
+    success_url = ('/employee/designations_list')
+
+class DesignationListView(generic.ListView): 
+    model = Designation   
+    template_name = "employee/designations.html" 
+    context_object_name = "designations_list"
+    # success_url = ('/employee/designations_list')
+
+# ----------------------------------------Department----------------------------------------------------------------------------------
 
 class TimesheetView(TemplateView):
     template_name = "employee/timesheet.html"

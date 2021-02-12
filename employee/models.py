@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from account.models import User
 
 
-# Create your models here.
+# -------------------------------Employee Model---------------------------------------------------------------------------------
 from django.contrib.auth import get_user_model
 User = get_user_model()
 class Employee(models.Model):
@@ -21,3 +21,21 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.employee_email
+# -------------------------------/Employee Model---------------------------------------------------------------------------------
+
+
+#------------------------------------Depaartment------------------------------------------------------------
+class Department(models.Model):
+    department_name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.department_name
+#------------------------------------/Depaartment------------------------------------------------------------
+#------------------------------------Designation------------------------------------------------------------
+class Designation(models.Model):
+    designation_name = models.CharField(max_length=100)
+    department_name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.designation_name
+#------------------------------------/Designation------------------------------------------------------------

@@ -3,7 +3,9 @@ from . import views
 
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
-    path('clients/',views.ClientsView.as_view(),name='clients' ),
+    path('clients/',views.CreateClientsView.as_view(),name='clients' ),
+    path('clients_list/',views.CreateClientsListView.as_view(),name='clients_list' ),
+    path('clients_grid/',views.CreateClientsGridView.as_view(),name='clients_grid' ),
     path('leads/',views.LeadsView.as_view(),name='leads' ),
     path('projects/',views.projectsView.as_view(),name='projects' ),
     path('taskboard/',views.taskboardView.as_view(),name='taskboard' ),
