@@ -35,25 +35,27 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form method = "POST">
+									{% csrf_token %}
+									<!-- {{form.as_p}} -->
 									<div class="form-group">
 										<label>Goal Type <span class="text-danger">*</span></label>
-										<input class="form-control" type="text">
+										<input class="form-control" type="text" name="Goal_type" maxlength="100" required id="id_Goal_type">
 									</div>
 									<div class="form-group">
 										<label>Description <span class="text-danger">*</span></label>
-										<textarea class="form-control" rows="4"></textarea>
+										<textarea class="form-control"  name="Goal_discription" cols="40" rows="5" maxlength="100" required id="id_Goal_discription"></textarea>
 									</div>
 									<div class="form-group">
 										<label class="col-form-label">Status</label>
-										<select class="select">
+										<select class="select" name="Goal_status" id="id_Goal_status">
 											<option>Active</option>
 											<option>Inactive</option>
 										</select>
 									</div>
 									<div class="submit-section">
 										<button class="btn btn-primary submit-btn">Submit</button>
-									</div>
+									</div> 
 								</form>
 							</div>
 						</div>

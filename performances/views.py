@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
 from django.views import generic
+from .models import Goal
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,CreateView,ListView
 
 # Create your views here.
 class performanceindicatorView(TemplateView):
@@ -19,10 +20,13 @@ class performanceIndicatorView(TemplateView):
 
 class goalTrackingView(TemplateView):
     template_name = "performances/goal_tracking.html"
-
-class goalTypeView(TemplateView):
+# ---------------------------------  Goal ----------------------------------
+class goalTypeCreateView(generic.CreateView):
+    model = Goal
+    fields = ('Goal_type', 'Goal_discription', 'Goal_status')
     template_name = "performances/goal_type.html"
-
+    success_url = ('/performances/goaltype')
+# ---------------------------------  /Goal ----------------------------------
 class trainingsView(TemplateView):
     template_name = "performances/trainings.html"
 
