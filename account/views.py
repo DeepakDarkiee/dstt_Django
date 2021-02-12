@@ -1,10 +1,13 @@
+# from groups_manager.models import Group,GroupType, Member
+from django.contrib.auth.models import Group
+from django.contrib.auth import models
 from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponseRedirect, HttpResponseRedirectBase
 from django.shortcuts import redirect, render,HttpResponse
 from django.urls import reverse_lazy
-from django.contrib.auth.models import Group, User
+# from django.contrib.auth.models import Group, User
 from django.views.generic import View,TemplateView,UpdateView
 from django.db import IntegrityError
 from django.contrib import messages
@@ -77,4 +80,20 @@ class RolePermissionView(View):
         return HttpResponse("Yes")
         # print(role,employee_module,employee_read,employee_write,employee_create,employee_delete)
         
-        
+# def group_manager(request):
+
+#     # Create group types (optional)
+#     organization = GroupType.objects.create(label='Organization')
+#     division = GroupType.objects.create(label='Division')
+
+#     # Organization A has 'commercials' and 'managers'
+#     org_a = Group.objects.create(name='Org A, Inc.', group_type=organization)
+#     org_a_commercials = Group.objects.create(name='Commercials', group_type=division, parent=org_a)
+#     org_a_managers = Group.objects.create(name='Managers', group_type=division, parent=org_a)
+#     # Tina is a commercial
+#     tina = Member.objects.create(email='tina@gmail.com')
+#     org_a_commercials.add_member(tina)
+#     # Jack is a manager
+#     jack = Member.objects.create(email='deepak@gmail.com')
+#     org_a_managers.add_member(jack)
+#     return  HttpResponse("Group True")

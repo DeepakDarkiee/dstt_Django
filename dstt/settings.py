@@ -43,7 +43,15 @@ INSTALLED_APPS = [
     'management',
     'performances',
     'employee',
+    'guardian',
+    # 'groups_manager',
 ]
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+ 'guardian.backends.ObjectPermissionBackend')
+
+# GROUPS_MANAGER = {
+#     'AUTH_MODELS_SYNC': True,
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
