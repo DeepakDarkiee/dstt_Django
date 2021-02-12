@@ -65,7 +65,7 @@ class DepartmentCreateView(generic.CreateView):
     success_url = ('/employee/departments')
 # ----------------------------------------Department----------------------------------------------------------------------------------
 
-# ----------------------------------------Department----------------------------------------------------------------------------------
+# ----------------------------------------/Department----------------------------------------------------------------------------------
 class DesignationCreateView(generic.CreateView):
     model = Designation
     fields = ('designation_name', 'department_name')
