@@ -34,8 +34,10 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
-									<div class="form-group">
+								<form method="post">
+									{% csrf_token %}
+									{{form.as_p}}
+									<!-- <div class="form-group">
 										<label>Policy Name <span class="text-danger">*</span></label>
 										<input class="form-control" type="text">
 									</div>
@@ -58,9 +60,9 @@
 											<input type="file" class="custom-file-input" id="policy_upload">
 											<label class="custom-file-label" for="policy_upload">Choose file</label>
 										</div>
-									</div>
+									</div> -->
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Submit</button>
+										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
 									</div>
 								</form>
 							</div>

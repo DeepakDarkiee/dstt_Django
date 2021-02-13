@@ -36,61 +36,63 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form method="POST" action="{% url 'goaltracking' %}"	>
+									{% csrf_token %}
+									<!-- {{form.as_p}} -->
 									<div class="row">
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label class="col-form-label">Goal Type</label>
-												<select class="select">
-													<option>Invoice Goal</option>
-													<option>Event Goal</option>
-												</select>
+												<input class="form-control" type="text" name="Gole_type" maxlength="200" required id="id_Gole_type">
+												
+													
+												
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Subject</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="GoalTracking_subject" maxlength="200" required id="id_GoalTracking_subject">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Target Achievement</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="GoalTracking_target_achievement" maxlength="200" required id="id_GoalTracking_target_achievement">
 											</div>
 										</div>
 										
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Start Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+												<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="GoalTracking_start_date" maxlength="200" required id="id_GoalTracking_start_date"></div>
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>End Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+												<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="GoalTracking_end_date" maxlength="200" required id="id_GoalTracking_end_date"></div>
 											</div>
 										</div>
 										
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>Description <span class="text-danger">*</span></label>
-												<textarea class="form-control" rows="4"></textarea>
+												<textarea class="form-control" name="GoalTracking_discription" cols="40" rows="5" maxlength="100" required id="id_GoalTracking_discription"></textarea>
 											</div>
 										</div>
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label class="col-form-label">Status</label>
-												<select class="select">
+												<select class="select" name="GoalTracking_status" id="id_GoalTracking_status">
 													<option>Active</option>
 													<option>Inactive</option>
 												</select>
 											</div>
 										</div>
-									</div>
+									</div> 
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Submit</button>
+										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
 									</div>
 								</form>
 							</div>

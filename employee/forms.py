@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee
+from .models import Employee,Department,Designation
 class  EmployeeForm(forms.Form):
     employee_first_name = forms.CharField(max_length=30, required=False, help_text='Optional') 
     employee_last_name = forms.CharField(max_length=30, required=False, help_text='Optional')
@@ -10,8 +10,19 @@ class  EmployeeForm(forms.Form):
     employee_phone = forms.CharField(max_length=30, required=False, help_text='Optional')
     employee_password = forms.CharField(max_length=30, required=False, help_text='Optional')
     employee_confirm_password = forms.CharField(max_length=30, required=False, help_text='Optional')
-
-
+# --------------------------------------------Department------------------------------------------
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = "__all__"
+# --------------------------------------------Department------------------------------------------
+# --------------------------------------------designation------------------------------------------
+class DesignationForm(forms.ModelForm):
+    class Meta:
+        model = Designation
+        fields = "__all__"
+# --------------------------------------------/designation------------------------------------------
     
+
 
     

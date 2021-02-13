@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-# Sign Up View
+# Signs Up View
 class SignInView(View):
     def post(self,request):
         email = request.POST['email']
@@ -32,7 +32,10 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
+class RolePermissionView(TemplateView):
+    template_name = "account/add_roles_permission.html"
 
+# Roles
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
@@ -45,7 +48,7 @@ class RegisterRole(View):
         return render(request, "account/role.html",{'groups':groups})
     def get(self,request):
         groups=Group.objects.all()
-        return render(request, "account/role.html",{'groups':groups})
+        return render(request, "account/role.html")
 
 class RemoveRole(View):
     def get(self,request,name):
@@ -56,9 +59,9 @@ class RemoveRole(View):
 
         except Group.DoesNotExist:
             messages.error(request,"Role already Deleted or Not Created")
-        return HttpResponseRedirect('/role')
+        return HttpResponseRedirect('/role')     
+
     
-   
-
-
-        
+            
+       
+           

@@ -26,13 +26,13 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
-								<h3 class="page-title">Roles & Permissions</h3>
+								<center> <h3 class="page-title">Roles previleges </h3> </center>
                                
 							</div>
 						</div>
 					</div>
-					<!-- /Page Header -->
-					 <form method='POST' action='{% url 'role_permission' %}'>
+					<!-- /Page Headers -->
+					 <form method='POST' action="{% url 'rolepermission' %}">
 					<div class="row">
 						<div class="col-lg-12">
 							 {% csrf_token %}
@@ -193,10 +193,10 @@
                 </div>
 				</form>
 				<!-- /Page Content -->
-			<!-- /Main Wrapper -->
+			<!-- /Mains Wrapper -->
 		
         </div>
-		<!-- /Main Wrapper -->
+		<!-- /Mains Wrapper -->
 		
 		<!-- jQuery -->
         <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
