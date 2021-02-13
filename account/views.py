@@ -35,7 +35,7 @@ class LogoutView(View):
 class RolePermissionView(TemplateView):
     template_name = "account/add_roles_permission.html"
 
-# Roles
+# Role
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
@@ -49,7 +49,7 @@ class RegisterRole(View):
     def get(self,request):
         groups=Group.objects.all()
         return render(request, "account/role.html")
-
+# RemoveRole
 class RemoveRole(View):
     def get(self,request,name):
         try:
