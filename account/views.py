@@ -52,7 +52,7 @@ class RegisterRole(View):
     def get(self,request):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
-
+#
 class RemoveRole(View):
     def get(self,request,name):
         try:
@@ -79,6 +79,7 @@ class RolePermissionView(View):
         employee_create=request.POST['employee_create']
         employee_delete=request.POST['employee_delete']
         return HttpResponse("Yes")
+
         # print(role,employee_module,employee_read,employee_write,employee_create,employee_delete)
         
 # def group_manager(request):
