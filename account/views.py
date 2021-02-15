@@ -53,7 +53,6 @@ class RegisterRole(View):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
 
-
 class RemoveRole(View):
     def get(self,request,name):
         try:

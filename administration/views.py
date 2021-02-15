@@ -4,15 +4,18 @@ from django.shortcuts import render,HttpResponse
 from django.urls.base import reverse
 from django.views import generic
 from django.views.generic import TemplateView,CreateView,ListView
-from .models import Client
-from .forms import ClientForm
+from django.views.generic.base import View
+from .models import Client,Asset,Lead
+from .forms import ClientForm,AssetForm,LeadForm
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 # Create your views here.
 
 class IndexView(TemplateView):
     template_name = "administration/index.html"
-# ------------------------client-----------------------------------------
+
+# --------------------------------------------client------------------------------------------------------------------------
 class CreateClientsView(generic.CreateView):
     model = Client
     tamplate_name = "administration/clients_form.html"
@@ -32,20 +35,55 @@ class CreateClientsGridView(generic.ListView):
     context_object_name = "client_list"
     success_url = ('/administration/clients_grid')
 
-# ------------------------client end--------------------------------------
-  
+class ClientRemove(View):
+    def get(self,request,id):
+        client=Client.objects.get(id=id)          
+        client.delete()
+        messages.success(request,'deleted successfuully')
+        return HttpResponseRedirect('/administration/clients_list') 
 
-class LeadsView(TemplateView):
-    template_name = "administration/leads.html"  
+# -----------------------------------/client----------------------------------------------------------------
+  
+# -------------------------------------Lead----------------------------------------------------------------
+class CreateLeadView(generic.CreateView):
+    model = Lead
+    fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created', 'lead_status')
+    template_name = "administration/leads.html" 
+    success_url = ('/administration/leads_list')
+
+class CreateLeadListView(generic.ListView):
+    model = Lead
+    template_name = "administration/leads.html"
+    context_object_name = "lead_list"
+    success_url = ('/administration/leads')
+# ---------------------------------------/Lead----------------------------------------------------------------
 
 class projectsView(TemplateView):
     template_name = "administration/projects.html"   
  
 class taskboardView(TemplateView):
-    template_name = "administration/taskboard.html"  
+    template_name = "administration/taskboard.html" 
 
-class assetsView(TemplateView):
+# ----------------------------------Assets------------------------------------------------
+class AssetCreateView(generic.CreateView):
+    model = Asset
+    fields = ('asset_name', 'asset_id', 'asset_purcahse_date', 'asset_purcahse_from', 'asset_manufacture', 'asset_model', 'asset_serial_number', 'asset_supplier', 'asset_conditiion', 'asset_warrenty', 'asset_amount', 'asset_user', 'asset_description', 'asset_status')
     template_name = "administration/assets.html" 
+    success_url = ('/administration/asset_list')
+
+class AssetListView(generic.ListView):
+    model = Asset
+    template_name = "administration/assets.html" 
+    context_object_name = "asset_list"
+    success_url = ('/administration/assets')
+
+class AssetRemove(View):
+     def get(self,request,id):
+        asset=Asset.objects.get(id=id)          
+        asset.delete()
+        messages.success(request,f"{asset} deleted successfully")
+        return HttpResponseRedirect('/administration/asset_list')                       
+# ----------------------------------/Assets------------------------------------------------
 
 class jobsView(TemplateView):
     template_name = "administration/jobs.html"  

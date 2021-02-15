@@ -1,7 +1,25 @@
 from django import forms
-from .models import Client
+from .models import Client,Asset,Lead
 
+# --------------------------------------Client----------------------------------------------------
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = "__all__"
+# --------------------------------------/Client----------------------------------------------------
+
+# --------------------------------------Assets----------------------------------------------------
+class AssetForm(forms.ModelForm):
+    class Meta:
+        model = Asset
+        fields = "__all__"
+
+# --------------------------------------/Assets----------------------------------------------------
+
+# --------------------------------------Lead----------------------------------------------------
+class LeadForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = "__all__"
+
+# --------------------------------------/Lead----------------------------------------------------
