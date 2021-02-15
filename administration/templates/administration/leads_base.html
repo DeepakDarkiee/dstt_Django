@@ -1,0 +1,144 @@
+
+{% block client_base %}
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+        
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Leads</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Leads</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Add Leads</a>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Leads ID</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Leads Name</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3"> 
+                <div class="form-group form-focus select-focus">
+                    <select class="select floating"> 
+                        <option>Select Company</option>
+                        <option>Global Technologies</option>
+                        <option>Delta Infotech</option>
+                    </select>
+                    <label class="focus-label">Company</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+            </div>     
+        </div>
+        <!-- Search Filter -->
+{% endblock client_base %}
+
+
+
+{% block clients_add %}
+<!-- Add Client Modal -->
+<div id="add_client" class="modal custom-modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Leads</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{% url 'leads' %}"> 
+                {% csrf_token %}
+                <!-- {{form.as_p}} -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">	Lead Name <span class="text-danger">*</span></label>
+                            <input class="form-control"  type="text" name="lead_name" maxlength="100" required id="id_lead_name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                            <input class="form-control floating" type="email" name="lead_email" maxlength="254" required id="id_lead_email">
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Phone <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="lead_phone" maxlength="100" required id="id_lead_phone">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Project<span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="lead_project" maxlength="100" required id="id_lead_project">
+                        </div>
+                    </div>
+                    <div class="col-md-6">  
+                        <div class="form-group">
+                            <label class="col-form-label">Assigned Staff <span class="text-danger">*</span></label>
+                            <input class="form-control floating" type="text" name="lead_assign_staff" maxlength="100" required id="id_lead_assign_staff">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">	Created </label>
+                            <input class="form-control" type="text" name="lead_created" maxlength="100" required id="id_lead_created">
+                        </div>
+                    </div> 
+                    <div class="col-md-12">
+							<div class="form-group">
+								<label>Status</label>
+								<select name="lead_status" id="id_lead_status">
+  <option value="new" selected>new</option>
+
+  <option value="pending">pending</option>
+
+  <option value="damaged">damaged</option>
+
+  <option value="deployed">deployed</option>
+
+  <option value="approved">approved</option>
+
+</select>
+							</div>
+                    </div>
+                </div>
+                <div class="submit-section"> 
+                    <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Add Client Modal -->
+
+
+{% endblock clients_add %}
+
+
+

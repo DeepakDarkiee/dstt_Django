@@ -3,13 +3,27 @@ from . import views
 
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
+# ------------------------------client---------------------------------------------------------------------------
     path('clients/',views.CreateClientsView.as_view(),name='clients' ),
     path('clients_list/',views.CreateClientsListView.as_view(),name='clients_list' ),
     path('clients_grid/',views.CreateClientsGridView.as_view(),name='clients_grid' ),
-    path('leads/',views.LeadsView.as_view(),name='leads' ),
+    path('clients_remove/<int:id>',views.CreateClientsGridView.as_view(),name='clients_remove' ),
+# ------------------------------client--------------------------------------------------------------------------
+
+# ------------------------------Lead---------------------------------------------------------------------------
+    path('leads/',views.CreateLeadView.as_view(),name='leads' ),
+    path('leads_list/',views.CreateLeadListView.as_view(),name='leads_list' ),
+# ------------------------------/Lead--------------------------------------------------------------------------
+
     path('projects/',views.projectsView.as_view(),name='projects' ),
     path('taskboard/',views.taskboardView.as_view(),name='taskboard' ),
-    path('assets/',views.assetsView.as_view(),name='assets' ),
+
+# -----------------------------------Assets-----------------------------------------------------------------------
+    path('assets/',views.AssetCreateView.as_view(),name='assets' ),
+    path('asset_list/',views.AssetListView.as_view(),name='asset_list' ),
+    path('asset_remove/<int:id>',views.AssetRemove.as_view(),name='asset_remove' ),
+# -----------------------------------/Assets-----------------------------------------------------------------------
+    
     path('jobs/',views.jobsView.as_view(),name='jobs' ),
     path('jobsapplicants/',views.jobsapplicantsView.as_view(),name='jobsapplicants' ),
     path('knowledgebase/',views.knowledgebaseView.as_view(),name='knowledgebase' ),

@@ -79,18 +79,20 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form method ="POST" action="{% url 'assets' %}">
+					{% csrf_token %}
+					<!-- {{form.as_p}} -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Asset Name</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_name" required id="id_asset_name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Asset Id</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_id" required id="id_asset_id">
 							</div>
 						</div>
 					</div>
@@ -98,13 +100,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Purchase Date</label>
-								<input class="form-control datetimepicker" type="text">
+								<input class="form-control datetimepicker" type="text" name="asset_purcahse_date" required id="id_asset_purcahse_date">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Purchase From</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_purcahse_from" required id="id_asset_purcahse_from">
 							</div>
 						</div>
 					</div>
@@ -112,13 +114,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Manufacturer</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_manufacture" required id="id_asset_manufacture">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Model</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_model" required id="id_asset_model">
 							</div>
 						</div>
 					</div>
@@ -126,59 +128,63 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Serial Number</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_serial_number" required id="id_asset_serial_number">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Supplier</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_supplier" required id="id_asset_supplier">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Condition</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" name="asset_conditiion" required id="id_asset_conditiion">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Warranty</label>
-								<input class="form-control" type="text" placeholder="In Months">
+								<input class="form-control" type="text" placeholder="In Months" name="asset_warrenty" required id="id_asset_warrenty">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Value</label>
-								<input placeholder="$1800" class="form-control" type="text">
+								<label>Amount</label>
+								<input placeholder="$1800" class="form-control" type="text" name="asset_amount" required id="id_asset_amount">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Asset User</label>
-								<select class="select">
-									<option>John Doe</option>
-									<option>Richard Miles</option>
-								</select>
+								<input class="form-control" type="text" name="asset_user" required id="id_asset_user">
+								
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Description</label>
-								<textarea class="form-control"></textarea>
+								<textarea class="form-control" name="asset_description" required id="id_asset_description"></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Status</label>
-								<select class="select">
-									<option>Pending</option>
-									<option>Approved</option>
-									<option>Deployed</option>
-									<option>Damaged</option>
-								</select>
+								<select name="asset_status" id="id_asset_status">
+  <option value="new" selected>new</option>
+
+  <option value="pending">pending</option>
+
+  <option value="damaged">damaged</option>
+
+  <option value="deployed">deployed</option>
+
+  <option value="approved">approved</option>
+
+</select>
 							</div>
 						</div>
 					</div>
