@@ -79,7 +79,7 @@ class RolePermissionView(View):
     def post(self,request,name):
         role = Group.objects.get(name=name)
 
-        # ----------------------Employee-----------------------
+        # ----------------------Employees-----------------------
         employee_access_module=request.POST['employee_module']
         
         view_employee=request.POST['view_employee']

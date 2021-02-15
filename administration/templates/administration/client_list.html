@@ -32,8 +32,8 @@
                     <table class="table table-striped custom-table datatable">
                         <thead>
                             <tr>
-                                <th>Name</th>
                                 <th>Client ID</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th>Status</th>
@@ -43,13 +43,14 @@
                         <tbody>
                             {% for client in client_list  %}
                             <tr>
+                                <td>{{client.id}}</td>
                                 <td>
                                     <h2 class="table-avatar">
                                         <a href="client-profile.html" class="avatar"><img src="/static/assets/img/profiles/avatar-19.jpg" alt=""></a>
                                         <a href="client-profile.html">{{client.client_first_name}}&nbsp;{{client.client_last_name}}</a>
                                     </h2>
                                 </td>
-                                <td>{{client.id}}</td>
+                               
                                 <td>{{client.client_email}}</td>
                                 <td>{{client.client_phone}}</td>
                                 <!-- <td>{{client.client_status}}</td> -->
@@ -67,7 +68,7 @@
                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_client"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5" onClick="getId('{{client.id}}')"></i> Delete</a>
                                         </div>
                                     </div>
                                 </td>
@@ -320,7 +321,7 @@
                     <div class="modal-btn delete-action">
                         <div class="row">
                             <div class="col-6">
-                                <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+                                <a href="" id="deleteclient" class="btn btn-primary continue-btn">Delete</a>
                             </div>
                             <div class="col-6">
                                 <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -359,6 +360,12 @@
 
 <!-- Custom JS -->
 <script src="/static/assets/js/app.js"></script>
+<script>
+    function getId(id) {
+        var a =document.getElementById('deleteclient');
+        a.href = "/administration/clients_remove/" +id;
+    }
+</script>	
 
 </body>
 </html>
