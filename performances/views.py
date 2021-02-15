@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.views import generic
 from .models import Goal,GoalTracking
 from django.contrib import messages
-from django.views.generic import View, TemplateView,CreateView,ListView
+from django.views.generic import View, TemplateView,CreateView,ListView,DeleteView
 
 # Create your views here.
 class performanceindicatorView(TemplateView):
@@ -32,7 +32,15 @@ class GoalTrackingListView(generic.ListView):
     context_object_name = "goaltracking"
     success_url = ('/performances/goaltracking_list')
 
+class GoalTrackingRemove(View):
+    def get(self,request,id):
+            goaltracking=GoalTracking.objects.get(id=id)          
+            goaltracking.delete()
+            messages.success(request,"deleted successfully")
+            return HttpResponseRedirect('/performances/goaltracking_list')
 
+        # except GoalTracking.DoesNotExist:
+            # messages.error(request,"Role already Deleted or Not Created")
 
 # ---------------------------------  Goal tracking end ---------------------------------------
 # ---------------------------------  Goal ----------------------------------
@@ -48,12 +56,20 @@ class GoalTypeListView(generic.ListView):
     context_object_name = "goletype"
     success_url = ('/performances/goaltype_list')
 
-class GoalTypeRemove(View):
-    def get(self,request,id):
-        goal=Goal.objects.get(id=id)          
-        goal.delete()
-        # messages.success(request,f"{goal} deleted successfully")
-        return HttpResponseRedirect('/performances/goaltype_list')
+class GoalTypeRemove(generic.DeleteView):
+    model = Goal
+    template_name = "performances/goal_type.html"
+    # context_object_name = "goletype_delete"
+    success_url =  ('/performances/goaltype_list')
+
+
+# class GoalTypeRemove(View):
+#     def get(self,request,id):
+#             goal=Goal.objects.get(id=id)          
+#             goal.delete()
+#             messages.success(request,"deleted successfully")
+#             return HttpResponseRedirect('/performances/goaltype_list')
+
 # ---------------------------------  /Goal end ----------------------------------
 class trainingsView(TemplateView):
     template_name = "performances/trainings.html"

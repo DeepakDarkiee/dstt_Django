@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Employee,Department,Designation
 class  EmployeeForm(forms.Form):
     employee_first_name = forms.CharField(max_length=30, required=False, help_text='Optional') 
@@ -22,6 +23,7 @@ class DesignationForm(forms.ModelForm):
         model = Designation
         fields = "__all__"
 # --------------------------------------------/designation------------------------------------------
+
     
 
 

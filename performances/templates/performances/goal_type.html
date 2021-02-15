@@ -63,7 +63,7 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="{% url 'goaltype_remove' object.id %}" data-toggle="modal" data-target="#delete_type" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
@@ -129,7 +129,8 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="#" id="delete_goletype" class="btn btn-primary continue-btn">Delete</a>
+											
+											<a href="" id="delete_goletype" class="btn btn-primary continue-btn" type="submit">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -170,7 +171,7 @@
 		<script>
 			function getId(id) {
 				var a =document.getElementById('delete_goletype');
-				a.href = "/performances/GoalType_Remove/"+id;
+				a.href = "/performances/goaltype_remove/"+id;
 			}
 		</script>
 </body>

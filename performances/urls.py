@@ -9,10 +9,11 @@ urlpatterns = [
     
     path('goaltracking/',views.GoalTrackingCreateView.as_view(),name='goaltracking'),
     path('goaltracking_list/',views.GoalTrackingListView.as_view(),name='goaltracking_list'),
+    path('goaltracking_remove/<int:id>',views.GoalTrackingRemove.as_view(),name='goaltracking_remove'),
 
     path('goaltype/',views.GoalTypeCreateView.as_view(),name='goaltype'),
     path('goaltype_list/',views.GoalTypeListView.as_view(),name='goaltype_list'),
-    path('GoalType_Remove/<int:id>',views.GoalTypeRemove,name='GoalType_Remove'),
+    path('goaltype_remove/<int:pk>/delete/',views.GoalTypeRemove.as_view(),name='goaltype_remove'),
 
     path('trainings/',views.trainingsView.as_view(),name='trainings'),
     path('trainers/',views.trainersView.as_view(),name='trainers'),

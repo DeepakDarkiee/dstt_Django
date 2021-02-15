@@ -3,6 +3,7 @@ from .models import Employee,Department,Designation
 # Register your models here.
 
 
+
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     class Meta:
@@ -20,3 +21,4 @@ class DesignationAdmin(admin.ModelAdmin):
     class Meta:
         model = Designation
         fields = '__all__'
+

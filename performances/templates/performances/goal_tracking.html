@@ -75,7 +75,7 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_goal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_goal"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_goal" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
@@ -185,7 +185,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="delete_goaltracking" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -227,17 +227,11 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
-
-<script>
-    $(document).ready(function(){
-        // Read value on page load
-        $("#result b").html($("#customRange").val());
-
-        // Read value on change
-        $("#customRange").change(function(){
-            $("#result b").html($(this).val());
-        });
-    });        
-</script>
+		<script>
+			function getId(id) {
+				var a =document.getElementById('delete_goaltracking');
+				a.href = "/performances/goaltracking_remove/"+id;
+			}
+		</script>
 </body>
 </html>
