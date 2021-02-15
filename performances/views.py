@@ -3,6 +3,7 @@ from django.shortcuts import render,HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.views import generic
 from .models import Goal,GoalTracking
+from .forms import Goal,GoalTracking
 from django.contrib import messages
 from django.views.generic import View, TemplateView,CreateView,ListView,DeleteView
 
@@ -22,8 +23,11 @@ class performanceIndicatorView(TemplateView):
 # ---------------------------------  Goal tracking----------------------------------
 class GoalTrackingCreateView(generic.CreateView):
     model = GoalTracking
-    fields = ('Gole_type', 'GoalTracking_subject', 'GoalTracking_target_achievement','GoalTracking_start_date', 'GoalTracking_end_date', 'GoalTracking_discription', 'GoalTracking_status' )
     template_name = "performances/goal_tracking.html" 
+    fields = ( 'Gole_type', 'GoalTracking_subject', 'GoalTracking_target_achievement',
+    'GoalTracking_start_date','GoalTracking_end_date', 'GoalTracking_discription', 
+    'GoalTracking_status', )
+    # context_object_name = "goal_type"
     success_url = ('/performances/goaltracking_list')
 
 class GoalTrackingListView(generic.ListView):
@@ -32,12 +36,12 @@ class GoalTrackingListView(generic.ListView):
     context_object_name = "goaltracking"
     success_url = ('/performances/goaltracking_list')
 
-class GoalTrackingRemove(View):
-    def get(self,request,id):
-            goaltracking=GoalTracking.objects.get(id=id)          
-            goaltracking.delete()
-            messages.success(request,"deleted successfully")
-            return HttpResponseRedirect('/performances/goaltracking_list')
+# class GoalTrackingRemove(View):
+#     def get(self,request,id):
+#             goaltracking=GoalTracking.objects.get(id=id)          
+#             goaltracking.delete()
+#             messages.success(request,"deleted successfully")
+#             return HttpResponseRedirect('/performances/goaltracking_list')
 
         # except GoalTracking.DoesNotExist:
             # messages.error(request,"Role already Deleted or Not Created")

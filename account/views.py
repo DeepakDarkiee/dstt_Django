@@ -1,5 +1,6 @@
 # from groups_manager.models import Group,GroupType, Member
-from django.contrib.auth.models import Group
+
+from django.contrib.auth.models import  Group, Permission
 from django.contrib.auth import models
 from employee.models import Employee
 from django.conf import settings
@@ -11,7 +12,8 @@ from django.urls import reverse_lazy
 from django.views.generic import View,TemplateView,UpdateView
 from django.db import IntegrityError
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.contenttypes.models import ContentType
+
 
 
 
@@ -52,7 +54,7 @@ class RegisterRole(View):
     def get(self,request):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
-
+#
 class RemoveRole(View):
     def get(self,request,name):
         try:
@@ -70,37 +72,94 @@ class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
             # messages.success(request,f"{groups} deleted successfully")
-        return render(request, "account/add_roles_permission.html",{'role':role})
+        permissions = role.permissions.all()
+        
+        for permission in permissions:
+            for permission in permissions:
+                if permission.codename == 'view_employee':
+                    view_employee = True
+                else:
+                    view_employee = False          
+                     
+                if permission.codename == 'add_employee':
+                    add_employee = True
+                else:
+                    add_employee = False
+                
+                if permission.codename == 'change_employee':
+                    change_employee = True
+                else:
+                    change_employee = False
+                
+                if permission.codename == 'delete_employee':
+                    delete_employee = True
+                else:
+                    delete_employee = False
+
+
+
+
+
+        print(view_employee,add_employee,change_employee,delete_employee)
+        return render(request,'account/add_roles_permission.html',
+        {'role':role,
+        'view_employee':view_employee,
+        'add_employee':add_employee,
+        'change_employee':change_employee,
+        'delete_employee':delete_employee,
+        })
     def post(self,request,name):
         role = Group.objects.get(name=name)
-        employee_module=request.POST['employee_module']
-        employee_read=request.POST['employee_read']
-        employee_write=request.POST['employee_write']
-        employee_create=request.POST['employee_create']
-        employee_delete=request.POST['employee_delete']
-        return HttpResponse("Yes")
 
-        # print(role,employee_module,employee_read,employee_write,employee_create,employee_delete)
+        # ----------------------Employees-----------------------
+        employee_access_module=request.POST['employee_module']
         
-# def group_manager(request):
+        view_employee=request.POST['view_employee']
+        add_employee=request.POST['add_employee']
+        change_employee=request.POST['change_employee']
+        delete_employee=request.POST['delete_employee']
+        
+        content_type = ContentType.objects.get_for_model(Employee,for_concrete_model=False)
+        employee_permision=Permission.objects.filter(content_type=content_type)
+        for permission in employee_permision:
+            if permission.codename == 'view_employee':
+                if view_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'add_employee':
+                if add_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'change_employee':
+                if change_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'delete_employee':
+                if delete_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+        
+        permissions = role.permissions.all()
+        for permission in permissions:
+            if permission.codename == 'view_employee':
+                view_employee = True
+            if permission.codename == 'add_employee':
+                add_employee = True
+            if permission.codename == 'change_employee':
+                change_employee = True
+            if permission.codename == 'delete_employee':
+                delete_employee = True
+        #______________employee end_________________________________________
+        return render(request,'account/add_roles_permission.html',
+        {'role':role,
+        'view_employee':view_employee,
+        'add_employee':add_employee,
+        'change_employee':change_employee,
+        'delete_employee':delete_employee
+        })
 
-#     # Create group types (optional)
-#     organization = GroupType.objects.create(label='Organization')
-#     division = GroupType.objects.create(label='Division')
-
-#     # Organization A has 'commercials' and 'managers'
-#     org_a = Group.objects.create(name='Org A, Inc.', group_type=organization)
-#     org_a_commercials = Group.objects.create(name='Commercials', group_type=division, parent=org_a)
-#     org_a_managers = Group.objects.create(name='Managers', group_type=division, parent=org_a)
-#     # Tina is a commercial
-#     tina = Member.objects.create(email='tina@gmail.com')
-#     org_a_commercials.add_member(tina)
-#     # Jack is a manager
-#     jack = Member.objects.create(email='deepak@gmail.com')
-#     org_a_managers.add_member(jack)
-#     return  HttpResponse("Group True")
-
-    
-            
-       
-    
+        

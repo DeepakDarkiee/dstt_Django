@@ -10,3 +10,4 @@ class GoalTrackingForm(forms.ModelForm):
     class Meta:
         model = GoalTracking
         fields = "__all__"
+

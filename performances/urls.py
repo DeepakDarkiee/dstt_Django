@@ -8,8 +8,8 @@ urlpatterns = [
     path('performanceindicator/',views.performanceIndicatorView.as_view(),name='performanceindicator'),
     
     path('goaltracking/',views.GoalTrackingCreateView.as_view(),name='goaltracking'),
-    path('goaltracking_list/',views.GoalTrackingListView.as_view(),name='goaltracking_list'),
-    path('goaltracking_remove/<int:id>',views.GoalTrackingRemove.as_view(),name='goaltracking_remove'),
+    # path('goaltracking_list/',views.GoalTrackingListView.as_view(),name='goaltracking_list'),
+    # path('goaltracking_remove/<int:id>',views.GoalTrackingRemove.as_view(),name='goaltracking_remove'),
 
     path('goaltype/',views.GoalTypeCreateView.as_view(),name='goaltype'),
     path('goaltype_list/',views.GoalTypeListView.as_view(),name='goaltype_list'),

@@ -26,78 +26,78 @@
 
 {% block goal_tracking_add %}
 <!-- Add Goal Modal -->
-				<div id="add_goal" class="modal custom-modal fade" role="dialog">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Add Goal Tracking</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form method="POST" action="{% url 'goaltracking' %}"	>
-									{% csrf_token %}
-									<!-- {{form.as_p}} -->
-									<div class="row">
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label class="col-form-label">Goal Type</label>
-												<input class="form-control" type="text" name="Gole_type" maxlength="200" required id="id_Gole_type">
-												
-													
-												
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="col-form-label">Subject</label>
-												<input class="form-control" type="text" name="GoalTracking_subject" maxlength="200" required id="id_GoalTracking_subject">
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="col-form-label">Target Achievement</label>
-												<input class="form-control" type="text" name="GoalTracking_target_achievement" maxlength="200" required id="id_GoalTracking_target_achievement">
-											</div>
-										</div>
-										
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Start Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="GoalTracking_start_date" maxlength="200" required id="id_GoalTracking_start_date"></div>
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>End Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="GoalTracking_end_date" maxlength="200" required id="id_GoalTracking_end_date"></div>
-											</div>
-										</div>
-										
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label>Description <span class="text-danger">*</span></label>
-												<textarea class="form-control" name="GoalTracking_discription" cols="40" rows="5" maxlength="100" required id="id_GoalTracking_discription"></textarea>
-											</div>
-										</div>
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label class="col-form-label">Status</label>
-												<select class="select" name="GoalTracking_status" id="id_GoalTracking_status">
-													<option>Active</option>
-													<option>Inactive</option>
-												</select>
-											</div>
-										</div>
-									</div> 
-									<div class="submit-section">
-										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
-									</div>
-								</form>
+<div id="add_goal" class="modal custom-modal fade" role="dialog">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Goal Tracking</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST">
+					{% csrf_token %}
+					{{form.as_p}}
+					<!-- <div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="col-form-label">Goal Type</label>
+								<select class="select">
+									<option>Invoice Goal</option>
+									<option>Event Goal</option>
+								</select>
 							</div>
 						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-form-label">Subject</label>
+								<input class="form-control" type="text">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-form-label">Target Achievement</label>
+								<input class="form-control" type="text">
+							</div>
+						</div>
+						
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Start Date <span class="text-danger">*</span></label>
+								<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>End Date <span class="text-danger">*</span></label>
+								<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+							</div>
+						</div>
+						
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Description <span class="text-danger">*</span></label>
+								<textarea class="form-control" rows="4"></textarea>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="col-form-label">Status</label>
+								<select class="select">
+									<option>Active</option>
+									<option>Inactive</option>
+								</select>
+							</div>
+						</div>
+					</div> -->
+					<div class="submit-section">
+						<button class="btn btn-primary submit-btn" type="submit" >Submit</button>
 					</div>
-				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 				<!-- /Add Goal Modal -->
 {% endblock goal_tracking_add %}
