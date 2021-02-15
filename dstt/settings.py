@@ -43,7 +43,15 @@ INSTALLED_APPS = [
     'management',
     'performances',
     'employee',
+    'guardian',
+    # 'groups_manager',
 ]
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+ 'guardian.backends.ObjectPermissionBackend')
+
+# GROUPS_MANAGER = {
+#     'AUTH_MODELS_SYNC': True,
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,7 +127,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_URL=''
+LOGIN_URL='/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -130,3 +138,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
 AUTH_USER_MODEL = 'account.User'
+
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+}

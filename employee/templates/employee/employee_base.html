@@ -1,11 +1,14 @@
-
 {% block employee_base %}
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
+
     <div class="content container-fluid">
-    
+
+        {% include 'administration/message.html' %}
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -17,7 +20,13 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                    
+                    {% if perms.employee.add_employee %}
+                        
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i
+                            class="fa fa-plus"></i> Add Employee</a>
+                    {% endif %}
+                        
                     <div class="view-icons">
                         <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                         <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -26,24 +35,24 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <input type="text" class="form-control floating">
                     <label class="focus-label">Employee ID</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <input type="text" class="form-control floating">
                     <label class="focus-label">Employee Name</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3"> 
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
+                    <select class="select floating">
                         <option>Select Designation</option>
                         <option>Web Developer</option>
                         <option>Web Designer</option>
@@ -53,105 +62,128 @@
                     <label class="focus-label">Designation</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
-                <a href="#" class="btn btn-success btn-block"> Search </a>  
+            <div class="col-sm-6 col-md-3">
+                <a href="#" class="btn btn-success btn-block"> Search </a>
             </div>
         </div>
         <!-- Search Filter -->
-{% endblock employee_base %}
+        {% endblock employee_base %}
 
 
 
 
-{% block employee_add %}
-                    <!-- Add Employee Modal -->
-                    <div id="add_employee" class="modal custom-modal fade" role="dialog">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Add Employee</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+        {% block employee_add %}
+        <!-- Add Employee Modal -->
+        <div id="add_employee" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Employee</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'RegisterEmployee' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">First Name <span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="employee_first_name"
+                                            id="id_employee_first_name">
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <form method ="POST" action="{% url 'RegisterEmployee' %}">
-                                        {% csrf_token %}
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                                    <input class="form-control" type="text" name="employee_first_name"  id="id_employee_first_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Last Name</label>
-                                                    <input class="form-control" type="text" name="employee_last_name"  id="id_employee_last_name">
-                                                </div>
-                                            </div>
-                                            <!-- <div class="col-sm-6">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Last Name</label>
+                                        <input class="form-control" type="text" name="employee_last_name"
+                                            id="id_employee_last_name">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Username <span class="text-danger">*</span></label>
                                                     <input class="form-control" type="text" name="employee_username" id="id_employee_username">
                                                 </div>
                                             </div> -->
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                                    <input class="form-control" type="email" name="employee_email" id="id_employee_email">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Password</label>
-                                                    <input class="form-control" type="password"  name="employee_password" id="id_employee_password">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Confirm Password</label>
-                                                    <input class="form-control" type="password" name="employee_confirm_password" id="id_employee_confirm_password">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">  
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control"  name="employee_id" id="id_employee_id">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">  
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-                                                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="employee_joining_date" required id="id_employee_joining_date"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Phone </label>
-                                                    <input class="form-control" type="text" name="employee_phone" id="id_employee_phone">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Department <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="employee_department" id="id_employee_department">
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="submit-section">
-                                            <button type="submit" value="submit" class="btn btn-primary submit-btn">submit</button>
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="email" name="employee_email"
+                                            id="id_employee_email">
                                     </div>
-                                       
-                                    </form>
-                                    
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Password</label>
+                                        <input class="form-control" type="password" name="employee_password"
+                                            id="id_employee_password">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Confirm Password</label>
+                                        <input class="form-control" type="password" name="employee_confirm_password"
+                                            id="id_employee_confirm_password">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Employee ID <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="employee_id" id="id_employee_id">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Employee Role <span
+                                                class="text-danger">*</span></label>
+
+                                        <select name="employee_role" class="form-control">
+                                            <option value="" selected>Not Yet</option>
+                                            {% for group in groups %}
+                                            <option value="{{group}}">{{group}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                </div> -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Joining Date <span
+                                                class="text-danger">*</span></label>
+                                        <div class="cal-icon"><input class="form-control datetimepicker" type="text"
+                                                name="employee_joining_date" required data-date-form></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Phone </label>
+                                        <input class="form-control" type="text" name="employee_phone"
+                                            id="id_employee_phone">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Department <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="employee_department"
+                                            id="id_employee_department">
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
+                            <div class="submit-section">
+                                <button type="submit" value="submit" class="btn btn-primary submit-btn">submit</button>
+                            </div>
                     </div>
-                    <!-- /Add Employee Modal -->
-{% endblock employee_add %}
-    
-    
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Add Employee Modal -->
+        {% endblock employee_add %}

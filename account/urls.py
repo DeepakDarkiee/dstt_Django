@@ -7,6 +7,6 @@ urlpatterns = [
     path('',views.SignInView.as_view(),name='signin'),
     path('logout/',views.LogoutView.as_view(),name='logout'),
     path('role/',views.RegisterRole.as_view(),name='role'),
-    path('rolepermission/',views.RolePermissionView.as_view(),name='rolepermission'),
+    path('rolepermission/<str:name>',views.RolePermissionView.as_view(),name='rolepermission'),
     path('RemoveRole/<str:name>',views.RemoveRole.as_view(),name='RemoveRole'),
 ]

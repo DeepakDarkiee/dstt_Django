@@ -1,13 +1,21 @@
+# from groups_manager.models import Group,GroupType, Member
+
+from django.contrib.auth.models import  Group, Permission
+from django.contrib.auth import models
+from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponseRedirectBase
 from django.shortcuts import redirect, render,HttpResponse
 from django.urls import reverse_lazy
-from django.contrib.auth.models import Group, User
+# from django.contrib.auth.models import Group, User
 from django.views.generic import View,TemplateView,UpdateView
 from django.db import IntegrityError
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.contenttypes.models import ContentType
+
+
+
 
 # Signs Up View
 class SignInView(View):
@@ -32,10 +40,7 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
-class RolePermissionView(TemplateView):
-    template_name = "account/add_roles_permission.html"
 
-# Roles
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
@@ -49,7 +54,7 @@ class RegisterRole(View):
     def get(self,request):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
-
+#
 class RemoveRole(View):
     def get(self,request,name):
         try:
@@ -59,4 +64,102 @@ class RemoveRole(View):
 
         except Group.DoesNotExist:
             messages.error(request,"Role already Deleted or Not Created")
-        return HttpResponseRedirect('/role')              
+        return HttpResponseRedirect('/role')     
+
+
+
+class RolePermissionView(View):
+    def get(self,request,name):
+        role=Group.objects.get(name=name)          
+            # messages.success(request,f"{groups} deleted successfully")
+        permissions = role.permissions.all()
+        
+        for permission in permissions:
+            for permission in permissions:
+                if permission.codename == 'view_employee':
+                    view_employee = True
+                else:
+                    view_employee = False          
+                     
+                if permission.codename == 'add_employee':
+                    add_employee = True
+                else:
+                    add_employee = False
+                
+                if permission.codename == 'change_employee':
+                    change_employee = True
+                else:
+                    change_employee = False
+                
+                if permission.codename == 'delete_employee':
+                    delete_employee = True
+                else:
+                    delete_employee = False
+
+
+
+
+
+        print(view_employee,add_employee,change_employee,delete_employee)
+        return render(request,'account/add_roles_permission.html',
+        {'role':role,
+        'view_employee':view_employee,
+        'add_employee':add_employee,
+        'change_employee':change_employee,
+        'delete_employee':delete_employee,
+        })
+    def post(self,request,name):
+        role = Group.objects.get(name=name)
+
+        # ----------------------Employee-----------------------
+        employee_access_module=request.POST['employee_module']
+        
+        view_employee=request.POST['view_employee']
+        add_employee=request.POST['add_employee']
+        change_employee=request.POST['change_employee']
+        delete_employee=request.POST['delete_employee']
+        
+        content_type = ContentType.objects.get_for_model(Employee,for_concrete_model=False)
+        employee_permision=Permission.objects.filter(content_type=content_type)
+        for permission in employee_permision:
+            if permission.codename == 'view_employee':
+                if view_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'add_employee':
+                if add_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'change_employee':
+                if change_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'delete_employee':
+                if delete_employee == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+        
+        permissions = role.permissions.all()
+        for permission in permissions:
+            if permission.codename == 'view_employee':
+                view_employee = True
+            if permission.codename == 'add_employee':
+                add_employee = True
+            if permission.codename == 'change_employee':
+                change_employee = True
+            if permission.codename == 'delete_employee':
+                delete_employee = True
+        #______________employee end_________________________________________
+        return render(request,'account/add_roles_permission.html',
+        {'role':role,
+        'view_employee':view_employee,
+        'add_employee':add_employee,
+        'change_employee':change_employee,
+        'delete_employee':delete_employee
+        })
+
+        
