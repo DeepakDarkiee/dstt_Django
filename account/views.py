@@ -72,42 +72,10 @@ class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
             # messages.success(request,f"{groups} deleted successfully")
-        permissions = role.permissions.all()
-        
-        for permission in permissions:
-            for permission in permissions:
-                if permission.codename == 'view_employee':
-                    view_employee = True
-                else:
-                    view_employee = False          
-                     
-                if permission.codename == 'add_employee':
-                    add_employee = True
-                else:
-                    add_employee = False
-                
-                if permission.codename == 'change_employee':
-                    change_employee = True
-                else:
-                    change_employee = False
-                
-                if permission.codename == 'delete_employee':
-                    delete_employee = True
-                else:
-                    delete_employee = False
-
-
-
-
-
-        print(view_employee,add_employee,change_employee,delete_employee)
         return render(request,'account/add_roles_permission.html',
         {'role':role,
-        'view_employee':view_employee,
-        'add_employee':add_employee,
-        'change_employee':change_employee,
-        'delete_employee':delete_employee,
         })
+        
     def post(self,request,name):
         role = Group.objects.get(name=name)
 
