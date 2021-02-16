@@ -1,5 +1,6 @@
 # from groups_manager.models import Group,GroupType, Member
-
+from django.views import generic
+from django.views.generic import TemplateView,CreateView,ListView
 from django.contrib.auth.models import  Group, Permission
 from django.contrib.auth import models
 from employee.models import Employee
@@ -50,10 +51,10 @@ class RegisterRole(View):
         except IntegrityError as e:
             messages.error(request,"already exist")
         groups=Group.objects.all()
-        return render(request, "account/role.html",{'groups':groups})
+        return render(request, "account/demo.html",{'groups':groups})
     def get(self,request):
         groups=Group.objects.all()
-        return render(request, "account/role.html",{'groups':groups})
+        return render(request, "account/demo.html",{'groups':groups})
 #
 class RemoveRole(View):
     def get(self,request,name):
@@ -131,3 +132,5 @@ class RolePermissionView(View):
         })
 
         
+class demoview(TemplateView):
+    template_name = "account/demo.html"  

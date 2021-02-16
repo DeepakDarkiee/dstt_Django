@@ -9,4 +9,6 @@ urlpatterns = [
     path('role/',views.RegisterRole.as_view(),name='role'),
     path('rolepermission/<str:name>',views.RolePermissionView.as_view(),name='rolepermission'),
     path('RemoveRole/<str:name>',views.RemoveRole.as_view(),name='RemoveRole'),
+    path('demoview',views.demoview.as_view(),name='demoview'),
+
 ]

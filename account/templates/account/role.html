@@ -65,9 +65,9 @@
 												<a href="#">
 												<span class="action-circle large delete-btn" data-toggle="modal" data-target="#delete_role">
 													<i class="material-icons" onClick="getId('{{role}}')" >delete</i>
-													
+													 
 												</span>
-                            					</a>
+            </a>
 							
 											</span>
 										</a>
@@ -135,20 +135,32 @@
 											<th class="text-center">Delete</th>
 											<th class="text-center">Import</th>
 											<th class="text-center">Export</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Employee</td>
-											<td class="text-center">
-												<input type="checkbox" checked="">
-											</td>
-											<td class="text-center">
-												<input type="checkbox" checked="">
-											</td>
-											<td class="text-center">
-												<input type="checkbox" checked="">
-											</td>
+										</tr><!-- Add Role Modal -->
+                    <div id="add_role" class="modal custom-modal fade" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Role</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'role' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Role Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text"  name="role">
+                                        </div>
+                                        <div class="submit-section">
+                                            <button class="btn btn-primary submit-btn" type="text">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Add Role Modal -->	
 											<td class="text-center">
 												<input type="checkbox" checked="">
 											</td>
