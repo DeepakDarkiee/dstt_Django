@@ -1,13 +1,16 @@
 # from groups_manager.models import Group,GroupType, Member
-from django.views import generic
-from django.views.generic import TemplateView,CreateView,ListView
+
+from account.models import User
+from django.views.generic import TemplateView
 from django.contrib.auth.models import  Group, Permission
-from django.contrib.auth import models
+
 from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
-from django.http.response import HttpResponseRedirect, HttpResponseRedirectBase
-from django.shortcuts import redirect, render,HttpResponse
+from django.http.response import HttpResponseRedirect
+import json
+from django.http import JsonResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.urls import reverse_lazy
 # from django.contrib.auth.models import Group, User
 from django.views.generic import View,TemplateView,UpdateView
@@ -51,10 +54,10 @@ class RegisterRole(View):
         except IntegrityError as e:
             messages.error(request,"already exist")
         groups=Group.objects.all()
-        return render(request, "account/demo.html",{'groups':groups})
+        return render(request, "account/role.html",{'groups':groups})
     def get(self,request):
         groups=Group.objects.all()
-        return render(request, "account/demo.html",{'groups':groups})
+        return render(request, "account/role.html",{'groups':groups})
 #
 class RemoveRole(View):
     def get(self,request,name):
@@ -134,3 +137,43 @@ class RolePermissionView(View):
         
 class demoview(TemplateView):
     template_name = "account/demo.html"  
+
+    
+class UserToRole(View):
+    def get(self, request,name):
+        role = Group.objects.get(name=name)
+        employees = Employee.objects.all()
+        role_user=User.objects.filter(groups__name=role)
+        return render(request,'account/usertorole.html',
+        {'role':role,'employees':employees,'role_user':role_user
+        })
+
+    def post(self, request,name):
+        role = Group.objects.get(name=name)
+        employe = request.POST['employee']
+        user = User.objects.get(email=employe)
+        user.groups.add(role)
+        messages.info(request,f"Congratulation {user} become a {role} ")
+        return redirect('/usertorole/'+str(role))
+
+class RemoveUserToRole(View):
+    def get(self, request,name,id):
+        role = Group.objects.get(name=name)
+        user = User.objects.get(id=id)
+        user.groups.remove(role)
+        messages.warning(request,f"{user} is removed from {role} ")  
+        return redirect('/usertorole/'+str(role))  
+
+
+
+# def autocomplete(request):
+#     if 'term' in request.GET:
+#         qr=request.GET.get('term')
+#         print(qr)
+#         qs = Employee.objects.filter(employee_email__icontains=qr)
+#         print(qs)
+#         employee = list()
+#         for q in qs:
+#             employee.append(q.employee_email)
+#         return JsonResponse(employee,safe=False)
+#     return render(request,'demo.html')

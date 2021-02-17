@@ -37,6 +37,7 @@ def RegisterEmployeeView(request):
             try:
                 user = User.objects.create_user(email=employee_email,password=employee_password)
                 user.is_staff=False
+                user.full_name = employee_first_name
                 user.is_active=True
                 user.save()
                 register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
