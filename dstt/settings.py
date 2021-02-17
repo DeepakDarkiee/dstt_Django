@@ -140,7 +140,7 @@ STATIC_ROOT = os.path.join('static')
 # ]
 AUTH_USER_MODEL = 'account.User'
 
-
+#
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
