@@ -22,6 +22,7 @@ from django.contrib.contenttypes.models import ContentType
 
 
 # Signs Up View
+
 class SignInView(View):
     def post(self,request):
         email = request.POST['email']

@@ -67,6 +67,7 @@
                                         <td>{{user.email}}</td>
                                         <td><a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_usertorole" onClick="getId('{{role}}/{{user.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                     </tr>
+
                                     {% endfor %}
                                     
                                 </tbody>
@@ -95,8 +96,8 @@
 										<div class="form-group row">
 											
 											<div class="col-lg-12">
-											<select name="employee" id="employee" class="form-control">  
-													<option value="" selected>----select----</option>
+											<select name="employee" id="employee" class="form-control" required>  
+													<option value="" selected disabled>----select----</option>
 
                                             {% for employee in employees %}
                                             <option value="{{employee}}">{{employee}}</option>
