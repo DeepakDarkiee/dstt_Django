@@ -8,6 +8,9 @@ from django.views.generic import TemplateView
 class IndexView(TemplateView):
     template_name = "administration/index.html"
 
+class Employee(TemplateView):
+    template_name = "administration/employee.html"
+
 class ClientsView(TemplateView):
     template_name = "administration/clients.html"    
 
