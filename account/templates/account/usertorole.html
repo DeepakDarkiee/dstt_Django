@@ -1,0 +1,184 @@
+{% include 'administration/base.html' %}
+
+{% block css %}
+<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="/static/assets/css/style.css">
+{% endblock css %}
+
+	
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+		{% include 'administration/message.html' %}
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">User To Permissions</h3>
+                </div>
+            </div>
+			
+        </div>
+        <!-- /Page Header -->
+        
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="btn btn-default">
+                        <h4>{{role}} Table</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for user in role_user %}
+                                    <tr>
+                                        <td>{{ user.full_name }}</td>
+                                        
+                                        <td>{{user.email}}</td>
+                                        <td><a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_usertorole" onClick="getId('{{role}}/{{user.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    </tr>
+                                    {% endfor %}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                <!-- <h6 class="card-title m-b-20">Module Access</h6> -->
+                <div class="m-b-30">
+                    <div class="row">
+						<div class="col-xl-12 d-flex">
+							<div class="card flex-fill">
+								<div  class="btn btn-primary">
+									<h4>Assign to {{role}} </h4>
+								</div>
+								<div class="card-body">
+									<form action="{% url 'usertorole' role %}" method="post">
+                                        {% csrf_token %} 
+										<div class="form-group row">
+											<div class="col-lg-12">
+												<input type="text" class="form-control" value="{{role}}" readonly>
+											</div>
+										</div>
+										<div class="form-group row">
+											
+											<div class="col-lg-12">
+											<select name="employee" id="employee" class="form-control">  
+													<option value=""></option>
+
+                                            {% for employee in employees %}
+                                            <option value="{{employee}}">{{employee}}</option>
+                                            {% endfor %}
+                                        </select> 
+                                                
+											</div>
+										</div>
+										
+									
+										
+										
+										<div class="text-center">
+											<button type="submit" class="btn btn-primary">Assign</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+                </div>      	
+                	<!-- Delete Holiday Modal -->
+				<div class="modal custom-modal fade" id="delete_usertorole" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-header">
+									<h3>Remove {{user}} from {{role}}</h3>
+									<p>Are you sure want to delete?</p>
+								</div>
+								<div class="modal-btn delete-action">
+									<div class="row">
+										<div class="col-6">
+											<a href="javascript:void(0);" id="remove_usertorole" class="btn btn-primary continue-btn">Delete</a>
+										</div>
+										<div class="col-6">
+											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Delete Holiday Modal -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+  
+
+   
+    
+ </div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+<script>
+	function getId(id) {
+		var a =document.getElementById('remove_usertorole');
+		a.href = "/RemoveUserToRole/" +id;
+	}
+</script>
+<!-- <script>
+	function getId(id) {
+		var a =document.getElementById('deleterole');
+		a.href = "/RemoveRole/" +id;
+	}
+</script> -->
+</body>
+</html>
