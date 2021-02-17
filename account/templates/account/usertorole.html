@@ -95,9 +95,9 @@
 										<div class="form-group row">
 											
 											<div class="col-lg-12">
-											<select name="employee" id="employee" class="form-control">  
-													<option value=""></option>
-
+											<select name="employee" id="employee" class="form-control" required>  
+													
+													<option value="" selected disabled>----select----</option>
                                             {% for employee in employees %}
                                             <option value="{{employee}}">{{employee}}</option>
                                             {% endfor %}
