@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dsmiecom/public_html/dstt
+    - /bin/cp -R static $DEPLOYPATH

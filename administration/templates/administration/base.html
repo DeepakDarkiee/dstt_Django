@@ -42,7 +42,7 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="{% url 'index' %}" class="logo">
 						<img src="/static/assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
@@ -366,7 +366,10 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{% url 'RegisterEmployee' %}">All Employees</a></li>
+         
+         {% if perms.employee.view_employee %}
+									<li><a href="{% url 'RegisterEmployee' %}">All Employees</a></li> 
+         {% endif %} 
 									<li><a href="{% url 'holiday' %}">Holidays</a></li>
 									<li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="{% url 'leaves_employee' %}">Leaves (Employee)</a></li>

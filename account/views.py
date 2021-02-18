@@ -1,12 +1,16 @@
 # from groups_manager.models import Group,GroupType, Member
 
+from account.models import User
+from django.views.generic import TemplateView
 from django.contrib.auth.models import  Group, Permission
-from django.contrib.auth import models
+
 from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
-from django.http.response import HttpResponseRedirect, HttpResponseRedirectBase
-from django.shortcuts import redirect, render,HttpResponse
+from django.http.response import HttpResponseRedirect
+import json
+from django.http import JsonResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.urls import reverse_lazy
 # from django.contrib.auth.models import Group, User
 from django.views.generic import View,TemplateView,UpdateView
@@ -18,6 +22,7 @@ from django.contrib.contenttypes.models import ContentType
 
 
 # Signs Up View
+
 class SignInView(View):
     def post(self,request):
         email = request.POST['email']
@@ -72,42 +77,10 @@ class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
             # messages.success(request,f"{groups} deleted successfully")
-        permissions = role.permissions.all()
-        
-        for permission in permissions:
-            for permission in permissions:
-                if permission.codename == 'view_employee':
-                    view_employee = True
-                else:
-                    view_employee = False          
-                     
-                if permission.codename == 'add_employee':
-                    add_employee = True
-                else:
-                    add_employee = False
-                
-                if permission.codename == 'change_employee':
-                    change_employee = True
-                else:
-                    change_employee = False
-                
-                if permission.codename == 'delete_employee':
-                    delete_employee = True
-                else:
-                    delete_employee = False
-
-
-
-
-
-        print(view_employee,add_employee,change_employee,delete_employee)
         return render(request,'account/add_roles_permission.html',
         {'role':role,
-        'view_employee':view_employee,
-        'add_employee':add_employee,
-        'change_employee':change_employee,
-        'delete_employee':delete_employee,
         })
+        
     def post(self,request,name):
         role = Group.objects.get(name=name)
 
@@ -163,3 +136,45 @@ class RolePermissionView(View):
         })
 
         
+class demoview(TemplateView):
+    template_name = "account/demo.html"  
+
+    
+class UserToRole(View):
+    def get(self, request,name):
+        role = Group.objects.get(name=name)
+        employees = Employee.objects.all()
+        role_user=User.objects.filter(groups__name=role)
+        return render(request,'account/usertorole.html',
+        {'role':role,'employees':employees,'role_user':role_user
+        })
+
+    def post(self, request,name):
+        role = Group.objects.get(name=name)
+        employe = request.POST['employee']
+        user = User.objects.get(email=employe)
+        user.groups.add(role)
+        messages.info(request,f"Congratulation {user} become a {role} ")
+        return redirect('/usertorole/'+str(role))
+
+class RemoveUserToRole(View):
+    def get(self, request,name,id):
+        role = Group.objects.get(name=name)
+        user = User.objects.get(id=id)
+        user.groups.remove(role)
+        messages.warning(request,f"{user} is removed from {role} ")  
+        return redirect('/usertorole/'+str(role))  
+
+
+
+# def autocomplete(request):
+#     if 'term' in request.GET:
+#         qr=request.GET.get('term')
+#         print(qr)
+#         qs = Employee.objects.filter(employee_email__icontains=qr)
+#         print(qs)
+#         employee = list()
+#         for q in qs:
+#             employee.append(q.employee_email)
+#         return JsonResponse(employee,safe=False)
+#     return render(request,'demo.html')
