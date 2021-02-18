@@ -74,9 +74,14 @@
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
 														<!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-trash-o m-r-5" ></i> Delete</a> -->
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+=======
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+>>>>>>> 51551cbfefa750cfc4ce241a9b49e02fcbea4b46
 													</div>
 												</div>
 											</td>
@@ -105,18 +110,19 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form action="/administration/{{id}}" method="POST" id='manageasset'>
+									{% csrf_token %}
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Asset Name</label>
-												<input class="form-control" type="text" value="Dell Laptop">
+												<input class="form-control" type="text" name="assetname" value="{{asset_name}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Asset Id</label>
-												<input class="form-control" type="text" value="#AST-0001" readonly>
+												<input class="form-control" type="text" name="assetid" value="{{asset_id}}" readonly>
 											</div>
 										</div>
 									</div>
@@ -124,13 +130,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Purchase Date</label>
-												<input class="form-control datetimepicker" type="text">
+												<input class="form-control datetimepicker" type="text" name="purchase_date" value="{{asset_purcahse_date}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Purchase From</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="purchase_from" value="{{asset_purcahse_from}}">
 											</div>
 										</div>
 									</div>
@@ -138,13 +144,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Manufacturer</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="manufacture" value="{{asset_manufacture}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Model</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="model" value="{{asset_model}}">
 											</div>
 										</div>
 									</div>
@@ -152,33 +158,33 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Serial Number</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="model" value="{{asset_serial_number}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Supplier</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="supplier" value="{{asset_supplier}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Condition</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="conditiion" value="{{asset_conditiion}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Warranty</label>
-												<input class="form-control" type="text" placeholder="In Months">
+												<input class="form-control" type="text" placeholder="In Months" name="warrenty" value="{{asset_warrenty}}">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Value</label>
-												<input placeholder="$1800" class="form-control" type="text">
+												<label>Amount</label>
+												<input placeholder="$1800" class="form-control" type="text" name="amount" value="{{asset_amount}}">
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -209,7 +215,7 @@
 										</div>
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
+										<button class="btn btn-primary submit-btn" >Save</button>
 									</div>
 								</form>
 							</div>
@@ -284,6 +290,12 @@
 				a.href = "/administration/asset_remove/" +id;
 			}
 		</script>
-	
+		<!-- <script>
+		function getId(id) {
+			var form =document.getElementById('managerole');
+			var input =document.getElementById('rolemanage').value=id;
+			form.action = "/ManageRole/"+id;
+		}
+	</script> -->
 	</body>
 </html>

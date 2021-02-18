@@ -38,21 +38,24 @@
 										</tr>
 									</thead>
 									<tbody>
+										
+										{% for trainer in trainer_list %}
+											
 										<tr>
-											<td>1</td>
+											<td>{{trainer.id}}</td>
 											<td>
 												<h2 class="table-avatar">
 													<a href="profile.html" class="avatar"><img alt="" src="/static/assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.html">John Doe </a>
+													<a href="profile.html">{{trainer.Trainer_first_name}}&nbsp;{{trainer.Trainer_last_name}} </a>
 												</h2>
 											</td>
-											<td>9876543210</td>
-											<td>johndoe@example.com</td>
-											<td>Lorem ipsum dollar</td>
+											<td>{{trainer.Trainer_phone}}</td>
+											<td>{{trainer.Trainer_email}}</td>
+											<td>{{trainer.Trainer_desscription}}</td>
 											<td>
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
+														<i class="fa fa-dot-circle-o text-danger"></i>{{trainer.Trainer_status}}
 													</a>
 													<div class="dropdown-menu">
 														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
@@ -65,139 +68,13 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type" getId="('{{trainer.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.html" class="avatar"><img alt="" src="/static/assets/img/profiles/avatar-05.jpg"></a>
-													<a href="profile.html">Mike Litorus </a>
-												</h2>
-											</td>
-											<td>9876543120</td>
-											<td>mikelitorus@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.html" class="avatar"><img alt="" src="/static/assets/img/profiles/avatar-11.jpg"></a>
-													<a href="profile.html">Wilmer Deluna </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>wilmerdeluna@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.html" class="avatar"><img alt="" src="/static/assets/img/profiles/avatar-10.jpg"></a>
-													<a href="profile.html">John Smith </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>johnsmith@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.html" class="avatar"><img alt="" src="/static/assets/img/profiles/avatar-09.jpg"></a>
-													<a href="profile.html">Richard Miles </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>richardmiles@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
+										{% endfor %}
+										
 									</tbody>
 								</table>
 							</div>
@@ -289,7 +166,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="delete_trainer" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -327,5 +204,11 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		<script>
+			function getId(id) {
+				var a =document.getElementById('delete_trainer');
+				a.href = "/performances/trainer_remove/"+id;
+			}
+		</script>
 </body>
 </html>

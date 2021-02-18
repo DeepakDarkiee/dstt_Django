@@ -22,8 +22,8 @@ urlpatterns = [
 # -----------------------------------Assets-----------------------------------------------------------------------
     path('assets/',views.AssetCreateView.as_view(),name='assets' ),
     path('asset_list/',views.AssetListView.as_view(),name='asset_list' ),
-    # path('asset_remove/<int:id>',views.AssetRemove.as_view(),name='asset_remove' ),
-    path('asset_remove/<int:id>',views.AssetRemove.as_view(),name='asset_remove'),
+    path('asset_remove/<int:id>',views.AssetRemove.as_view(),name='asset_remove' ),
+    path('asset_manage/<int:id>',views.AssetManage.as_view(),name='asset_manage' ),
 # -----------------------------------/Assets-----------------------------------------------------------------------
     
     path('jobs/',views.jobsView.as_view(),name='jobs' ),

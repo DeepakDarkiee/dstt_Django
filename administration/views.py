@@ -85,18 +85,18 @@ class AssetListView(generic.ListView):
     success_url = ('/administration/assets')
 
 class AssetRemove(View):
-    def get(self,request,id):
-            asset=Asset.objects.get(id=id)          
-            asset.delete()
-            messages.success(request,"deleted successfully")
-            return HttpResponseRedirect('/administration/asset_list')
-
-# class AssetRemove(View):
-#      def get(self,request,id):
-#         asset=Asset.objects.get(id=id)          
-#         asset.delete()
-#         messages.success(request,f"{asset} deleted successfully")
-#         return HttpResponseRedirect('/administration/asset_list')                       
+     def get(self,request,id):
+        asset=Asset.objects.get(id=id)          
+        asset.delete()
+        messages.success(request,f"{asset} deleted successfully")
+        return HttpResponseRedirect('/administration/asset_list') 
+                              
+class AssetManage(View):
+     def get(self,request,name):
+        asset=Asset.objects.get(name=name)
+        asset.update()
+        messages.success(request,f"{asset} updated successfully")
+        return HttpResponseRedirect('/administration/asset_list'    )                      
 # ----------------------------------/Assets------------------------------------------------
 
 class jobsView(TemplateView):
