@@ -21,7 +21,8 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=email, 
             last_login=now,
-            date_joined=now, 
+            date_joined=now,
+             
             **extra_fields
     )
     
@@ -48,6 +49,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     full_name = models.CharField(max_length=254, null=True, blank=True)
     is_admin = models.BooleanField(default=False)
+    is_employee = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

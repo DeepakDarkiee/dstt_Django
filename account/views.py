@@ -76,9 +76,30 @@ class RemoveRole(View):
 class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
-            # messages.success(request,f"{groups} deleted successfully")
+        permissions = role.permissions.all()
+        for permission in permissions:
+            if permission.codename == 'view_employee':
+                view_employee = 'True'
+            
+            view_employee = 'False'
+            if permission.codename == 'add_employee':
+                add_employee = 'True'
+            
+            add_employee = 'False'
+            if permission.codename == 'change_employee':
+                change_employee = 'True'
+            else:
+                change_employee = 'False'
+            if permission.codename == 'delete_employee':
+                delete_employee = 'True'
+            else:
+                delete_employee = 'False'
+
+        
+        #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
+        
         })
         
     def post(self,request,name):
@@ -116,16 +137,6 @@ class RolePermissionView(View):
                 else:
                     role.permissions.remove(permission)
         
-        permissions = role.permissions.all()
-        for permission in permissions:
-            if permission.codename == 'view_employee':
-                view_employee = True
-            if permission.codename == 'add_employee':
-                add_employee = True
-            if permission.codename == 'change_employee':
-                change_employee = True
-            if permission.codename == 'delete_employee':
-                delete_employee = True
         #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
