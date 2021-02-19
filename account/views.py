@@ -45,7 +45,7 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
-
+# Role
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']

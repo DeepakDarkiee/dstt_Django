@@ -12,6 +12,7 @@ urlpatterns = [
     path('employeepolicies/',views.employeepoliciesView.as_view(),name='employeepolicies'),
     path('employeeexpensereport/',views.employeeexpensereportView.as_view(),name='employeeexpensereport'),
     path('invoicereports/',views.invoicereportsView.as_view(),name='invoicereports'),
-    path('policies/',views.policiesView.as_view(),name='policies'),
+
+    path('policy/',views.PolicyCreateView.as_view(),name='policy'),
     
 ]

@@ -7,7 +7,8 @@ urlpatterns = [
     path('clients/',views.CreateClientsView.as_view(),name='clients' ),
     path('clients_list/',views.CreateClientsListView.as_view(),name='clients_list' ),
     path('clients_grid/',views.CreateClientsGridView.as_view(),name='clients_grid' ),
-    path('clients_remove/<int:id>',views.CreateClientsGridView.as_view(),name='clients_remove' ),
+    path('clients_remove/<int:id>',views.ClientRemove.as_view(),name='clients_remove' ),
+    path('clients_remove_grid/<int:id>',views.ClientRemoveGrid.as_view(),name='clients_remove_grid' ),
 # ------------------------------client--------------------------------------------------------------------------
 
 # ------------------------------Lead---------------------------------------------------------------------------
@@ -22,6 +23,7 @@ urlpatterns = [
     path('assets/',views.AssetCreateView.as_view(),name='assets' ),
     path('asset_list/',views.AssetListView.as_view(),name='asset_list' ),
     path('asset_remove/<int:id>',views.AssetRemove.as_view(),name='asset_remove' ),
+    path('asset_manage/<int:id>',views.AssetManage.as_view(),name='asset_manage' ),
 # -----------------------------------/Assets-----------------------------------------------------------------------
     
     path('jobs/',views.jobsView.as_view(),name='jobs' ),

@@ -35,8 +35,11 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
-									<div class="row">
+								<form method="post" action="">
+									{% csrf_token %}
+									{{form.as_p}}
+									
+									<!-- <div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Training Type</label>
@@ -98,9 +101,9 @@
 												</select>
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Submit</button>
+										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
 									</div>
 								</form>
 							</div>

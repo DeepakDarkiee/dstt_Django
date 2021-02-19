@@ -1,8 +1,9 @@
+
 from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
 from django.views import generic
-
-from django.views.generic import TemplateView
+from .models import Policy
+from django.views.generic import TemplateView,CreateView,ListView
 
 # Create your views here.
 class estimatesView(TemplateView):
@@ -35,6 +36,12 @@ class employeeexpensereportView(TemplateView):
 class invoicereportsView(TemplateView):
     template_name = "management/invoicereports.html"
 
-class policiesView(TemplateView):
-    template_name = "management/policies.html"
 
+# --------------------------------- Policy ----------------------------------
+class PolicyCreateView(generic.CreateView):
+    model = Policy
+    fields = ('Policy_name', 'Policy_Description', 'Policy_Department', 'Policy_Upload_Policy',)
+    template_name = "management/policies.html"
+    success_url = ('/management/policy')
+
+# --------------------------------- Policy end ----------------------------------
