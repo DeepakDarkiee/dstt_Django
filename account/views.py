@@ -1,9 +1,9 @@
 # from groups_manager.models import Group,GroupType, Member
-
 from account.models import User
 from django.views.generic import TemplateView
 from django.contrib.auth.models import  Group, Permission
-
+from django.contrib.auth.decorators import user_passes_test
+from django.utils.decorators import method_decorator
 from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
@@ -29,7 +29,10 @@ class SignInView(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/administration/index')
+                if user.is_admin:
+                    return HttpResponseRedirect('/administration/index')
+                else:
+                    return HttpResponseRedirect('/employee/employee_    dashboard')
             else:
                 return HttpResponse("Inactive user.")
         else:
@@ -44,6 +47,7 @@ class LogoutView(View):
         return HttpResponseRedirect(settings.LOGIN_URL)
 
 # Role
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='post')
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
