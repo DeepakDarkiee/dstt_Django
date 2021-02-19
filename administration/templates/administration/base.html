@@ -337,7 +337,7 @@
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{% url 'index' %}">Admin Dashboard</a></li>
-									<li><a href="employee-dashboard.html">Employee Dashboard</a></li>
+									<li><a href="{% url 'employee_dashboard' %}">Employee Dashboard</a></li>
 									<li><a href="{% url 'role' %}">Roles & Permissions</a></li>
 								</ul>
 							</li>
@@ -366,10 +366,14 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
+<<<<<<< HEAD
+									<li><a href="{% url 'allemployee' %}">All Employees</a></li>
+=======
          
          {% if perms.employee.view_employee %}
 									<li><a href="{% url 'RegisterEmployee' %}">All Employees</a></li> 
          {% endif %} 
+>>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
 									<li><a href="{% url 'holiday' %}">Holidays</a></li>
 									<li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="{% url 'leaves_employee' %}">Leaves (Employee)</a></li>
@@ -600,5 +604,5 @@
 		
 		{% endblock nav %}
 		
-    </body>
-</html>
+    <!-- </body>
+</html> -->

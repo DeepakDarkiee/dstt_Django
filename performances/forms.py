@@ -1,4 +1,21 @@
 from django import forms
+<<<<<<< HEAD
+from .models import TrainingType,Trainers
+
+# ---------------------------------------- Form Trainers ------------------------------------------------------
+class TrainersForm(forms.ModelForm):
+    class meta:
+        model = Trainers
+        fields = "__all__"
+# ---------------------------------------- /Form Trainers ------------------------------------------------------
+
+# ---------------------------------------- Form Training Type ------------------------------------------------------
+class TrainingTypeForm(forms.ModelForm):
+    class meta:
+        model = TrainingType
+        fields = "__all__"
+# ---------------------------------------- /Form Training Type ------------------------------------------------------
+=======
 from .models import Goal,GoalTracking,TrainingList,TrainingType,Trainer
 
 # ----------------------------------------Goal--------------------------------------------------
@@ -32,3 +49,4 @@ class TrainingTypeForm(forms.ModelForm):
         fields = "__all__"
         
 # ----------------------------------------Training Type end -------------------------------------------------------
+>>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948

@@ -1,4 +1,4 @@
-{% extends 'administration/base.html' %}
+{% include 'administration/base.html' %}
 {% block css %}
 <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
@@ -21,6 +21,9 @@
 		<!-- Main CSS -->
         <link rel="stylesheet" href="/static/assets/css/style.css">
 {% endblock css %}
+
+
+
 			<!-- Page Wrapper -->
             <div class="page-wrapper">
 			
@@ -79,12 +82,12 @@
 						</div>
                     </div>
 					<!-- Search Filter -->
-					
 					<div class="row staff-grid-row">
+						{%for employee in Employee%}
 						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 							<div class="profile-widget">
 								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
+									<a href="{% url 'update_employees' employee.id %}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
 								</div>
 								<div class="dropdown profile-action">
 									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -93,181 +96,11 @@
 										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 									</div>
 								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">John Doe</a></h4>
+								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{% url 'update_employees' employee.id %}">{{employee.employee_first_name}}</a></h4>
 								<div class="small text-muted">Web Designer</div>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Richard Miles</a></h4>
-								<div class="small text-muted">Web Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="/static/assets/img/profiles/avatar-10.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">John Smith</a></h4>
-								<div class="small text-muted">Android Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Mike Litorus</a></h4>
-								<div class="small text-muted">IOS Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Wilmer Deluna</a></h4>
-								<div class="small text-muted">Team Leader</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">employee_created_date
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Jeffrey Warden</a></h4>
-								<div class="small text-muted">Web Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Bernardo Galaviz</a></h4>
-								<div class="small text-muted">Web Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-01.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Lesley Grauer</a></h4>
-								<div class="small text-muted">Team Leader</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-16.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Jeffery Lalor</a></h4>
-								<div class="small text-muted">Team Leader</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-04.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Loren Gatlin</a></h4>
-								<div class="small text-muted">Android Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-03.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Tarah Shropshire</a></h4>
-								<div class="small text-muted">Android Developer</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-							<div class="profile-widget">
-								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="assets/img/profiles/avatar-08.jpg" alt=""></a>
-								</div>
-								<div class="dropdown profile-action">
-									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-									</div>
-								</div>
-								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">Catherine Manseau</a></h4>
-								<div class="small text-muted">Android Developer</div>
-							</div>
-						</div>
+						{% endfor %}
 					</div>
                 </div>
 				<!-- /Page Content -->
@@ -283,283 +116,103 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form method="POST" action="{% url 'registeremployee' %}">
+									{% csrf_token %}
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-												<input class="form-control" type="text">
+												<label class="col-form-label">First Name <span
+														class="text-danger">*</span></label>
+												<input class="form-control" type="text" name="employee_first_name"
+													id="id_employee_first_name">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Last Name</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="employee_last_name"
+													id="id_employee_last_name">
 											</div>
 										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="col-form-label">Username <span class="text-danger">*</span></label>
-												<input class="form-control" type="text">
-											</div>
-										</div>
+										<!-- <div class="col-sm-6">
+														<div class="form-group">
+															<label class="col-form-label">Username <span class="text-danger">*</span></label>
+															<input class="form-control" type="text" name="employee_username" id="id_employee_username">
+														</div>
+													</div> -->
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Email <span class="text-danger">*</span></label>
-												<input class="form-control" type="email">
+												<input class="form-control" type="email" name="employee_email"
+													id="id_employee_email">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Password</label>
-												<input class="form-control" type="password">
+												<input class="form-control" type="password" name="employee_password"
+													id="id_employee_password">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Confirm Password</label>
-												<input class="form-control" type="password">
+												<input class="form-control" type="password" name="employee_confirm_password"
+													id="id_employee_confirm_password">
 											</div>
 										</div>
-										<div class="col-sm-6">  
+										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<label class="col-form-label">Employee ID <span
+														class="text-danger">*</span></label>
+												<input type="text" class="form-control" name="employee_id" id="id_employee_id">
 											</div>
 										</div>
-										<div class="col-sm-6">  
+										<!-- <div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+												<label class="col-form-label">Employee Role <span
+														class="text-danger">*</span></label>
+		
+												<select name="employee_role" class="form-control">
+													<option value="" selected>Not Yet</option>
+													{% for group in groups %}
+													<option value="{{group}}">{{group}}</option>
+													{% endfor %}
+												</select>
+		
+											</div>
+										</div> -->
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Joining Date <span
+														class="text-danger">*</span></label>
+												<div class="cal-icon"><input class="form-control datetimepicker" type="text"
+														name="employee_joining_date" required data-date-form></div>
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Phone </label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="employee_phone"
+													id="id_employee_phone">
 											</div>
 										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="col-form-label">Company</label>
-												<select class="select">
-													<option value="">Global Technologies</option>
-													<option value="1">Delta Infotech</option>
-												</select>
-											</div>
-										</div>
+		
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Department <span class="text-danger">*</span></label>
-												<select class="select">
-													<option>Select Department</option>
-													<option>Web Development</option>
-													<option>IT Management</option>
-													<option>Marketing</option>
-												</select>
+												<input type="text" class="form-control" name="employee_department"
+													id="id_employee_department">
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Designation <span class="text-danger">*</span></label>
-												<select class="select">
-													<option>Select Designation</option>
-													<option>Web Designer</option>
-													<option>Web Developer</option>
-													<option>Android Developer</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="table-responsive m-t-15">
-										<table class="table table-striped custom-table">
-											<thead>
-												<tr>
-													<th>Module Permission</th>
-													<th class="text-center">Read</th>
-													<th class="text-center">Write</th>
-													<th class="text-center">Create</th>
-													<th class="text-center">Delete</th>
-													<th class="text-center">Import</th>
-													<th class="text-center">Export</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Holidays</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Leaves</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Clients</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Projects</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Tasks</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Chats</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Assets</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Timing Sheets</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-													<td class="text-center">
-														<input type="checkbox">
-													</td>
-												</tr>
-											</tbody>
-										</table>
+		
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Submit</button>
+										<button type="submit" value="submit" class="btn btn-primary submit-btn">submit</button>
 									</div>
-								</form>
+							</div>
+		
+							</form>
 							</div>
 						</div>
 					</div>
