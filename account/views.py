@@ -8,8 +8,6 @@ from employee.models import Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponseRedirect
-import json
-from django.http import JsonResponse
 from django.shortcuts import render,HttpResponse,redirect
 from django.urls import reverse_lazy
 # from django.contrib.auth.models import Group, User
@@ -94,20 +92,15 @@ class RolePermissionView(View):
                 delete_employee = 'True'
             else:
                 delete_employee = 'False'
-
-        
         #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
         
-        })
+          })
         
     def post(self,request,name):
         role = Group.objects.get(name=name)
-
         # ----------------------Employees-----------------------
-        employee_access_module=request.POST['employee_module']
-        
         view_employee=request.POST['view_employee']
         add_employee=request.POST['add_employee']
         change_employee=request.POST['change_employee']
@@ -164,8 +157,16 @@ class UserToRole(View):
         role = Group.objects.get(name=name)
         employe = request.POST['employee']
         user = User.objects.get(email=employe)
-        user.groups.add(role)
-        messages.info(request,f"Congratulation {user} become a {role} ")
+        userIngroup=user.groups.all().exists()
+        
+        
+        if userIngroup != True:
+            user.groups.add(role)
+            messages.info(request,f"Congratulation {user} become a {role} ")
+        else:
+            userInWhichgroup=user.groups.all()
+            for  userRole in userInWhichgroup:
+                 messages.warning(request,f"Sorry {user} is Already having {userRole} Role ")
         return redirect('/usertorole/'+str(role))
 
 class RemoveUserToRole(View):

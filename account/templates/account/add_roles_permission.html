@@ -1,6 +1,8 @@
 {% include 'administration/base.html' %}
 {% block css %}
 <!-- Favicon -->
+
+
 <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
 
 <!-- Bootstrap CSS -->
@@ -30,7 +32,7 @@
 						<h3 class="page-title">{{role}} Previleges </h3>
 					</center>
 					<div class="col-auto float-right ml-auto">
-						<a href="{% url 'usertorole' role %}" class="btn add-btn"><i class="fa fa-plus"></i> Add Roles</a>
+						<a href="{% url 'usertorole' role %}" class="btn add-btn"><i class="fa fa-plus"></i> User to Role</a>
 
 					</div>
 
@@ -52,7 +54,12 @@
 								Employee
 								<div class="status-toggle">
 									<input type="hidden" value="False" class="check" name="employee_module">
-									<input type="checkbox" id="staff_module" value="True" class="check" name="employee_module">
+									{% if view_employee == 'True' %}
+									<input type="checkbox" id="staff_module" value="True" class="check" name="view_employee" checked>
+									{% else %}
+									<input type="checkbox" id="staff_module" value="True" class="check" name="view_employee" >
+									{% endif %}
+
 									<label for="staff_module" class="checktoggle">checkbox</label>
 								</div>
 
@@ -63,7 +70,7 @@
 									<thead>
 										<tr>
 											<th>Module Permission</th>
-											<th class="text-center">View</th>
+											<!-- <th class="text-center">View</th> -->
 											<th class="text-center">Add</th>
 											<th class="text-center">Change</th>
 											<th class="text-center">Delete</th>
@@ -73,14 +80,14 @@
 										<tr>
 											<td>Employee</td>
 
-											<td class="text-center">
+											<!-- <td class="text-center">
 												<input type="hidden" name="view_employee" value="False">
 												{% if view_employee == 'True' %}
 												<input type="checkbox" name="view_employee" value="True" checked>
 												{% else %}
 												<input type="checkbox" name="view_employee" value="True">
 												{% endif %}
-											</td>
+											</td> -->
 
 											<td class="text-center">
 												<input type="hidden" name="add_employee" value="False">
