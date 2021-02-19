@@ -34,24 +34,26 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form method="post" action="{% url 'training_type'%}">
+									{% csrf_token %}
+									<!-- {{form.as_p}} -->
 									<div class="form-group">
 										<label>Type <span class="text-danger">*</span></label>
-										<input class="form-control" type="text">
+										<input class="form-control" type="text" name="training_type_type" maxlength="100" required id="id_training_type_type">
 									</div>
 									<div class="form-group">
 										<label>Description <span class="text-danger">*</span></label>
-										<textarea class="form-control" rows="4"></textarea>
+										<textarea class="form-control" name="trainingtype_description" cols="40" rows="10" maxlength="100" required id="id_trainingtype_description"></textarea>
 									</div>
 									<div class="form-group">
 										<label class="col-form-label">Status</label>
-										<select class="select">
+										<select class="select" name="trainingtype_status" id="id_trainingtype_status">
 											<option>Active</option>
 											<option>Inactive</option>
 										</select>
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Submit</button>
+										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
 									</div>
 								</form>
 							</div>

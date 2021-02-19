@@ -43,7 +43,7 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="{% url 'index' %}" class="logo">
 						<img src="/static/assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
@@ -373,7 +373,7 @@
 									<li><a href="{% url 'attendance_admin' %}">Attendance (Admin)</a></li>
 									<li><a href="{% url 'attendance_employee' %}">Attendance (Employee)</a></li>
 									<li><a href="{% url 'departments' %}">Departments</a></li>
-									<li><a href="{% url 'designations' %}">Designations</a></li>
+									<li><a href="{% url 'designations_list' %}">Designations</a></li>
 									<li><a href="{% url 'timesheet' %}">Timesheet</a></li>
 									<li><a href="{% url 'overtime' %}">Overtime</a></li>
 								</ul>

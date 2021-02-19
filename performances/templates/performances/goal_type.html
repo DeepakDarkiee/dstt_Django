@@ -16,7 +16,7 @@
 		<!-- Select2 CSS -->
 		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
 		
-		<!-- Datatable CSS -->
+		<!-- Datatables CSS -->
 		<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
 		
 		<!-- Main CSS -->
@@ -39,19 +39,23 @@
 										</tr>
 									</thead>
 									<tbody>
+									     
+										 {% for object in goletype %}
 										<tr>
-											<td>1</td>
-											<td>Invoice Goal</td>
-											<td>Lorem ipsum dollar</td>
+											<td>{{object.id}}</td>
+											<td>{{object.Goal_type}}</td>
+											<td>{{object.Goal_discription}}</td>
+											
+											
 											<td>
 												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
+													<a class="btn btn-white btn-sm btn-rounded " href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-success"></i> {{object.Goal_status}}
 													</a>
-													<div class="dropdown-menu">
+													<!-- <div class="dropdown-menu">
 														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
 														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
+													</div> -->
 												</div>
 											</td>
 											<td class="text-right">
@@ -59,36 +63,13 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="{% url 'goaltype_remove' object.id %}" data-toggle="modal" data-target="#delete_type" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Event Goal</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
+										{% endfor %}
+										
 									</tbody>
 								</table>
 							</div>
@@ -127,7 +108,7 @@
 										</select>
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
+										<button class="btn btn-primary submit-btn" type="submit">Save</button>
 									</div>
 								</form>
 							</div>
@@ -148,7 +129,8 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											
+											<a href="" id="delete_goletype" class="btn btn-primary continue-btn" type="submit">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -186,5 +168,11 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		<script>
+			function getId(id) {
+				var a =document.getElementById('delete_goletype');
+				a.href = "/performances/goaltype_remove/"+id;
+			}
+		</script>
 </body>
 </html>

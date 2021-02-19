@@ -1,30 +1,111 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
+from django.urls.base import reverse
 from django.views import generic
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,CreateView,ListView
+from django.views.generic.base import View
+from .models import Client,Asset,Lead
+from .forms import ClientForm,AssetForm,LeadForm
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 # Create your views here.
 
 class IndexView(TemplateView):
     template_name = "administration/index.html"
 
+<<<<<<< HEAD
 class Employee(TemplateView):
     template_name = "administration/employee.html"
 
 class ClientsView(TemplateView):
     template_name = "administration/clients.html"    
+=======
+# --------------------------------------------client------------------------------------------------------------------------
+class CreateClientsView(generic.CreateView):
+    model = Client
+    tamplate_name = "administration/clients_form.html"
+    fields = ('client_first_name', 'client_last_name', 'client_username', 'client_email', 'client_id', 'client_address', 'client_phone' )
+    success_url = ('/administration/clients_grid')
+>>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
 
-class LeadsView(TemplateView):
-    template_name = "administration/leads.html"  
+
+class CreateClientsListView(generic.ListView):
+    model = Client
+    template_name = "administration/client_list.html" 
+    context_object_name = "client_list"
+    success_url = ('/administration/clients_list')
+
+class CreateClientsGridView(generic.ListView):
+    model = Client
+    template_name = "administration/client_form.html" 
+    context_object_name = "client_list"
+    success_url = ('/administration/clients_grid')
+
+class ClientRemove(View):
+    def get(self,request,id):
+        client=Client.objects.get(id=id)          
+        client.delete()
+        messages.success(request,'deleted successfully')
+        return HttpResponseRedirect('/administration/clients_list') 
+
+class ClientRemoveGrid(View):
+    def get(self,request,id):
+        client=Client.objects.get(id=id)          
+        client.delete()
+        messages.success(request,'deleted successfully')
+        return HttpResponseRedirect('/administration/clients_grid') 
+
+# -----------------------------------/client----------------------------------------------------------------
+  
+# -------------------------------------Lead----------------------------------------------------------------
+class CreateLeadView(generic.CreateView):
+    model = Lead
+    fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created', 'lead_status')
+    template_name = "administration/leads.html" 
+    success_url = ('/administration/leads_list')
+
+class CreateLeadListView(generic.ListView):
+    model = Lead
+    template_name = "administration/leads.html"
+    context_object_name = "lead_list"
+    success_url = ('/administration/leads')
+# ---------------------------------------/Lead----------------------------------------------------------------
 
 class projectsView(TemplateView):
     template_name = "administration/projects.html"   
  
 class taskboardView(TemplateView):
-    template_name = "administration/taskboard.html"  
+    template_name = "administration/taskboard.html" 
 
-class assetsView(TemplateView):
+# ----------------------------------Assets------------------------------------------------
+class AssetCreateView(generic.CreateView):
+    model = Asset
+    fields = ('asset_name', 'asset_id', 'asset_purcahse_date', 'asset_purcahse_from', 'asset_manufacture', 'asset_model', 'asset_serial_number', 'asset_supplier', 'asset_conditiion', 'asset_warrenty', 'asset_amount', 'asset_user', 'asset_description', 'asset_status')
     template_name = "administration/assets.html" 
+    success_url = ('/administration/asset_list')
+
+class AssetListView(generic.ListView):
+    model = Asset
+    template_name = "administration/assets.html" 
+    context_object_name = "asset_list"
+    success_url = ('/administration/assets')
+
+class AssetRemove(View):
+     def get(self,request,id):
+        asset=Asset.objects.get(id=id)          
+        asset.delete()
+        messages.success(request,f"{asset} deleted successfully")
+        return HttpResponseRedirect('/administration/asset_list') 
+                              
+class AssetManage(View):
+     def get(self,request,name):
+        asset=Asset.objects.get(name=name)
+        asset.update()
+        messages.success(request,f"{asset} updated successfully")
+        return HttpResponseRedirect('/administration/asset_list'    )                      
+# ----------------------------------/Assets------------------------------------------------
 
 class jobsView(TemplateView):
     template_name = "administration/jobs.html"  

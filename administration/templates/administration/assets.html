@@ -1,29 +1,28 @@
 {% include 'administration/base.html' %}
 {% include 'administration/assets_base.html' %}
+
 {% block css %}
-<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
 		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
-		
-		<!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
-		
-		<!-- Lineawesome CSS -->
-		<link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
-		
-		<!-- Datatable CSS -->
-		<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
-		
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
-		
-		<!-- Datetimepicker CSS -->
-		<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="/static/assets/css/style.css">
+<!-- Fontawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+
+<!-- Lineawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+
+<!-- Datatable CSS -->
+<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+
+<!-- Datetimepicker CSS -->
+<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/static/assets/css/style.css">
+
 {% endblock css %}
 {% block assets_base %}
 {% endblock assets_base %}					
@@ -33,32 +32,36 @@
 								<table class="table table-striped custom-table mb-0 datatable">
 									<thead>
 										<tr>
+											<th>#</th>
 											<th>Asset User</th>
 											<th>Asset Name</th>
 											<th>Asset Id</th>
 											<th>Purchase Date</th>
 											<th>Warrenty</th>
-											<th>Warrenty End</th>
+											
 											<th>Amount</th>
 											<th class="text-center">Status</th>
+											<th class="text-right">Actions</th>
 											<th class="text-right"></th>
 										</tr>
 									</thead>
 									<tbody>
+										
+										{% for object in asset_list %}
+											
 										<tr>
-											<td>Richard Miles</td>
-											<td>
-												<strong>Dell Laptop</strong>
-											</td>
-											<td>#AST-0001</td>
-											<td>5 Jan 2019</td>
-											<td>12 Months</td>
-											<td>5 Jan 2019</td>
-											<td>$1215</td>
+											<td>{{object.id}}</td>
+											<td>{{object.asset_user}}</td>
+											<td>{{object.asset_name}}</td>
+											<td>{{object.asset_id}}</td>
+											<td>{{object.asset_purcahse_date}}</td>
+											<td>{{object.asset_warrenty}}</td>
+											<td>{{object.asset_amount}}</td>
+											
 											<td class="text-center">
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Pending
+														<i class="fa fa-dot-circle-o text-danger"></i> {{object.asset_status}}
 													</a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
@@ -71,364 +74,20 @@
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-trash-o m-r-5" ></i> Delete</a> -->
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{object.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+=======
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset" onClick="getId('{{asset.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+>>>>>>> 51551cbfefa750cfc4ce241a9b49e02fcbea4b46
 													</div>
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>John Doe</td>
-											<td>
-												<strong>Seagate Harddisk</strong>
-											</td>
-											<td>#AST-0002</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$300</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Approved
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>John Smith</td>
-											<td>
-												<strong>Canon Portable Printer</strong>
-											</td>
-											<td>#AST-0003</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$2500</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-info"></i> Returned
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Mike Litorus</td>
-											<td>
-												<strong>Dell Laptop</strong>
-											</td>
-											<td>#AST-0004</td>
-											<td>5 Jan 2019</td>
-											<td>12 Months</td>
-											<td>5 Jan 2019</td>
-											<td>$1215</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Pending
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Wilmer Deluna</td>
-											<td>
-												<strong>Seagate Harddisk</strong>
-											</td>
-											<td>#AST-0005</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$300</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Approved
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Jeffrey Warden</td>
-											<td>
-												<strong>Canon Portable Printer</strong>
-											</td>
-											<td>#AST-0006</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$2500</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-info"></i> Returned
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Bernardo Galaviz</td>
-											<td>
-												<strong>Dell Laptop</strong>
-											</td>
-											<td>#AST-0007</td>
-											<td>5 Jan 2019</td>
-											<td>12 Months</td>
-											<td>5 Jan 2019</td>
-											<td>$1215</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Pending
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Lesley Grauer</td>
-											<td>
-												<strong>Seagate Harddisk</strong>
-											</td>
-											<td>#AST-0008</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$300</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Approved
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Jeffery Lalor</td>
-											<td>
-												<strong>Canon Portable Printer</strong>
-											</td>
-											<td>#AST-0009</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$2500</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-info"></i> Returned
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Loren Gatlin</td>
-											<td>
-												<strong>Dell Laptop</strong>
-											</td>
-											<td>#AST-0010</td>
-											<td>5 Jan 2019</td>
-											<td>12 Months</td>
-											<td>5 Jan 2019</td>
-											<td>$1215</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Pending
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Tarah Shropshire</td>
-											<td>
-												<strong>Seagate Harddisk</strong>
-											</td>
-											<td>#AST-0011</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$300</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Approved
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Catherine Manseau</td>
-											<td>
-												<strong>Canon Portable Printer</strong>
-											</td>
-											<td>#AST-0012</td>
-											<td>14 Jan 2019</td>
-											<td>12 Months</td>
-											<td>14 Jan 2019</td>
-											<td>$2500</td>
-											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-info"></i> Returned
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
+										{% endfor %}
+										
 									</tbody>
 								</table>
 							</div>
@@ -451,18 +110,19 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form action="/administration/{{id}}" method="POST" id='manageasset'>
+									{% csrf_token %}
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Asset Name</label>
-												<input class="form-control" type="text" value="Dell Laptop">
+												<input class="form-control" type="text" name="assetname" value="{{asset_name}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Asset Id</label>
-												<input class="form-control" type="text" value="#AST-0001" readonly>
+												<input class="form-control" type="text" name="assetid" value="{{asset_id}}" readonly>
 											</div>
 										</div>
 									</div>
@@ -470,13 +130,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Purchase Date</label>
-												<input class="form-control datetimepicker" type="text">
+												<input class="form-control datetimepicker" type="text" name="purchase_date" value="{{asset_purcahse_date}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Purchase From</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="purchase_from" value="{{asset_purcahse_from}}">
 											</div>
 										</div>
 									</div>
@@ -484,13 +144,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Manufacturer</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="manufacture" value="{{asset_manufacture}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Model</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="model" value="{{asset_model}}">
 											</div>
 										</div>
 									</div>
@@ -498,33 +158,33 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Serial Number</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="model" value="{{asset_serial_number}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Supplier</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="supplier" value="{{asset_supplier}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Condition</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="conditiion" value="{{asset_conditiion}}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Warranty</label>
-												<input class="form-control" type="text" placeholder="In Months">
+												<input class="form-control" type="text" placeholder="In Months" name="warrenty" value="{{asset_warrenty}}">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Value</label>
-												<input placeholder="$1800" class="form-control" type="text">
+												<label>Amount</label>
+												<input placeholder="$1800" class="form-control" type="text" name="amount" value="{{asset_amount}}">
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -555,7 +215,7 @@
 										</div>
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
+										<button class="btn btn-primary submit-btn" >Save</button>
 									</div>
 								</form>
 							</div>
@@ -570,13 +230,14 @@
 						<div class="modal-content">
 							<div class="modal-body">
 								<div class="form-header">
-									<h3>Delete Asset</h3>
+									<h3>Delete Goal Type</h3>
 									<p>Are you sure want to delete?</p>
 								</div>
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											
+											<a href="" id="delete_asset" class="btn btn-primary continue-btn" type="submit">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -599,7 +260,7 @@
 		
 		<!-- Bootstrap Core JS -->
         <script src="/static/assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="/static/assets/js/bootstrap.min.js"></script>
 		
 		<!-- Slimscroll JS -->
 		<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
@@ -617,5 +278,24 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
-		</body>
+		<!-- <script>
+			function getId(id) {
+				var a =document.getElementById('deleteasset');
+				a.href = "/administration/asset_remove/" +id;
+			}
+		</script> -->
+		<script>
+			function getId(id) {
+				var a =document.getElementById('delete_asset');
+				a.href = "/administration/asset_remove/" +id;
+			}
+		</script>
+		<!-- <script>
+		function getId(id) {
+			var form =document.getElementById('managerole');
+			var input =document.getElementById('rolemanage').value=id;
+			form.action = "/ManageRole/"+id;
+		}
+	</script> -->
+	</body>
 </html>

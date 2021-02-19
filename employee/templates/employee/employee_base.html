@@ -45,6 +45,7 @@
 						<img src="/static/assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
+<<<<<<< HEAD
 				<!-- /Logo -->
 				
 				<a id="toggle_btn" href="javascript:void(0);">
@@ -58,6 +59,20 @@
 				<!-- Header Title -->
                 <div class="page-title-box">
 					<h3>Dreamguy's Technologies</h3>
+=======
+                <div class="col-auto float-right ml-auto">
+
+                    {% if perms.employee.add_employee %}
+
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i
+                            class="fa fa-plus"></i> Add Employee</a>
+                    {% endif %}
+
+                    <div class="view-icons">
+                        <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                        <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                    </div>
+>>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
                 </div>
 				<!-- /Header Title -->
 				

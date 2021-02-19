@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,7 +42,7 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="{% url 'index' %}" class="logo">
 						<img src="/static/assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
@@ -307,6 +308,7 @@
 						</div>
 					</li>
 				</ul>
+				
 				<!-- /Header Menu -->
 				
 				<!-- Mobile Menu -->
@@ -364,7 +366,14 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
+<<<<<<< HEAD
 									<li><a href="{% url 'allemployee' %}">All Employees</a></li>
+=======
+         
+         {% if perms.employee.view_employee %}
+									<li><a href="{% url 'RegisterEmployee' %}">All Employees</a></li> 
+         {% endif %} 
+>>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
 									<li><a href="{% url 'holiday' %}">Holidays</a></li>
 									<li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="{% url 'leaves_employee' %}">Leaves (Employee)</a></li>
@@ -372,13 +381,13 @@
 									<li><a href="{% url 'attendance_admin' %}">Attendance (Admin)</a></li>
 									<li><a href="{% url 'attendance_employee' %}">Attendance (Employee)</a></li>
 									<li><a href="{% url 'departments' %}">Departments</a></li>
-									<li><a href="{% url 'designations' %}">Designations</a></li>
+									<li><a href="{% url 'designations_list' %}">Designations</a></li>
 									<li><a href="{% url 'timesheet' %}">Timesheet</a></li>
 									<li><a href="{% url 'overtime' %}">Overtime</a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="{% url 'clients' %}"><i class="la la-users"></i> <span>Clients</span></a>
+								<a href="{% url 'clients_grid' %}"><i class="la la-users"></i> <span>Clients</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-rocket"></i> <span> Projects</span> <span class="menu-arrow"></span></a>
@@ -389,7 +398,7 @@
 								</ul>
 							</li>
 							<li> 
-								<a href="{% url 'leads' %}"><i class="la la-user-secret"></i> <span>Leads</span></a>
+								<a href="{% url 'leads_list' %}"><i class="la la-user-secret"></i> <span>Leads</span></a>
 							</li>
 							<li> 
 								<a href="{% url 'ticket' %}"><i class="la la-ticket"></i> <span>Tickets</span></a>
@@ -417,7 +426,7 @@
 								</ul>
 							</li>
 							<li> 
-								<a href="{% url 'policies' %}"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
+								<a href="{% url 'policy' %}"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-pie-chart"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
@@ -441,15 +450,15 @@
 								<a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{% url 'goaltracking'%}"> Goal List </a></li>
-									<li><a href="{% url 'goaltype' %}"> Goal Type </a></li>
+									<li><a href="{% url 'goaltype_list' %}"> Goal Type </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-edit"></i> <span> Training </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{% url 'trainings' %}"> Training List </a></li>
-									<li><a href="{% url 'trainers' %}"> Trainers</a></li>
-									<li><a href="{% url 'trainingstype' %}"> Training Type </a></li>
+									<li><a href="{% url 'trainer_list' %}"> Trainers</a></li>
+									<li><a href="{% url 'training_type_list' %}"> Training Type </a></li>
 								</ul>
 							</li>
 							<li><a href="{% url 'promotion' %}"><i class="la la-bullhorn"></i> <span>Promotion</span></a></li>
@@ -459,7 +468,7 @@
 								<span>Administration</span>
 							</li>
 							<li> 
-								<a href="{% url 'assets' %}"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
+								<a href="{% url 'asset_list' %}"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-briefcase"></i> <span> Jobs </span> <span class="menu-arrow"></span></a>
@@ -589,6 +598,7 @@
 				
 			
         </div>
+		
 		<!-- /Main Wrapper -->
 		{% block nav %}
 		

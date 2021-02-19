@@ -13,8 +13,11 @@ urlpatterns = [
     path('leaves_settings/',views.LeavesSettingsView.as_view(),name='leaves_settings' ),
     path('attendance_admin/',views.AttendanceAdminView.as_view(),name='attendance_admin' ),
     path('attendance_employee/',views.AttendanceEmployeeView.as_view(),name='attendance_employee' ),
-    path('departments/',views.DepatmentsView.as_view(),name='departments' ),
-    path('designations/',views.DesignationsView.as_view(),name='designations' ),
+    path('departments/',views.DepartmentCreateView.as_view(),name='departments' ),
+
+    path('designations/',views.DesignationCreateView.as_view(),name='designations' ),
+    path('designations_list/',views.DesignationListView.as_view(),name='designations_list' ),
+    
     path('timesheet/',views.TimesheetView.as_view(),name='timesheet' ),
     path('overtime/',views.OvertimeView.as_view(),name='overtime' ),
     

@@ -35,51 +35,53 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form method="POST" action="{% url 'trainers' %}">
+									{% csrf_token %}
+									<!-- {{form.as_p}} -->
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="Trainer_first_name" maxlength="100" required id="id_Trainer_first_name">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Last Name</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="Trainer_last_name" maxlength="100" required id="id_Trainer_last_name">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Role <span class="text-danger">*</span></label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="Trainer_role" maxlength="100" required id="id_Trainer_role">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Email <span class="text-danger">*</span></label>
-												<input class="form-control" type="email">
+												<input class="form-control" type="email" name="Trainer_email" maxlength="254" required id="id_Trainer_email">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Phone </label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="Trainer_phone" maxlength="100" required id="id_Trainer_phone">
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Status</label>
-												<select class="select">
-													<option>Active</option>
-													<option>Inactive</option>
+												<select class="select" name="Trainer_status" id="id_Trainer_status">
+													<option value="Active" selected>Active</option>
+													<option value="Inactive">Inactive</option>
 												</select>
 											</div>
 										</div>
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>Description <span class="text-danger">*</span></label>
-												<textarea class="form-control" rows="4"></textarea>
+												<textarea class="form-control" rows="4" name="Trainer_desscription" cols="40" rows="10" maxlength="100" required id="id_Trainer_desscription"></textarea>
 											</div>
 										</div>
 									</div>

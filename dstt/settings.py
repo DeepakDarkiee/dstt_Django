@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'management',
     'performances',
     'employee',
+   
+    
 ]
 
 MIDDLEWARE = [
@@ -130,12 +132,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+STATIC_ROOT = os.path.join('static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+# ]
 AUTH_USER_MODEL = 'account.User'
 
-
+#
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',

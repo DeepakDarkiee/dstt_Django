@@ -6,7 +6,7 @@
         <!-- Page Content -->
         <div class="content container-fluid">
         
-            <!-- Page Header -->
+            <!-- Pages Header -->
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
@@ -19,8 +19,8 @@
                     <div class="col-auto float-right ml-auto">
                         <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Add Client</a>
                         <div class="view-icons">
-                            <a href="clients.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-                            <a href="clients-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                            <a href="{% url 'clients_grid' %}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                            <a href="{% url 'clients_list' %}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
                         </div>
                     </div>
                 </div>
@@ -72,36 +72,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="{% url 'clients' %}"> 
+                    {% csrf_token %}
+                    <!-- {{form.as_p}} -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" name="client_first_name" id="id_client_first_name">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Last Name</label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" name="client_last_name" id="id_client_last_name"> 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Username <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text"name="client_username"  required id="id_client_username">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                <input class="form-control floating" type="email">
+                                <input class="form-control floating" type="email" name="client_email" maxlength="100" required id="id_client_email">
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div> 
+                         <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Password</label>
-                                <input class="form-control" type="password">
+                                <input class="form-control" type="password" name="client_id" maxlength="100" required id="id_client_id">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -109,26 +111,33 @@
                                 <label class="col-form-label">Confirm Password</label>
                                 <input class="form-control" type="password">
                             </div>
-                        </div>
+                        </div>  -->
                         <div class="col-md-6">  
                             <div class="form-group">
                                 <label class="col-form-label">Client ID <span class="text-danger">*</span></label>
-                                <input class="form-control floating" type="text">
+                                <input class="form-control floating" type="text" name="client_id" maxlength="100" required id="id_client_id">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Phone </label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" name="client_phone" maxlength="100" required id="id_client_phone">
+                            </div>
+                        </div> 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-form-label">Address </label>
+                                <input class="form-control" type="text" name="client_address" maxlength="100" required id="id_client_address">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Company Name</label>
                                 <input class="form-control" type="text">
                             </div>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div>
                     <div class="table-responsive m-t-15">
                         <table class="table table-striped custom-table">
                             <thead>
@@ -270,10 +279,10 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table>-->
                     </div>
                     <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Submit</button>
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
