@@ -39,8 +39,15 @@ class ClientRemove(View):
     def get(self,request,id):
         client=Client.objects.get(id=id)          
         client.delete()
-        messages.success(request,'deleted successfuully')
+        messages.success(request,'deleted successfully')
         return HttpResponseRedirect('/administration/clients_list') 
+
+class ClientRemoveGrid(View):
+    def get(self,request,id):
+        client=Client.objects.get(id=id)          
+        client.delete()
+        messages.success(request,'deleted successfully')
+        return HttpResponseRedirect('/administration/clients_grid') 
 
 # -----------------------------------/client----------------------------------------------------------------
   
@@ -82,7 +89,14 @@ class AssetRemove(View):
         asset=Asset.objects.get(id=id)          
         asset.delete()
         messages.success(request,f"{asset} deleted successfully")
-        return HttpResponseRedirect('/administration/asset_list')                       
+        return HttpResponseRedirect('/administration/asset_list') 
+                              
+class AssetManage(View):
+     def get(self,request,name):
+        asset=Asset.objects.get(name=name)
+        asset.update()
+        messages.success(request,f"{asset} updated successfully")
+        return HttpResponseRedirect('/administration/asset_list'    )                      
 # ----------------------------------/Assets------------------------------------------------
 
 class jobsView(TemplateView):

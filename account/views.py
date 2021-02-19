@@ -43,7 +43,7 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.LOGIN_URL)
 
-
+# Role
 class RegisterRole(View):
     def post(self,request):
         role_name = request.POST['role']
@@ -75,23 +75,23 @@ class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
         permissions = role.permissions.all()
-        for permission in permissions:
-            if permission.codename == 'view_employee':
-                view_employee = 'True'
+        # for permission in permissions:
+        #     if permission.codename == 'view_employee':
+        #         view_employee = 'True'
             
-            view_employee = 'False'
-            if permission.codename == 'add_employee':
-                add_employee = 'True'
+        #     view_employee = 'False'
+        #     if permission.codename == 'add_employee':
+        #         add_employee = 'True'
             
-            add_employee = 'False'
-            if permission.codename == 'change_employee':
-                change_employee = 'True'
-            else:
-                change_employee = 'False'
-            if permission.codename == 'delete_employee':
-                delete_employee = 'True'
-            else:
-                delete_employee = 'False'
+        #     add_employee = 'False'
+        #     if permission.codename == 'change_employee':
+        #         change_employee = 'True'
+        #     else:
+        #         change_employee = 'False'
+        #     if permission.codename == 'delete_employee':
+        #         delete_employee = 'True'
+        #     else:
+        #         delete_employee = 'False'
         #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,

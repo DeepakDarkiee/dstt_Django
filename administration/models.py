@@ -24,6 +24,8 @@ lead_status = (
     ('approved','approved')
 )
 
+
+
 #--------------------------------------------------------Client-----------------------------------------------------------------------
 class Client(models.Model):
     client_first_name  = models.CharField(max_length=100)
