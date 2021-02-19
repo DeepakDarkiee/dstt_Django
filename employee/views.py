@@ -1,16 +1,17 @@
-
 from django.contrib.auth.models import Group
 from account.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 from django.shortcuts import render,HttpResponse
 from django.views import generic
-from django.views.generic import TemplateView,CreateView
+from django.views.generic import View,TemplateView,CreateView,UpdateView
 from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse_lazy
 # Create your views here.
+
+# -------------------------------------all employee for admin--------------------------------
 @login_required
 def RegisterEmployeeView(request):
     if request.method =="POST":
@@ -23,7 +24,6 @@ def RegisterEmployeeView(request):
             employee_confirm_password = request.POST['employee_confirm_password']
             employee_id = request.POST['employee_id']
             employee_phone = request.POST['employee_phone']
-            employee_joining_date = request.POST['employee_joining_date']
             # employee_role = Group.objects.get(name=request.POST['employee_role'])
             try:
                 user = User.objects.create_user(email=employee_email,password=employee_password)
@@ -37,14 +37,44 @@ def RegisterEmployeeView(request):
                 messages.error(request,"Email Already Registered!")
             
             
-            return redirect('/employee/RegisterEmployee')
+            return redirect('/employee/allemployee')
     else:
         groups=Group.objects.all()
-        return render(request,'employee/employee.html',{'groups':groups})
+        return render(request,'administration/employees.html',{'groups':groups})
             
-    
-class AllEmployeeView(TemplateView):
-    template_name = "employee/employee.html"
+
+# ------------------------all employees for Administration ------------------------
+
+def AllEmployeeview(request):
+    employee = Employee(request.GET)
+    AllEmployee = Employee.objects.all()
+    print(AllEmployee)
+    return render(request,'administration/employees.html',{'Employee':AllEmployee})
+
+
+
+
+
+def UpdateEmployeesview(request,id):
+    employee_update = Employee.objects.get(id=id)  
+    if request.method == "POST":
+        employee_update.employee_department = request.POST.get('employee_department','')
+        employee_update.employee_designation = request.POST.get('employee_designation','')
+        employee_update.employee_phone = request.POST.get('employee_phone','')
+        employee_update.employee_address = request.POST.get('employee_address','')
+        employee_update.employee_state = request.POST.get('employee_state','')
+        employee_update.employee_country = request.POST.get('employee_country','')
+        employee_update.employee_pincode = request.POST.get('employee_pincode','')
+        employee_update.employee_reports_to = request.POST.get('employee_reports_to','')
+        if "employee_image" in request.FILES:
+            img=request.FILES["employee_image"]
+            employee_update.employee_image =img
+        employee_update.save()
+        # return HttpResponse("done")
+    return render(request,"employee/employee_profile.html",{'employee_update':employee_update})
+
+class EmployeeDashboardView(TemplateView):
+    template_name = "employee/employee_dashboard.html"
 
 class HolidayView(TemplateView):
     template_name = "employee/holidays.html"
