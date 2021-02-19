@@ -15,20 +15,15 @@ from django.contrib import messages
 class IndexView(TemplateView):
     template_name = "administration/index.html"
 
-<<<<<<< HEAD
-class Employee(TemplateView):
-    template_name = "administration/employee.html"
+ 
 
-class ClientsView(TemplateView):
-    template_name = "administration/clients.html"    
-=======
 # --------------------------------------------client------------------------------------------------------------------------
 class CreateClientsView(generic.CreateView):
     model = Client
     tamplate_name = "administration/clients_form.html"
     fields = ('client_first_name', 'client_last_name', 'client_username', 'client_email', 'client_id', 'client_address', 'client_phone' )
     success_url = ('/administration/clients_grid')
->>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
+
 
 
 class CreateClientsListView(generic.ListView):

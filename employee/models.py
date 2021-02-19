@@ -18,7 +18,7 @@ class Employee(models.Model):
     employee_id=models.CharField(max_length=100)
     employee_phone=models.CharField(max_length=100,null=True)
     employee_created_date=models.DateTimeField(auto_now=True)
-<<<<<<< HEAD
+    
     employee_birth_date=models.DateTimeField(auto_now=True,null=True)
     employee_gender=models.CharField(max_length=50,null=True)
     employee_address=models.CharField(max_length=50,null=True)
@@ -66,8 +66,6 @@ class Employee(models.Model):
     employee_experience_company_period_to=models.CharField(max_length=50,null=True)
 
 
-=======
->>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
 
     def __str__(self):
         return self.employee_email
