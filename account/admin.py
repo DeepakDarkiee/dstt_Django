@@ -1,4 +1,4 @@
-from django.contrib.auth.admin import UserAdmin 
+from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
 from .models import User
 from django.utils.translation import ugettext_lazy as _
@@ -13,11 +13,12 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password', 'full_name', 'last_login')}),
         ('Permissions', {'fields': (
-            'is_active', 
-            'is_staff', 
+            'is_active',
+            'is_staff',
             'is_superuser',
             'is_admin',
-            'groups', 
+            'is_employee',
+            'groups',
             'user_permissions',
         )}),
     )
@@ -28,11 +29,12 @@ class UserAdmin(BaseUserAdmin):
 
 
 ('Permissions', {'fields': (
-            'is_active', 
-            'is_staff', 
+            'is_active',
+            'is_staff',
             'is_superuser',
             'is_admin',
-            'groups', 
+            'is_employee',
+            'groups',
             'user_permissions',
         )}),
     )

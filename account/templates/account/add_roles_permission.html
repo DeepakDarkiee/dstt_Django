@@ -1,6 +1,8 @@
 {% include 'administration/base.html' %}
 {% block css %}
 <!-- Favicon -->
+
+
 <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
 
 <!-- Bootstrap CSS -->
@@ -21,7 +23,7 @@
 <!-- Page Wrapper -->
 <div class="page-wrapper">
 	<div class="content container-fluid">
-		
+
 		<!-- Page Header -->
 		<div class="page-header">
 			<div class="row">
@@ -30,33 +32,37 @@
 						<h3 class="page-title">{{role}} Previleges </h3>
 					</center>
 					<div class="col-auto float-right ml-auto">
-						<a href="{% url 'usertorole' role %}" class="btn add-btn" 	><i class="fa fa-plus"></i> Add Roles</a>
-						
-					</div>	
+						<a href="{% url 'usertorole' role %}" class="btn add-btn"><i class="fa fa-plus"></i> User to Role</a>
+
+					</div>
 
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- /Page Headers -->
-		<form method='POST' action="#">
+		<form method='POST' action="{% url 'rolepermission' role %}">
 			<div class="row">
 				<div class="col-lg-12">
 					{% csrf_token %}
 					<h6 class="card-title m-b-20">Module Access</h6>
-					
+
 					<div class="m-b-30">
 						<ul class="list-group notification-list">
 							<li class="list-group-item">
 								Employee
 								<div class="status-toggle">
-									<input type="hidden" value="False" class="check" name="employee_module">
-									<input type="checkbox" id="staff_module" value="True" class="check"
-										name="employee_module">
+									<input type="hidden" value="False" class="check" name="view_employee">
+									{% if view_employee == 'True' %}
+									<input type="checkbox" id="staff_module" value="True" class="check" name="view_employee" checked>
+									{% else %}
+									<input type="checkbox" id="staff_module" value="True" class="check" name="view_employee" >
+									{% endif %}
+
 									<label for="staff_module" class="checktoggle">checkbox</label>
 								</div>
-								
+
 							</li>
 
 							<div class="table-responsive">
@@ -64,7 +70,7 @@
 									<thead>
 										<tr>
 											<th>Module Permission</th>
-											<th class="text-center">View</th>
+											<!-- <th class="text-center">View</th> -->
 											<th class="text-center">Add</th>
 											<th class="text-center">Change</th>
 											<th class="text-center">Delete</th>
@@ -74,40 +80,40 @@
 										<tr>
 											<td>Employee</td>
 
-											<td class="text-center">
+											<!-- <td class="text-center">
 												<input type="hidden" name="view_employee" value="False">
-                        {% if view_employee == True %}
-												<input type="checkbox" name="view_employee"  value="True" checked>
-                        {% else %}
-												<input type="checkbox" name="view_employee"  value="True">   
-                        {% endif %}
-											</td>
+												{% if view_employee == 'True' %}
+												<input type="checkbox" name="view_employee" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="view_employee" value="True">
+												{% endif %}
+											</td> -->
 
 											<td class="text-center">
 												<input type="hidden" name="add_employee" value="False">
-                        {% if add_employee == True %}
-												<input type="checkbox" name="add_employee" value="True" checked> 
-                        {% else %}
+												{% if add_employee == 'True' %}
+												<input type="checkbox" name="add_employee" value="True" checked>
+												{% else %}
 												<input type="checkbox" name="add_employee" value="True">
-                        {% endif %}  
+												{% endif %}
 											</td>
 
 											<td class="text-center">
 												<input type="hidden" name="change_employee" value="False">
-                        {% if change_employee == True %}
-												<input type="checkbox" name="change_employee" value="True" checked>   
-                        {% else %}
+												{% if change_employee == 'True' %}
+												<input type="checkbox" name="change_employee" value="True" checked>
+												{% else %}
 												<input type="checkbox" name="change_employee" value="True">
-                        {% endif %} 
+												{% endif %}
 											</td>
 
 											<td class="text-center">
-												<input type="hidden" name="delete_employee" value="False" >
-                        {% if delete_employee == True %}
+												<input type="hidden" name="delete_employee" value="False">
+												{% if delete_employee == 'True' %}
 												<input type="checkbox" name="delete_employee" checked value="True">
-                        {% else %}
+												{% else %}
 												<input type="checkbox" name="delete_employee" value="True">
-                        {% endif %}
+												{% endif %}
 											</td>
 										</tr>
 
@@ -136,7 +142,7 @@
 							{% csrf_token %}
 							<div class="form-group">
 								<label>Role Name <span class="text-danger">*</span></label>
-								<input class="form-control" type="text"  name="role">
+								<input class="form-control" type="text" name="role">
 							</div>
 							<div class="submit-section">
 								<button class="btn btn-primary submit-btn" type="text">Submit</button>
@@ -146,7 +152,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Add Role Modal -->	
+		<!-- /Add Role Modal -->
 		<!-- /Mains Wrapper -->
 
 	</div>
