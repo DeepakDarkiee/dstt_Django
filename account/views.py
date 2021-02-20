@@ -181,7 +181,7 @@ class RemoveUserToRole(View):
         messages.warning(request,f"{user} is removed from {role} ")  
         return redirect('/usertorole/'+str(role))  
 
-
+#
 
 # def autocomplete(request):
 #     if 'term' in request.GET:
