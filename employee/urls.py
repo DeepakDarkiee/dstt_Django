@@ -3,10 +3,8 @@ from . import views
 
 urlpatterns = [
     # path('employee/',views.AllEmployeeView.as_view(),name='employee' ),
-    path('registeremployee/',views.RegisterEmployeeView,name='registeremployee' ),
-    path('allemployee/',views.AllEmployeeview,name='allemployee' ),
-    path('update_employees/<int:id>',views.UpdateEmployeesview,name='update_employees' ),
     path('employee_dashboard/',views.EmployeeDashboardView.as_view(),name='employee_dashboard' ),
+    path('employee_profile/',views.Employee_Profile,name='employee_profile' ),
     path('holiday/',views.HolidayView.as_view(),name='holiday' ),
     path('leaves_admin/',views.LeavesAdminView.as_view(),name='leaves_admin' ),
     path('leaves_employee/',views.LeavesEmployeeView.as_view(),name='leaves_employee' ),

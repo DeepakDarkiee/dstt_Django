@@ -3,11 +3,16 @@ from . import views
 
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
-<<<<<<< HEAD
-    path('employee/',views.Employee.as_view(),name='employee' ),
-    path('clients/',views.ClientsView.as_view(),name='clients' ),
-    path('leads/',views.LeadsView.as_view(),name='leads' ),
-=======
+
+# ------------------------------Employees-----------------------------------------------------------------------#
+    path('registeremployee/',views.Register_Employee_View,name='registeremployee' ),
+    path('all_employee/',views.All_Employee_View,name='all_employee' ),
+    path('update_employees/<int:id>',views.Update_Employees_View,name='update_employees' ),
+
+
+# ------------------------------Employees-----------------------------------------------------------------------#
+
+
 # ------------------------------client---------------------------------------------------------------------------
     path('clients/',views.CreateClientsView.as_view(),name='clients' ),
     path('clients_list/',views.CreateClientsListView.as_view(),name='clients_list' ),
@@ -21,7 +26,6 @@ urlpatterns = [
     path('leads_list/',views.CreateLeadListView.as_view(),name='leads_list' ),
 # ------------------------------/Lead--------------------------------------------------------------------------
 
->>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
     path('projects/',views.projectsView.as_view(),name='projects' ),
     path('taskboard/',views.taskboardView.as_view(),name='taskboard' ),
 

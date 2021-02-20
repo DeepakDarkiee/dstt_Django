@@ -1,4 +1,4 @@
-{% include 'employee/base.html' %}
+{% include 'administration/base.html' %}
 {% block css %}
   	<!-- Favicon -->
       <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
@@ -55,14 +55,19 @@
                         <div class="profile-view">
                             <div class="profile-img-wrap">
                                 <div class="profile-img">
+                                    
+                                    {% if  employee_update.employee_image %}
                                     <a href="#"><img alt="" src="{{employee_update.employee_image.url}}"></a>
+                                    {% endif %}
+                                    <a href="#"><img alt="" src="/static/assets/img/user.jpg"></a>
+                                        
                                 </div>
                                 </div>
                                 <div class="profile-basic">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
-                                            <h3 class="user-name m-t-0 mb-0">{{employee_update.employee_first_name}}{{employee_update.employee_image.url}}</h3>
+                                            <h3 class="user-name m-t-0 mb-0">{{employee_update.employee_first_name}}</h3>
                                             <h6 class="text-muted">{{employee_update.employee_department}}</h6>
                                             <small class="text-muted">{{employee_update.employee_department}}</small>
                                             <div class="staff-id">Employee ID : {{employee_update.employee_id}}</div>
@@ -74,23 +79,20 @@
                                         <ul class="personal-info">
                                             <li>
                                                 <div class="title">Phone:</div>
-                                                <div class="text"><a href="">9876543210</a></div>
+                                                <div class="text"><a href="">{{employee_update.employee_phone}}</a></div>
                                             </li>
                                             <li>
                                                 <div class="title">Email:</div>
-                                                <div class="text"><a href="">johndoe@example.com</a></div>
+                                                <div class="text"><a href="">{{employee_update.employee_email}}</a></div>
                                             </li>
-                                            <li>
-                                                <div class="title">Birthday:</div>
-                                                <div class="text">24th July</div>
-                                            </li>
+                                           
                                             <li>
                                                 <div class="title">Address:</div>
-                                                <div class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</div>
+                                                <div class="text">{{employee_update.employee_address}}</div>
                                             </li>
                                             <li>
                                                 <div class="title">Gender:</div>
-                                                <div class="text">Male</div>
+                                                <div class="text">{{employee_update.employee_gender}}</div>
                                             </li>
                                             <li>
                                                 <div class="title">Reports to:</div>
@@ -105,7 +107,47 @@
                                                     </a>
                                                 </div>
                                             </li>
+                                            <li>
+                                                <div class="title">Birthday:</div>
+                                                <div class="text">{{employee_update.employee_birth_date}}</div>
+                                            </li>
                                         </ul>
+                                        <!-- <ul class="personal-info">
+                                            <li>
+                                                <div class="title">Phone:</div>
+                                                <div class="text"><a href="">{{employee_update.employee_phone}}</a></div>
+                                            </li>
+                                            <li>
+                                                <div class="title">Email:</div>
+                                                <div class="text"><a href="">{{employee_update.employee_email}}</a></div>
+                                            </li>
+                                            <li>
+                                                <div class="title">Gendar:</div>
+                                                <div class="text"><a href="">{{employee_update.employee_gender}}</a></div>
+                                            </li>
+                                            <li>
+                                                <div class="title">Birthday :</div>
+                                                <div class="text"><a href="">{{employee_update.employee_birth_date}}</a></div>
+                                            </li>
+                                            <li>
+                                                <div class="title">Address:</div>
+                                                <div class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</div>
+                                            </li>
+                                 
+                                            <li>
+                                                <div class="title">Reports to:</div>
+                                                <div class="text">
+                                                   <div class="avatar-box">
+                                                      <div class="avatar avatar-xs">
+                                                         <img src="assets/img/profiles/avatar-16.jpg" alt="">
+                                                      </div>
+                                                   </div>
+                                                   <a href="profile.html">
+                                                        Jeffery Lalor
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </div>
@@ -846,18 +888,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="#" enctype="multipart/form-data">
+                    <form method="post" action="{% url 'update_employees' employee_update.id %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="profile-img-wrap edit-img">
-                                    <img class="inline-block" src="assets/img/profiles/avatar-02.jpg" alt="user">
+                                    <img class="inline-block" src="/static/assets/img/profiles/avatar-02.jpg" alt="user">
                                     <div class="fileupload btn">
                                         <span class="btn-text">edit</span>
-                                        <input class="upload" type="file" name="employee_image" value="">
+                                        <input class="upload" type="file" name="employee_image" value="{{employee_update.employee_image}}">
                                     </div>
                                 </div>
-                                <!-- <div class="row"> -->
+                                <div class="row">
                                     <!-- <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name</label>
@@ -870,67 +912,75 @@
                                             <input type="text" class="form-control" value="Doe">
                                         </div>
                                     </div> -->
-                                    <!-- <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Birth Date</label>
                                             <div class="cal-icon">
-                                                <input class="form-control datetimepicker" type="text" value="05/06/1985">
+                                                <input class="form-control datetimepicker" type="text" name="employee_birth_date" value="{{employee_update.employee_birth_date}}">
                                             </div>
                                         </div>
-                                    </div> -->
-                                    <!-- <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gender</label>
-                                            <select class="select form-control">
-                                                <option value="male selected">Male</option>
+                                            <select class="select form-control" value="{{employee_update.employee_gender}}" name="employee_gender" >
+                                            {% if employee_update.employee_gender == "Male" %}
+                                                <option value="Male" selected="selected">Male</option>
+                                            {% else %}
+                                                <option value="Male">Male</option>
+                                            {% endif %}
+                                            {% if employee_update.employee_gender == "Female" %}
+                                                <option value="Female" selected="selected">Female</option>
+                                            {% else %}
                                                 <option value="female">Female</option>
+                                            {% endif %}
                                             </select>
                                         </div>
-                                    </div> -->
-                                <!-- </div> -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Address</label>
-                                     <input type="text" class="form-control" value=""  name="employee_address">
+                                     <input type="text" class="form-control" value="{{employee_update.employee_address}}"  name="employee_address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>State</label>
-                                    <input type="text" class="form-control" value=""  name="employee_state">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_state}}"  name="employee_state">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Country</label>
-                                    <input type="text" class="form-control" value=""  name="employee_country">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_country}}"  name="employee_country">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Pin Code</label>
-                                    <input type="text" class="form-control" value="" name="employee_pincode">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_pincode}}" name="employee_pincode">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" value="" name="employee_phone">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_phone}}" name="employee_phone">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Employee Department</label>
-                                    <input type="text" class="form-control" value="" name="employee_department">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_department}}" name="employee_department">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Employee Designation</label>
-                                    <input type="text" class="form-control" value=""  name="employee_designation">
+                                    <input type="text" class="form-control" value="{{employee_update.employee_designation}}"  name="employee_designation">
                                 </div>
                             </div>
                             <!-- <div class="col-md-6">
@@ -1493,7 +1543,13 @@
 <!-- Custom JS -->
 <script src="/static/assets/js/app.js"></script>
 
-
+<script>
+    function getId(id) {
+        alert(id)
+        var a =document.getElementById('profile_info');
+        a.href = "/administration/update_employees/"+id;
+    }
+</script>
 
 
 </body>

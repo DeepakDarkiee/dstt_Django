@@ -10,21 +10,20 @@
         <title>Blank Page - HRMS admin template</title>
 		
 		{% block css %}
-				<!-- Favicon -->
-				<link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+			<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
 		
-				<!-- Bootstrap CSS -->
-				<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
-				
-				<!-- Fontawesome CSS -->
-				<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
-				
-				<!-- Lineawesome CSS -->
-				<link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
-				
-				<!-- Main CSS -->
-				<link rel="stylesheet" href="/static/assets/css/style.css">
-				
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="/static/assets/css/style.css">
 		{% endblock css %}
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,7 +33,6 @@
 		<![endif]-->
     </head>
     <body>
-		
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 		
@@ -43,7 +41,7 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="{% url 'index' %}" class="logo">
+                    <a href="index.html" class="logo">
 						<img src="/static/assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
@@ -305,7 +303,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="profile.html">My Profile</a>
 							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="login.html">Logout</a>
+							<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 						</div>
 					</li>
 				</ul>
@@ -317,7 +315,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="profile.html">My Profile</a>
 						<a class="dropdown-item" href="settings.html">Settings</a>
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 					</div>
 				</div>
 				<!-- /Mobile Menu -->
@@ -336,8 +334,9 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="index.html">Admin Dashboard</a></li>
-									<li><a href="employee-dashboard.html">Employee Dashboard</a></li>
+									<li><a href="{% url 'index' %}">Admin Dashboard</a></li>
+									<li><a href="{% url 'employee_dashboard' %}">Employee Dashboard</a></li>
+									<li><a href="{% url 'role' %}">Roles & Permissions</a></li>
 								</ul>
 							</li>
 							<li class="submenu">
@@ -360,12 +359,12 @@
 								</ul>
 							</li>
 							<li class="menu-title"> 
-								<span>Employees</span>
+								<span>Profile</span>
 							</li>
 							<li class="submenu">
-								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Profile</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{% url 'employee' %} ">All Employees</a></li>
+									<li><a href="{% url 'employee_profile' %}">My Profile</a></li>
 									<li><a href="{% url 'holiday' %}">Holidays</a></li>
 									<li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="{% url 'leaves_employee' %}">Leaves (Employee)</a></li>
@@ -373,27 +372,27 @@
 									<li><a href="{% url 'attendance_admin' %}">Attendance (Admin)</a></li>
 									<li><a href="{% url 'attendance_employee' %}">Attendance (Employee)</a></li>
 									<li><a href="{% url 'departments' %}">Departments</a></li>
-									<li><a href="{% url 'designations_list' %}">Designations</a></li>
+									<li><a href="{% url 'designations' %}">Designations</a></li>
 									<li><a href="{% url 'timesheet' %}">Timesheet</a></li>
 									<li><a href="{% url 'overtime' %}">Overtime</a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="client.html"><i class="la la-users"></i> <span>Clients</span></a>
+								<a href="{% url 'clients' %}"><i class="la la-users"></i> <span>Clients</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-rocket"></i> <span> Projects</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="projects.html">Projects</a></li>
+									<li><a href="{% url 'projects' %}">Projects</a></li>
 									<li><a href="tasks.html">Tasks</a></li>
-									<li><a href="task-board.html">Task Board</a></li>
+									<li><a href="{% url 'taskboard' %}">Task Board</a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="leads.html"><i class="la la-user-secret"></i> <span>Leads</span></a>
+								<a href="{% url 'leads' %}"><i class="la la-user-secret"></i> <span>Leads</span></a>
 							</li>
 							<li> 
-								<a href="tickets.html"><i class="la la-ticket"></i> <span>Tickets</span></a>
+								<a href="{% url 'ticket' %}"><i class="la la-ticket"></i> <span>Tickets</span></a>
 							</li>
 							<li class="menu-title"> 
 								<span>HR</span>
@@ -401,8 +400,8 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-files-o"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="estimates.html">Estimates</a></li>
-									<li><a href="invoices.html">Invoices</a></li>
+									<li><a href="{% url 'estimates' %}">Estimates</a></li>
+									<li><a href="{% url 'invoices' %}">Invoices</a></li>
 									<li><a href="payments.html">Payments</a></li>
 									<li><a href="expenses.html">Expenses</a></li>
 									<li><a href="provident-fund.html">Provident Fund</a></li>
@@ -412,19 +411,19 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="salary.html"> Employee Salary </a></li>
-									<li><a href="salary-view.html"> Payslip </a></li>
-									<li><a href="payroll-items.html"> Payroll Items </a></li>
+									<li><a href="{% url 'employeesalary' %}"> Employee Salary </a></li>
+									<li><a href="{% url 'employeepayslip' %}"> Payslip </a></li>
+									<li><a href="{% url 'employeepayrollitems' %}"> Payroll Items </a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="policies.html"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
+								<a href="#"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-pie-chart"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="expense-reports.html"> Expense Report </a></li>
-									<li><a href="invoice-reports.html"> Invoice Report </a></li>
+									<li><a href="{% url 'employeeexpensereport' %}"> Expense Report </a></li>
+									<li><a href="{% url 'invoicereports' %}"> Invoice Report </a></li>
 								</ul>
 							</li>
 							<li class="menu-title"> 
@@ -433,53 +432,53 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-graduation-cap"></i> <span> Performance </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="performance-indicator.html"> Performance Indicator </a></li>
-									<li><a href="performance.html"> Performance Review </a></li>
-									<li><a href="performance-appraisal.html"> Performance Appraisal </a></li>
+									<li><a href="{% url 'performanceindicator'%}"> Performance Indicator </a></li>
+									<li><a href="{% url 'performance'%}"> Performance Review </a></li>
+									<li><a href="{% url 'performanceappraisal'%}"> Performance Appraisal </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="goal-tracking.html"> Goal List </a></li>
-									<li><a href="goal-type.html"> Goal Type </a></li>
+									<li><a href="{% url 'goaltracking'%}"> Goal List </a></li>
+									<li><a href="{% url 'goaltype' %}"> Goal Type </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-edit"></i> <span> Training </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="training.html"> Training List </a></li>
-									<li><a href="trainers.html"> Trainers</a></li>
-									<li><a href="training-type.html"> Training Type </a></li>
+									<li><a href="{% url 'trainings' %}"> Training List </a></li>
+									<li><a href="#"> Trainers</a></li>
+									<li><a href="#"> Training Type </a></li>
 								</ul>
 							</li>
-							<li><a href="promotion.html"><i class="la la-bullhorn"></i> <span>Promotion</span></a></li>
-							<li><a href="resignation.html"><i class="la la-external-link-square"></i> <span>Resignation</span></a></li>
-							<li><a href="termination.html"><i class="la la-times-circle"></i> <span>Termination</span></a></li>
+							<li><a href="{% url 'promotion' %}"><i class="la la-bullhorn"></i> <span>Promotion</span></a></li>
+							<li><a href="{% url 'resignation' %}"><i class="la la-external-link-square"></i> <span>Resignation</span></a></li>
+							<li><a href="{% url 'termination' %}"><i class="la la-times-circle"></i> <span>Termination</span></a></li>
 							<li class="menu-title"> 
 								<span>Administration</span>
 							</li>
 							<li> 
-								<a href="assets.html"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
+								<a href="{% url 'assets' %}"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-briefcase"></i> <span> Jobs </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="jobs.html"> Manage Jobs </a></li>
-									<li><a href="job-applicants.html"> Applied Candidates </a></li>
+									<li><a href="{% url 'jobs'%}"> Manage Jobs </a></li>
+									<li><a href="{% url 'jobsapplicants'%}"> Applied Candidates </a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="knowledgebase.html"><i class="la la-question"></i> <span>Knowledgebase</span></a>
+								<a href="{% url 'knowledgebase'%}"><i class="la la-question"></i> <span>Knowledgebase</span></a>
 							</li>
 							<li> 
-								<a href="activities.html"><i class="la la-bell"></i> <span>Activities</span></a>
+								<a href="{% url 'activities'%}"><i class="la la-bell"></i> <span>Activities</span></a>
 							</li>
 							<li> 
-								<a href="users.html"><i class="la la-user-plus"></i> <span>Users</span></a>
+								<a href="{% url 'users'%}"><i class="la la-user-plus"></i> <span>Users</span></a>
 							</li>
 							<li> 
-								<a href="settings.html"><i class="la la-cog"></i> <span>Settings</span></a>
+								<a href="{% url 'settings' %}"><i class="la la-cog"></i> <span>Settings</span></a>
 							</li>
 							<li class="menu-title"> 
 								<span>Pages</span>
@@ -586,6 +585,14 @@
                 </div>
             </div>
 			<!-- /Sidebar -->
-		
 			
-	
+				
+			
+        </div>
+		<!-- /Main Wrapper -->
+		{% block nav %}
+		
+		{% endblock nav %}
+		
+    <!-- </body>
+</html> -->

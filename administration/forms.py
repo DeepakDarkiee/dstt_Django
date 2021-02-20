@@ -1,11 +1,4 @@
 from django import forms
-<<<<<<< HEAD
-from .models import Lead
-class LeadForm(forms.ModelForm):
-    class meta:
-        model = Lead
-        fields = "__all__"
-=======
 from .models import Client,Asset,Lead
 
 # --------------------------------------Client----------------------------------------------------
@@ -30,4 +23,3 @@ class LeadForm(forms.ModelForm):
         fields = "__all__"
 
 # --------------------------------------/Lead----------------------------------------------------
->>>>>>> 0a77c39c2a5b991ee4bc0b2a32d68e252dfdd948
