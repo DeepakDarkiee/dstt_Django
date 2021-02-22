@@ -21,7 +21,7 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 # -------------------------------------all employee for admin--------------------------------
-@login_required
+@login_required(login_url='/')
 def RegisterEmployeeView(request):
     if request.method =="POST":
             employee_first_name = request.POST['employee_first_name']
@@ -56,6 +56,7 @@ def RegisterEmployeeView(request):
             
 
 # ------------------------all employees for Administration ------------------------
+@login_required(login_url='/')
 
 def AllEmployeeview(request):
     employee = Employee(request.GET)
@@ -66,6 +67,7 @@ def AllEmployeeview(request):
 
 
 
+@login_required(login_url='/')
 
 def UpdateEmployeesview(request,id):
     employee_update = Employee.objects.get(id=id)  
@@ -78,7 +80,7 @@ def UpdateEmployeesview(request,id):
         employee_update.employee_country = request.POST.get('employee_country','')
         employee_update.employee_pincode = request.POST.get('employee_pincode','')
         employee_update.employee_reports_to = request.POST.get('employee_reports_to','')
-        if "employee_image" in request.FILES:
+        if "employee_image" in request.FILES:   
             img=request.FILES["employee_image"]
             employee_update.employee_image =img
         employee_update.save()
