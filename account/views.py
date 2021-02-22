@@ -29,10 +29,10 @@ class SignInView(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                if user.is_admin:
+                if user.groups.all().exists() or user.is_superuser:
                     return HttpResponseRedirect('/administration/index')
                 else:
-                    return HttpResponseRedirect('/employee/employee_    dashboard')
+                    return HttpResponse("This Is Employee")
             else:
                 return HttpResponse("Inactive user.")
         else:
@@ -79,29 +79,37 @@ class RolePermissionView(View):
     def get(self,request,name):
         role=Group.objects.get(name=name)          
         permissions = role.permissions.all()
-        # for permission in permissions:
-        #     if permission.codename == 'view_employee':
-        #         view_employee = 'True'
-            
-        #     view_employee = 'False'
-        #     if permission.codename == 'add_employee':
-        #         add_employee = 'True'
-            
-        #     add_employee = 'False'
-        #     if permission.codename == 'change_employee':
-        #         change_employee = 'True'
-        #     else:
-        #         change_employee = 'False'
-        #     if permission.codename == 'delete_employee':
-        #         delete_employee = 'True'
-        #     else:
-        #         delete_employee = 'False'
+        print(permissions)
+        
+        for permission in permissions:
+            if permission.codename == 'view_employee':
+                view_employee = 'True'
+            else:   
+                view_employee = 'False'
+
+            if permission.codename == 'add_employee':
+                add_employee = 'True'
+            else:
+                add_employee = 'False'
+
+            if permission.codename == 'change_employee':
+                change_employee = 'True'
+            else:
+                change_employee = 'False'
+            if permission.codename == 'delete_employee':
+                delete_employee = 'True'
+            else:
+                delete_employee = 'False'
         #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
-        
+        # 'add_employee':add_employee,
+        # 'view_employee':view_employee,
+        # 'change_employee':change_employee,
+        # 'delete_employee':delete_employee
+
           })
-        
+
     def post(self,request,name):
         role = Group.objects.get(name=name)
         # ----------------------Employees-----------------------
@@ -133,7 +141,7 @@ class RolePermissionView(View):
                     role.permissions.add(permission)
                 else:
                     role.permissions.remove(permission)
-        
+        messages.success(request,f'Successfully Granted Permission to {role}')
         #______________employee end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,

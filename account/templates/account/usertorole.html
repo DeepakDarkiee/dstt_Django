@@ -18,9 +18,14 @@
 		
 		<!-- Datetimepicker CSS -->
 		<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
-		
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" />
+
 		<!-- Main CSS -->
         <link rel="stylesheet" href="/static/assets/css/style.css">
+		
+
+		
 {% endblock css %}
 
 
@@ -85,7 +90,7 @@
 								<div  class="btn btn-primary">
 									<h4>Assign to {{role}} </h4>
 								</div>
-								#
+								
 								<div class="card-body">
 									<form action="{% url 'usertorole' role %}" method="post">
                                         {% csrf_token %} 
@@ -97,11 +102,11 @@
 										<div class="form-group row">
 											
 											<div class="col-lg-12">
-											<select name="employee" id="employee" class="form-control" required>  
-													<option value="" selected disabled>----select----</option>
+											<select name="employee" id="select_employee" class="form-control" required>  
+											<option value="" selected disabled>----select----</option>
 
                                             {% for employee in employees %}
-                                            <option value="{{employee}}">{{employee}}</option>
+                                            <option value="{{employee}}">{{employee.employee_email}}-{{employee.user.full_name}}</option>
                                             {% endfor %}
                                         </select> 
                                                 
@@ -170,17 +175,18 @@
 
 <!-- Custom JS -->
 <script src="/static/assets/js/app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous"></script>
 <script>
 	function getId(id) {
 		var a =document.getElementById('remove_usertorole');
 		a.href = "/RemoveUserToRole/" +id;
 	}
 </script>
-<!-- <script>
-	function getId(id) {
-		var a =document.getElementById('deleterole');
-		a.href = "/RemoveRole/" +id;
-	}
-</script> -->
+<script>
+	$(document).ready(function(){
+		$('#select_employee').select2();
+	})
+</script>
 </body>
 </html>
