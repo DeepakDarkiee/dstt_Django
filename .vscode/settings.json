@@ -1,11 +1,14 @@
 {
-    "python.pythonPath": "/usr/bin/python3",
-    "editor.fontFamily": " 'Cascadia Code' ",
-    "debug.console.fontFamily": "",
-    "font-switcher.fontFamily": " 'Cascadia Code' ",
+    "window.zoomLevel": 0,
+    "workbench.editorAssociations": [],
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Cobalt2",
+    "tabnine.experimentalAutoImports": true,
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDelete": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Pylance",
+    "editor.fontFamily": "'Cascadia Code'",
     "editor.fontLigatures": true,
-    "editor.fontSize": 16,
-    "editor.inlineHints.fontFamily": "'Cascadia Code'",
-    "editor.inlineHints.fontSize": 8,
-    
 }

@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 {% block trainings_base %}
 <!-- Page Wrapper -->
             <div class="page-wrapper">
@@ -35,73 +36,78 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="post" action="">
+								<form method="post" action="{% url 'trainings' %}" enctype="multipart/form-data">
 									{% csrf_token %}
-									{{form.as_p}}
+									<!-- {{form.as_p}} -->
+									<!-- {{ form|crispy }} -->
+
 									
-									<!-- <div class="row">
+									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Training Type</label>
-												<select class="select">
-													<option>Node Training</option>
-													<option>Swift Training</option>
-												</select>
+												{{form.Training_Type|as_crispy_field}}
+												
 											</div>
 										</div>
+
+
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Trainer</label>
-												<select class="select">
-													<option>Mike Litorus </option>
-													<option>John Doe</option>
-												</select>
+												{{form.Trainer_Name|as_crispy_field}}
 											</div>
 										</div>
+
+
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Employees</label>
-												<select class="select">
-													<option>Bernardo Galaviz</option>
-													<option>Jeffrey Warden</option>
-												</select>
+												{{form.Training_Cost|as_crispy_field}}
 											</div>
 										</div>
+
+
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Training Cost <span class="text-danger">*</span></label>
-												<input class="form-control" type="text">
+												{{form.Duration|as_crispy_field}}
 											</div>
 										</div>
+
+
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label>Start Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+												{{form.End_Date|as_crispy_field}}
 											</div>
 										</div>
+
+
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label>End Date <span class="text-danger">*</span></label>
-												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+												{{form.Upload_PDF|as_crispy_field}}
 											</div>
 										</div>
+
 										
-										<div class="col-sm-12">
+										<div class="col-sm-6">
 											<div class="form-group">
-												<label>Description <span class="text-danger">*</span></label>
-												<textarea class="form-control" rows="4"></textarea>
+												{{form.Upload_Video|as_crispy_field}}
 											</div>
 										</div>
-										<div class="col-sm-12">
+
+
+										<div class="col-sm-6">
 											<div class="form-group">
-												<label class="col-form-label">Status</label>
-												<select class="select">
-													<option>Active</option>
-													<option>Inactive</option>
-												</select>
+												{{form.Status|as_crispy_field}}
 											</div>
 										</div>
-									</div> -->
+
+
+										<div class="col-sm-12">
+											<div class="form-group">
+												{{form.Discription|as_crispy_field}}
+											</div>
+										</div>
+
+
+									</div>
 									<div class="submit-section">
 										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
 									</div>

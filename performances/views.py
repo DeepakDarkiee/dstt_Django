@@ -1,13 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import render,HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.views import generic
 from .models import Goal,GoalTracking
-from .forms import Goal,GoalTracking
+from .forms import Goal,GoalTracking, TrainingListForm
 from django.contrib import messages
 from django.views.generic import View, TemplateView,CreateView,ListView,DeleteView
 from .models import Goal,TrainingList,Trainer,TrainingType
 from django.views.generic import TemplateView,CreateView,ListView
+# from performances.functions import handle_uploaded_file 
 
 # Create your views here.
 class performanceindicatorView(TemplateView):
@@ -27,7 +28,7 @@ class GoalTrackingCreateView(generic.CreateView):
     model = GoalTracking
     template_name = "performances/goal_tracking.html" 
     fields = ( 'Gole_type', 'GoalTracking_subject', 'GoalTracking_target_achievement',
-    'GoalTracking_start_date','GoalTracking_end_date', 'GoalTracking_discription', 
+    'GoalTracking_end_date', 'GoalTracking_discription', 
     'GoalTracking_status', )
     # context_object_name = "goal_type"
     success_url = ('/performances/goaltracking_list')
@@ -50,9 +51,9 @@ class GoalTrackingListView(generic.ListView):
 
 # ---------------------------------  Goal tracking end ---------------------------------------
 # ---------------------------------  Goal ----------------------------------
-class GoalTypeCreateView(generic.CreateView):
-    model = Goal
-    fields = ('Goal_type', 'Goal_discription', 'Goal_status')
+class GoalTypeCreateView(CreateView):
+    form_class =TrainingListForm
+    # fields = ('Goal_type', 'Goal_discription', 'Goal_status')
     template_name = "performances/goal_type.html"
     success_url = ('/performances/goaltype_list')
 
@@ -62,34 +63,60 @@ class GoalTypeListView(generic.ListView):
     context_object_name = "goletype"
     success_url = ('/performances/goaltype_list')
 
-class GoalTypeRemove(generic.DeleteView):
-    model = Goal
-    template_name = "performances/goal_type.html"
-    # context_object_name = "goletype_delete"
-    success_url =  ('/performances/goaltype_list')
+# class GoalTypeRemove(generic.DeleteView):
+#     model = Goal
+#     template_name = "performances/goal_type.html"
+#     # context_object_name = "goletype_delete"
+#     success_url =  ('/performances/goaltype_list')
 
 
-# class GoalTypeRemove(View):
-#     def get(self,request,id):
-#             goal=Goal.objects.get(id=id)          
-#             goal.delete()
-#             messages.success(request,"deleted successfully")
-#             return HttpResponseRedirect('/performances/goaltype_list')
+class GoalTypeRemove(View):
+    def get(self,request,id):
+            goal_type =Goal.objects.get(id=id)          
+            goal_type.delete()
+            messages.success(request,"deleted successfully")
+            return HttpResponseRedirect('/performances/goaltype_list')
+
 
 # ---------------------------------  /Goal end ----------------------------------
-class trainingsView(TemplateView):
-    success_url = ('/performances/goaltype')
-# ---------------------------------  /Goal ----------------------------------
 
 # -------------------------------------------Training-------------------------------------
-class trainingCreateView(generic.CreateView):
-    model=TrainingList
-    fields=('training_type_type', 'trainer_name','traininglist_training_cost',
-     'traininglist_duration', 'traininglist_end_date',
-      'traininglist_discription', 'traininglist_status', 'traininglist_upload_pdf', 
-      'traininglist_upload_video',)
-    template_name = "performances/trainings.html"
-    
+
+# class TrainingCreateView(CreateView): 
+#     form_class =TrainingListForm
+#     template_name = "performances/trainings.html"
+
+
+
+def TrainingCreateView(request):
+    if request.method == "POST":  
+        form = TrainingListForm(request.POST,request.FILES)  
+        if form.is_valid():  
+            
+            try:  
+                form.save() 
+                 
+                return render(request,'performances/trainings.html')
+            except:  
+                pass  
+     
+    form = TrainingListForm() 
+    training = TrainingList.objects.all()
+
+    return render(request,'performances/trainings.html',{
+        'form':form,
+        'objects_list':training,
+        })
+
+class TrainingRemove(View):
+    def get(self,request,id):
+            Training_List =TrainingList.objects.get(id=id) 
+            # print(TrainingList)         
+            Training_List.delete()
+            messages.success(request,"deleted successfully")
+            return HttpResponseRedirect('/performances/trainings')
+
+
 # -------------------------------------------/Training-------------------------------------
 # -------------------------------------------Trainer-------------------------------------
 class TrainersCreateView(generic.CreateView):
@@ -104,12 +131,12 @@ class TrainersListView(generic.ListView):
     context_object_name = "trainer_list"
     success_url = ('/performances/trainers')
 
-class TrainersRemove(View):
+class TrainerRemove(View):
     def get(self,request,id):
-            training_type =TrainingType.objects.get(id=id)          
-            training_type.delete()
+            trainer =Trainer.objects.get(id=id)          
+            trainer.delete()
             messages.success(request,"deleted successfully")
-            return HttpResponseRedirect('/performances/trainer_list')    
+            return HttpResponseRedirect('/performances/trainers')    
 # -------------------------------------------/Trainer-------------------------------------
 # -------------------------------------------Training Type ------------------------------------------
 class TrainingTypeCreateView(generic.CreateView):

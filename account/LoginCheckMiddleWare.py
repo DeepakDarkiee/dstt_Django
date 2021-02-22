@@ -13,7 +13,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
         #Check whether the user is logged in or not
         if user.is_authenticated:
             if user.is_admin ==True:
-                if modulename == "administration.views" or modulename == "django.views.static" or modulename == "account.views":
+                if modulename == "administration.views" or modulename == "django.views.static" or modulename == "account.views" or modulename == "performances.views" or modulename == "employee.views":
                     pass
                 else:
                     return redirect("/administration/index")

@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dsmiecom/dstt_Django/
+    - /bin/cp -R * $DEPLOYPATH
