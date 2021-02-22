@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'management',
     'performances',
     'employee',
+    'crispy_forms',
    
     
 ]
@@ -145,3 +146,5 @@ MESSAGE_TAGS = {
     messages.INFO: 'info',
     messages.SUCCESS: 'success',
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

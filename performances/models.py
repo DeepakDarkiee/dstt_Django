@@ -42,20 +42,20 @@ TrainingList_status = (
     ('Inactive','Inactive')
 )
 class TrainingList(models.Model):
-    training_type_type= models.ForeignKey('TrainingType',on_delete=models.CASCADE)
-    trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE)
+    Training_Type= models.ForeignKey('TrainingType',on_delete=models.CASCADE)
+    Trainer_Name= models.ForeignKey('Trainer',on_delete=models.CASCADE)
     # employee_id= models.ForeignKey('Employee',on_delete=models.CASCADE)
-    traininglist_training_cost= models.IntegerField()
-    traininglist_duration= models.CharField(max_length=100)
-    traininglist_start_date= models.DateTimeField(auto_now_add=True)
-    traininglist_end_date= models.DateField()
-    traininglist_discription= models.TextField()
-    traininglist_status= models.CharField(max_length=100,choices=TrainingList_status,null=True,default='Active')
-    traininglist_upload_pdf= models.FileField(upload_to='',null=True, blank="True")
-    traininglist_upload_video= models.FileField(upload_to='',null=True, blank="True")
+    Training_Cost= models.IntegerField()
+    Duration= models.CharField(max_length=100)
+    Start_Date= models.DateField(auto_now_add=True)
+    End_Date= models.DateField()
+    Upload_PDF= models.FileField(upload_to='',null=True, blank="True")
+    Upload_Video= models.FileField(upload_to='',null=True, blank="True")
+    Status= models.CharField(max_length=100,choices=TrainingList_status,null=True,default='Active')
+    Discription= models.TextField()
     # traininglist_training_type= models.CharField(max_length=100)
     def __str__(self):
-        return self.traininglist_status
+        return self.Status
     
 
 # --------------------------------------------------/Training List----------------------------------------------------
