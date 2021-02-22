@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Goal,Trainer,TrainingType,TrainingList
+from .models import Goal,GoalTracking,Trainer,TrainingType,TrainingList
 # Register your models here.
 
 
@@ -10,9 +10,16 @@ class GoalAdmin(admin.ModelAdmin):
         model = Goal
         fields = '__all__'
 # -------------------------------------------/Goal--------------------------------------------------------
+# -------------------------------------------Goal--------------------------------------------------------
+@admin.register(GoalTracking)
+class GoalTrackingAdmin(admin.ModelAdmin):
+    class Meta:
+        model = GoalTracking
+        fields = '__all__'
+# -------------------------------------------/Goal--------------------------------------------------------
 # -------------------------------------------Training List--------------------------------------------------------
 @admin.register(TrainingList)
-class TrainingList(admin.ModelAdmin):
+class TrainingListAdmin(admin.ModelAdmin):
     class Meta:
         model = TrainingList
         fields = '__all__'

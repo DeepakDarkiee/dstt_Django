@@ -5,15 +5,16 @@ from .models import Goal,GoalTracking,TrainingList,TrainingType,Trainer
 class GoleForm(forms.ModelForm):
     class Meta:
         model = Goal
-        widgets = {
-            'GoalTracking_end_date':forms.DateInput(attrs={'type':'date'})
-        }
+        
         fields = "__all__"
 # ----------------------------------------Goal end--------------------------------------------------
 # ----------------------------------------Goal tracking-------------------------------------------------------
 class GoalTrackingForm(forms.ModelForm):
     class Meta:
         model = GoalTracking
+        widgets = {
+            'GoalTracking_end_date':forms.DateInput(attrs={'type':'date'})
+        }
         fields = "__all__"
 # ----------------------------------------Goal tracking end-------------------------------------------------------
 # ----------------------------------------Training List -------------------------------------------------------

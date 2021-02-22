@@ -24,12 +24,12 @@ GoalTracking_status = (
     ('Inactive','Inactive')
 )
 class GoalTracking(models.Model):
-    Gole_type =  models.ForeignKey(Goal, on_delete=models.CASCADE)
+    Gole_type =  models.ForeignKey('Goal', on_delete=models.CASCADE)
     # Gole_type =  models.CharField(max_length=200)
     GoalTracking_subject = models.CharField(max_length=200)
     GoalTracking_target_achievement = models.CharField(max_length=200)
-    GoalTracking_start_date =models.DateTimeField(auto_now=True)
-    GoalTracking_end_date = models.DateTimeField()
+    GoalTracking_start_date =models.DateField(auto_now_add=True)
+    GoalTracking_end_date = models.DateField()
     GoalTracking_discription = models.TextField(max_length=100)
     GoalTracking_status= models.CharField(max_length=100,choices=GoalTracking_status, null=True,
      default='Active')
