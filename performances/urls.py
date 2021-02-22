@@ -17,7 +17,8 @@ urlpatterns = [
     
     path('goaltype/',views.GoalTypeCreateView.as_view(),name='goaltype'),
     path('goaltype_list/',views.GoalTypeListView.as_view(),name='goaltype_list'),
-    path('goaltype_remove/<int:pk>/delete/',views.GoalTypeRemove.as_view(),name='goaltype_remove'),
+    # path('goaltype_remove/<int:pk>/delete/',views.GoalTypeRemove.as_view(),name='goaltype_remove'),
+    path('goaltype_remove/<int:id>',views.GoalTypeRemove.as_view(),name='goaltype_remove'),
 
 # ----------------------------------------/Goal Type-------------------------------------------------------
 
@@ -27,13 +28,16 @@ urlpatterns = [
     # path('goaltype/',views.goalTypeCreateView.as_view(),name='goaltype'),
 
 # ----------------------------------------Training-------------------------------------------------------
-    path('trainings/',views.trainingCreateView.as_view(),name='trainings'),
+    path('trainings/',views.TrainingCreateView,name='trainings'),
+   
+    path('training_remove/<int:id>',views.TrainingRemove.as_view(),name='training_remove'),
 # ----------------------------------------Training-------------------------------------------------------
 # ----------------------------------------Trainer------------------------------------------------------- 
 
     path('trainers/',views.TrainersCreateView.as_view(),name='trainers'),
     path('trainer_list/',views.TrainersListView.as_view(),name='trainer_list'),
-    path('trainer_remove/<int:id>',views.TrainersRemove.as_view(),name='trainer_remove'),
+  
+    path('trainer_remove/<int:id>',views.TrainerRemove.as_view(),name='trainer_remove'),
     
 # ----------------------------------------/Trainer-------------------------------------------------------
 # ----------------------------------------Training Type ------------------------------------------------------------
