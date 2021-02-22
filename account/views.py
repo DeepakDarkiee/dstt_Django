@@ -29,7 +29,7 @@ class SignInView(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                if user.groups.all().exists() or user.is_superuser:
+                if user.groups.all().exists() or user.is_superuser or user.is_admin:
                     return HttpResponseRedirect('/administration/index')
                 else:
                     return HttpResponse("This Is Employee")
@@ -61,7 +61,8 @@ class RegisterRole(View):
     def get(self,request):
         groups=Group.objects.all()
         return render(request, "account/role.html",{'groups':groups})
-#
+        
+
 class RemoveRole(View):
     def get(self,request,name):
         try:
@@ -161,6 +162,9 @@ class UserToRole(View):
         role = Group.objects.get(name=name)
         employees = Employee.objects.all()
         role_user=User.objects.filter(groups__name=role)
+        for user in role_user:
+            user.is_admin=True
+            user.save()
         return render(request,'account/usertorole.html',
         {'role':role,'employees':employees,'role_user':role_user
         })
@@ -185,6 +189,8 @@ class RemoveUserToRole(View):
     def get(self, request,name,id):
         role = Group.objects.get(name=name)
         user = User.objects.get(id=id)
+        user.is_admin=False
+        user.save()
         user.groups.remove(role)
         messages.warning(request,f"{user} is removed from {role} ")  
         return redirect('/usertorole/'+str(role))  

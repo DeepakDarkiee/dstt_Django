@@ -106,7 +106,7 @@
 											<option value="" selected disabled>----select----</option>
 
                                             {% for employee in employees %}
-                                            <option value="{{employee}}">{{employee.employee_email}}-{{employee.user.full_name}}</option>
+                                            <option value="{{employee}}">{{employee.user.email}}-{{employee.user.full_name}}</option>
                                             {% endfor %}
                                         </select> 
                                                 

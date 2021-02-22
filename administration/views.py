@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
@@ -9,11 +10,16 @@ from .models import Client,Asset,Lead
 from .forms import ClientForm,AssetForm,LeadForm
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
 class IndexView(TemplateView):
     template_name = "administration/index.html"
+
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(IndexView, self).dispatch(*args, **kwargs)
 
  
 
@@ -23,6 +29,9 @@ class CreateClientsView(generic.CreateView):
     tamplate_name = "administration/clients_form.html"
     fields = ('client_first_name', 'client_last_name', 'client_username', 'client_email', 'client_id', 'client_address', 'client_phone' )
     success_url = ('/administration/clients_grid')
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateClientsView, self).dispatch(*args, **kwargs)
 
 
 
@@ -31,21 +40,30 @@ class CreateClientsListView(generic.ListView):
     template_name = "administration/client_list.html" 
     context_object_name = "client_list"
     success_url = ('/administration/clients_list')
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateClientsListView, self).dispatch(*args, **kwargs)
 
 class CreateClientsGridView(generic.ListView):
     model = Client
     template_name = "administration/client_form.html" 
     context_object_name = "client_list"
     success_url = ('/administration/clients_grid')
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateClientsGridView, self).dispatch(*args, **kwargs)
 
 class ClientRemove(View):
+    @login_required(login_url='/')
     def get(self,request,id):
         client=Client.objects.get(id=id)          
         client.delete()
         messages.success(request,'deleted successfully')
         return HttpResponseRedirect('/administration/clients_list') 
+        
 
 class ClientRemoveGrid(View):
+    @login_required(login_url='/')
     def get(self,request,id):
         client=Client.objects.get(id=id)          
         client.delete()
@@ -60,16 +78,22 @@ class CreateLeadView(generic.CreateView):
     fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created', 'lead_status')
     template_name = "administration/leads.html" 
     success_url = ('/administration/leads_list')
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateLeadView, self).dispatch(*args, **kwargs)
 
 class CreateLeadListView(generic.ListView):
     model = Lead
     template_name = "administration/leads.html"
     context_object_name = "lead_list"
     success_url = ('/administration/leads')
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateLeadListView, self).dispatch(*args, **kwargs)
 # ---------------------------------------/Lead----------------------------------------------------------------
 
 class projectsView(TemplateView):
-    template_name = "administration/projects.html"   
+    template_name = "administration/projects.html"
  
 class taskboardView(TemplateView):
     template_name = "administration/taskboard.html" 
