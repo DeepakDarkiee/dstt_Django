@@ -1,8 +1,11 @@
 {
     "python.pythonPath": "/usr/bin/python3",
     "editor.fontFamily": " 'Cascadia Code' ",
-    "debug.console.fontFamily": "'Cascadia Code'",
+    "debug.console.fontFamily": "",
     "font-switcher.fontFamily": " 'Cascadia Code' ",
     "editor.fontLigatures": true,
-    "editor.fontSize": 16
+    "editor.fontSize": 16,
+    "editor.inlineHints.fontFamily": "'Cascadia Code'",
+    "editor.inlineHints.fontSize": 8,
+    
 }
