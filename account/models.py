@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import  BaseUserManager
 from django.utils import timezone
 
-Group.add_to_class('employee_access_flag', models.BooleanField(default=True))
+# Group.add_to_class('employee_access_flag', models.BooleanField(default=True))
 
 class UserManager(BaseUserManager):
     """
@@ -64,6 +64,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
 
-
+  
 
  
