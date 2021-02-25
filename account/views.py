@@ -66,9 +66,14 @@ class RegisterRole(View):
 class RemoveRole(View):
     def get(self,request,name):
         try:
-            groups=Group.objects.get(name=name)          
-            groups.delete()
-            messages.success(request,f"{groups} deleted successfully")
+            
+            groups=Group.objects.get(name=name)
+            
+            if User.objects.filter(groups__name=groups).exists():
+                messages.error(request,f'Cant delete {groups} ,Delete assigned Users  First and Try Again! <a href="/usertorole/{groups}"> click Here </a>',extra_tags='safe')
+            else:
+                groups.delete()
+                messages.success(request,f"{groups} Deleted Successfully")
 
         except Group.DoesNotExist:
             messages.error(request,"Role already Deleted or Not Created")
