@@ -2,7 +2,7 @@ from django import forms
 from .models import Goal,GoalTracking,TrainingList,TrainingType,Trainer
 
 # ----------------------------------------Goal--------------------------------------------------
-class GoleForm(forms.ModelForm):
+class GoalForm(forms.ModelForm):
     class Meta:
         model = Goal
         
@@ -13,7 +13,7 @@ class GoalTrackingForm(forms.ModelForm):
     class Meta:
         model = GoalTracking
         widgets = {
-            'GoalTracking_end_date':forms.DateInput(attrs={'type':'date'})
+            'End_Date':forms.DateInput(attrs={'type':'date'})
         }
         fields = "__all__"
 # ----------------------------------------Goal tracking end-------------------------------------------------------
