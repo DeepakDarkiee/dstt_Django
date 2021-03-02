@@ -13,10 +13,18 @@ urlpatterns = [
     path('leaves_settings/',views.LeavesSettingsView.as_view(),name='leaves_settings' ),
     path('attendance_admin/',views.AttendanceAdminView.as_view(),name='attendance_admin' ),
     path('attendance_employee/',views.AttendanceEmployeeView.as_view(),name='attendance_employee' ),
+    # -------------------------------------------Departments-----------------------------------------------------------
     path('departments/',views.DepartmentCreateView.as_view(),name='departments' ),
+    path('department_list/',views.DepartmentList.as_view(),name='department_list' ),
+    path('department_remove/<int:id>',views.DepartmentRemove.as_view(),name='department_remove' ),
+    # path('department_manage/<int:id>',views.DepartmentManage.as_view(),name='department_manage' ),
+# -------------------------------------------/Departments-----------------------------------------------------------
 
-    path('designations/',views.DesignationCreateView.as_view(),name='designations' ),
-    path('designations_list/',views.DesignationListView.as_view(),name='designations_list' ),
+# -------------------------------------------designation-----------------------------------------------------------
+    path('designation/',views.designation,name='designations'),
+    # path('designations_list/',views.DesignationListView.as_view(),name='designations_list' ),
+    path('designations_remove/<int:id>',views.DesignationRemove.as_view(),name='designations_remove' ),
+# -------------------------------------------designation-----------------------------------------------------------
     
     path('timesheet/',views.TimesheetView.as_view(),name='timesheet' ),
     path('overtime/',views.OvertimeView.as_view(),name='overtime' ),
