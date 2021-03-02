@@ -33,8 +33,6 @@ class CreateClientsView(generic.CreateView):
     def dispatch(self, *args, **kwargs):
         return super(CreateClientsView, self).dispatch(*args, **kwargs)
 
-
-
 class CreateClientsListView(generic.ListView):
     model = Client
     template_name = "administration/client_list.html" 
@@ -61,7 +59,6 @@ class ClientRemove(View):
         messages.success(request,'deleted successfully')
         return HttpResponseRedirect('/administration/clients_list') 
         
-
 class ClientRemoveGrid(View):
     @login_required(login_url='/')
     def get(self,request,id):
@@ -70,6 +67,12 @@ class ClientRemoveGrid(View):
         messages.success(request,'deleted successfully')
         return HttpResponseRedirect('/administration/clients_grid') 
 
+class ClientRemoveGrid(View):
+    def get(self,request,id):
+        client=Client.objects.get(id=id)          
+        client.delete()
+        messages.success(request,'deleted successfully')
+        return HttpResponseRedirect('/administration/clients_grid') 
 # -----------------------------------/client----------------------------------------------------------------
   
 # -------------------------------------Lead----------------------------------------------------------------
@@ -90,8 +93,8 @@ class CreateLeadListView(generic.ListView):
     @method_decorator(login_required(login_url='/'))
     def dispatch(self, *args, **kwargs):
         return super(CreateLeadListView, self).dispatch(*args, **kwargs)
-# ---------------------------------------/Lead----------------------------------------------------------------
 
+# ---------------------------------------/Lead----------------------------------------------------------------
 class projectsView(TemplateView):
     template_name = "administration/projects.html"
  
