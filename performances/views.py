@@ -108,7 +108,7 @@ class GoalTypeCreateView(generic.CreateView):
 class GoalTypeListView(generic.ListView):
     model = Goal
     template_name = "performances/goal_type.html"
-    context_object_name = "goletype"
+    context_object_name = "goaltype"
     success_url = ('/performances/goaltype_list')
 
 # class GoalTypeManage(View):
@@ -119,6 +119,12 @@ class GoalTypeListView(generic.ListView):
 #             messages.success(request,"update successfully")
 #             return HttpResponseRedirect('/performances/goaltype_list')
 
+# class GoalTypeManage(generic,UpdateView):
+#     model = Goal
+#     context_object_name = ""
+#     fields = ('Goal_type','Goal_status')
+#     template_name = "performances/goal_type.html"
+#     success_url = ('/performances/goaltype_list')
 
 class GoalTypeRemove(View):
     def get(self,request,id):
