@@ -81,8 +81,8 @@ class Department(models.Model):
 #------------------------------------/Depaartment------------------------------------------------------------
 #------------------------------------Designation------------------------------------------------------------
 class Designation(models.Model):
-    designation_name = models.CharField(max_length=100)
-    department_name=models.CharField(max_length=100)
+    Designation_Name = models.CharField(max_length=100)
+    Department_Name=models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.designation_name

@@ -29,43 +29,26 @@ class CreateClientsView(generic.CreateView):
     tamplate_name = "administration/clients_form.html"
     fields = ('client_first_name', 'client_last_name', 'client_username', 'client_email', 'client_id', 'client_address', 'client_phone' )
     success_url = ('/administration/clients_grid')
-    @method_decorator(login_required(login_url='/'))
-    def dispatch(self, *args, **kwargs):
-        return super(CreateClientsView, self).dispatch(*args, **kwargs)
+
 
 class CreateClientsListView(generic.ListView):
     model = Client
     template_name = "administration/client_list.html" 
     context_object_name = "client_list"
     success_url = ('/administration/clients_list')
-    @method_decorator(login_required(login_url='/'))
-    def dispatch(self, *args, **kwargs):
-        return super(CreateClientsListView, self).dispatch(*args, **kwargs)
 
 class CreateClientsGridView(generic.ListView):
     model = Client
     template_name = "administration/client_form.html" 
     context_object_name = "client_list"
     success_url = ('/administration/clients_grid')
-    @method_decorator(login_required(login_url='/'))
-    def dispatch(self, *args, **kwargs):
-        return super(CreateClientsGridView, self).dispatch(*args, **kwargs)
 
 class ClientRemove(View):
-    @login_required(login_url='/')
     def get(self,request,id):
         client=Client.objects.get(id=id)          
         client.delete()
-        messages.success(request,'deleted successfully')
+        messages.success(request,'deleted successfuully')
         return HttpResponseRedirect('/administration/clients_list') 
-        
-class ClientRemoveGrid(View):
-    @login_required(login_url='/')
-    def get(self,request,id):
-        client=Client.objects.get(id=id)          
-        client.delete()
-        messages.success(request,'deleted successfully')
-        return HttpResponseRedirect('/administration/clients_grid') 
 
 class ClientRemoveGrid(View):
     def get(self,request,id):
@@ -81,18 +64,19 @@ class CreateLeadView(generic.CreateView):
     fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created', 'lead_status')
     template_name = "administration/leads.html" 
     success_url = ('/administration/leads_list')
-    @method_decorator(login_required(login_url='/'))
-    def dispatch(self, *args, **kwargs):
-        return super(CreateLeadView, self).dispatch(*args, **kwargs)
 
 class CreateLeadListView(generic.ListView):
     model = Lead
     template_name = "administration/leads.html"
     context_object_name = "lead_list"
     success_url = ('/administration/leads')
-    @method_decorator(login_required(login_url='/'))
-    def dispatch(self, *args, **kwargs):
-        return super(CreateLeadListView, self).dispatch(*args, **kwargs)
+
+class LeadsRemove(View):
+     def get(self,request,id):
+        lead=Lead.objects.get(id=id)          
+        lead.delete()
+        messages.success(request,f"{lead} deleted successfully")
+        return HttpResponseRedirect('/administration/leads_list') 
 
 # ---------------------------------------/Lead----------------------------------------------------------------
 class projectsView(TemplateView):
