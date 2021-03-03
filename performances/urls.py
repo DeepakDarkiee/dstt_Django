@@ -28,7 +28,7 @@ urlpatterns = [
     # path('goaltype/',views.goalTypeCreateView.as_view(),name='goaltype'),
 
 # ----------------------------------------Training-------------------------------------------------------
-    path('trainings/',views.TrainingCreateView,name='trainings'),
+    path('trainings/',views.TrainingCreateView.as_view(),name='trainings' ),
    
     path('training_remove/<int:id>',views.TrainingRemove.as_view(),name='training_remove'),
 # ----------------------------------------Training-------------------------------------------------------

@@ -24,6 +24,7 @@ class TrainingListForm(forms.ModelForm):
             'End_Date' : forms.DateInput(attrs={'type':'date'})
         }
         fields = "__all__"
+        exclude =('Status',)
 # ----------------------------------------Training List end -------------------------------------------------------
 # ----------------------------------------Trainer--------------------------------------------------
 class TrainerForm(forms.ModelForm):

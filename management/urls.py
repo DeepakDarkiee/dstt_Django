@@ -14,5 +14,6 @@ urlpatterns = [
     path('invoicereports/',views.invoicereportsView.as_view(),name='invoicereports'),
 
     path('policy/',views.PolicyCreateView.as_view(),name='policy'),
+    path('policy_list/',views.PolicyListView.as_view(),name='policy_list'),
     
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,get_object_or_404
 from django.http.response import HttpResponseRedirect
 from django.views import generic
 from .models import Goal,GoalTracking
@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.views.generic import View, TemplateView,CreateView,ListView,DeleteView
 from .models import Goal,TrainingList,Trainer,TrainingType
 from django.views.generic import TemplateView,CreateView,ListView
+
 # from performances.functions import handle_uploaded_file 
 
 # Create your views here.
@@ -88,25 +89,36 @@ class GoalTypeRemove(View):
 
 
 
-def TrainingCreateView(request):
-    if request.method == "POST":  
+
+
+class TrainingCreateView(View):
+    def post(self,request):  
         form = TrainingListForm(request.POST,request.FILES)  
         if form.is_valid():  
-            
             try:  
-                form.save() 
-                 
-                return render(request,'performances/trainings.html')
+                form.save()  
+                return HttpResponseRedirect('/performances/trainings/')
             except:  
                 pass  
-     
-    form = TrainingListForm() 
-    training = TrainingList.objects.all()
+    def get(self,request):
+        form = TrainingListForm() 
+        training = TrainingList.objects.all()
 
-    return render(request,'performances/trainings.html',{
-        'form':form,
-        'objects_list':training,
-        })
+        return render(request,'performances/trainings.html',{
+            'form':form,
+            'objects_list':training,
+            })
+
+# def update_location(request,id):
+#     obj = get_object_or_404(TrainingList, id=id)
+#     form = TrainingListForm(request.POST or None,
+#                         request.FILES or None, instance=obj)
+#     if request.method == 'POST':
+#         if form.is_valid():
+#            form.save()
+#            return redirect('/performances/trainings/')
+#     return render(request, 'performances/trainings.html', {'form': form})
+
 
 class TrainingRemove(View):
     def get(self,request,id):
