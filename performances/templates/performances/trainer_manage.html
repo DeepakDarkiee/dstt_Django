@@ -1,0 +1,87 @@
+{% include 'administration/base.html' %}	
+    <!-- Edit Trainers List Modal -->
+    <!-- <div id="edit_type" class="modal custom-modal fade" role="dialog"> -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Trainer</h5>
+                    <a href="{% url 'trainers' %}" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </a>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'trainer_manage' trainer.id%}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="Trainer_first_name" value="{{trainer.Trainer_first_name}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Last Name</label>
+                                    <input class="form-control" type="text" name="Trainer_last_name" value="{{trainer.Trainer_last_name}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Role <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="Trainer_role" value="{{trainer.Trainer_role}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" name="Trainer_email" value="{{trainer.Trainer_email}}">
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Phone </label>
+                                    <input class="form-control" type="text" name="Trainer_phone" value="{{trainer.Trainer_phone}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Status</label>
+                                    <select class="select form-control  " name="Trainer_status" value="{{trainer.Trainer_status}}">
+                                        {% if trainer.Trainer_status == "Active" %}
+                                        <option value="Active" selected="selected">Active</option>
+            
+                                        {% else %}
+            
+                                        <option value="Active" >Active</option>
+            
+                                        {% endif %}
+            
+                                        {% if trainer.Trainer_status == "Inactive" %}
+            
+                                        <option value="Inactive" selected="selected" >Inactive</option>
+                                        
+                                        {% else %}
+                                        <option value="Inactive">Inactive</option>
+                                        {% endif %}
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Description <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="Trainer_desscription" rows="4">{{trainer.Trainer_desscription}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Trainers List Modal -->

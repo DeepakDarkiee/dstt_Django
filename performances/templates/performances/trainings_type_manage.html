@@ -1,0 +1,54 @@
+{% include 'administration/base.html' %}
+<!-- Edit Training Type Modal -->
+<!-- <div id="edit_type" class="modal custom-modal fade" role="dialog"> -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Type</h5>
+                <a href="{% url 'training_type' %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action = "{% url 'training_type_manage' training_type.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Type <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" name="training_type_type" value="{{training_type.training_type_type}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="trainingtype_description"  rows="4">{{training_type.trainingtype_description}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Status</label>
+                        <select class="select form-control " name="trainingtype_status" value="{{training_type.trainingtype_status}}">
+                            {% if training_type.trainingtype_status == "Active" %}
+                            <option value="Active" selected="selected">Active</option>
+
+                            {% else %}
+
+                            <option value="Active" >Active</option>
+
+                            {% endif %}
+
+                            {% if training_type.trainingtype_status == "Inactive" %}
+
+                            <option value="Inactive" selected="selected" >Inactive</option>
+                            
+                            {% else %}
+                            <option value="Inactive">Inactive</option>
+                            {% endif %}
+                            </select>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Training Type Modal --> 

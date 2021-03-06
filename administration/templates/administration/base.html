@@ -379,7 +379,7 @@
 									<li><a href="{% url 'leaves_settings' %}">Leave Settings</a></li>
 									<li><a href="{% url 'attendance_admin' %}">Attendance (Admin)</a></li>
 									<li><a href="{% url 'attendance_employee' %}">Attendance (Employee)</a></li>
-									<li><a href="{% url 'department_list' %}">Departments</a></li>
+									<li><a href="{% url 'department_list'%}">Departments</a></li>
 									<li><a href="{% url 'designations' %}">Designations</a></li>
 									<li><a href="{% url 'timesheet' %}">Timesheet</a></li>
 									<li><a href="{% url 'overtime' %}">Overtime</a></li>
@@ -425,7 +425,7 @@
 								</ul>
 							</li>
 							<li> 
-								<a href="{% url 'policy' %}"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
+								<a href="{% url 'policy_list' %}"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-pie-chart"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
@@ -449,15 +449,15 @@
 								<a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{% url 'goaltracking'%}"> Goal List </a></li>
-									<li><a href="{% url 'goaltype_list' %}"> Goal Type </a></li>
+									<li><a href="{% url 'goaltype' %}"> Goal Type </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-edit"></i> <span> Training </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{% url 'trainings' %}"> Training List </a></li>
-									<li><a href="{% url 'trainer_list' %}"> Trainers</a></li>
-									<li><a href="{% url 'training_type_list' %}"> Training Type </a></li>
+									<li><a href="{% url 'trainers' %}"> Trainers</a></li>
+									<li><a href="{% url 'training_type' %}"> Training Type </a></li>
 								</ul>
 							</li>
 							<li><a href="{% url 'promotion' %}"><i class="la la-bullhorn"></i> <span>Promotion</span></a></li>

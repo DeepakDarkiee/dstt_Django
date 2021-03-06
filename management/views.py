@@ -44,4 +44,8 @@ class PolicyCreateView(generic.CreateView):
     template_name = "management/policies.html"
     success_url = ('/management/policy')
 
+class PolicyListView(generic.ListView):
+    model = Policy
+    template_name = "management/policies.html"
+    context_object_name = "policy"
 # --------------------------------- Policy end ----------------------------------

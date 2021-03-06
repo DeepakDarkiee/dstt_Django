@@ -34,8 +34,8 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Terminated Employee </th>
-											<th>Department</th>
+											<th>Terminated Employee Email </th>
+											<!-- <th>Department</th> -->
 											<th>Termination Type </th>
 											<th>Termination Date </th>
 											<th>Reason</th>
@@ -44,30 +44,41 @@
 										</tr>
 									</thead>
 									<tbody>
+										
+										{% for termination in objects_list %}
+											
+										
 										<tr>
-											<td>1</td>
-											<td>
-												<h2 class="table-avatar blue-link">
-													<a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.html">John Doe</a>
-												</h2>
-											</td>
-											<td>Web Development</td>
-											<td>Misconduct</td>
-											<td>28 Feb 2019</td>
-											<td>Lorem Ipsum Dollar</td>
-											<td>28 Feb 2019</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_termination"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_termination"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+											<td>{{termination.id}}</td>
+											<td>{{termination.Employee_Email}}</td>
+											<td>{{termination.Termination_Type}}</td>
+											<td>{{termination.Termination_Date}}</td>
+											<td>{{termination.Reason}}</td>
+											<td>{{termination.Notice_Date}}</td>
+											<!-- <td>1</td>
+												<td>
+													<h2 class="table-avatar blue-link">
+														<a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
+														<a href="profile.html">John Doe</a>
+													</h2>
+												</td>
+												<td>Web Development</td>
+												<td>Misconduct</td>
+												<td>28 Feb 2019</td>
+												<td>Lorem Ipsum Dollar</td>
+												<td>28 Feb 2019</td> -->
+												<td class="text-right">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon " data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_termination"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_termination" onClick="getId('{{termination.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
 													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
+												</td>
+											</tr>
+											{% endfor %}
+										</tbody>
 								</table>
 							</div>
 						</div>
@@ -142,7 +153,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="termination_delete" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -184,5 +195,12 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		<script>
+			function getId(id) {
+				// alert(id)
+				var a =document.getElementById('termination_delete');
+				a.href = "/performances/termination_remove/"+id;
+			}
+		</script>
 </body>
 </html>
