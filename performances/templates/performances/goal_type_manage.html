@@ -1,0 +1,59 @@
+{% include "administration/base.html" %}
+<!-- Edit Goal Modal -->
+<!-- <div id="edit_type" class="modal custom-modal fade" role="dialog"> -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Goal Type</h5>
+                <a href="{% url 'goaltype' %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'goaltype_manage' goal_type.id %}" >
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label>Goal Type <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" name="Goal_type" value="{{goal_type.Goal_type}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control"  name="Goal_discription" rows="4">{{goal_type.Goal_discription}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" >Status</label>
+                        <select class="select form-control" name="Goal_status" value="{{goal_type.Goal_status}}">
+                            {% if goal_type.Goal_status == "Active" %}
+                            <option value="Active" selected="selected">Active</option>
+
+                            {% else %}
+
+                            <option value="Active" >Active</option>
+
+                            {% endif %}
+
+                            {% if goal_type.Goal_status == "Inactive" %}
+
+                            <option value="Inactive" selected="selected" >Inactive</option>
+                            
+                            {% else %}
+                            <option value="Inactive">Inactive</option>
+                            {% endif %}
+                            </select>
+                        <!-- <select class="select">
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select> -->
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit" value="Update">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Goal Modal -->

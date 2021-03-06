@@ -133,30 +133,31 @@ class ManageDepartment(View):
         department=Department.objects.get(id=id)
         department.update()
         messages.success(request,f"{department} updated successfully")
-        return HttpResponseRedirect('/employee/department_list') 
+        return HttpResponseRedirect('/employee/department_list')             
+ 
 # ----------------------------------------/Department----------------------------------------------------------------------------------
 
 # ----------------------------------------/Designation----------------------------------------------------------------------------------
-def designation(request):
-    if request.method == "POST":
+class DesignationCreateView(View):
+    def post(self,request):
         form = DesignationForm(request.POST)
         if form.is_valid():
             try:
                 form.save()
-                return render(request,'employee/designations.html')
+                return HttpResponseRedirect('/employee/designation')
             except:
                 pass
-    form = DesignationForm()
-    designation = Designation.objects.all()
-    return render(request,'employee/designations.html',{'form':form,'designation':designation})
+    def get(self,request):
+        form = DesignationForm()
+        designation = Designation.objects.all()
+        return render(request,'employee/designations.html',{'form':form,'designation':designation})
 
 class DesignationRemove(View):
     def get(self,request,id):
             designation=Designation.objects.get(id=id)          
             designation.delete()
             messages.success(request,f"{designation} deleted successfully")
-            return HttpResponseRedirect('/employee/designation') 
-
+            return HttpResponseRedirect('/employee/designation')  
 # ----------------------------------------/Designation----------------------------------------------------------------------------------
 
 class TimesheetView(TemplateView):
@@ -164,4 +165,3 @@ class TimesheetView(TemplateView):
 
 class OvertimeView(TemplateView):
     template_name = "employee/overtime.html"
-
