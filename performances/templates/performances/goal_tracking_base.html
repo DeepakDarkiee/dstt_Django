@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 {% block goal_tracking_base %}
 <!-- Page Wrapper -->
             <div class="page-wrapper">
@@ -36,61 +37,41 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST">
+				<form method="POST" action="{% url 'goaltracking' %}">
 					{% csrf_token %}
-					{{form.as_p}}
-					<!-- <div class="row">
+					
+					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label class="col-form-label">Goal Type</label>
-								<select class="select">
-									<option>Invoice Goal</option>
-									<option>Event Goal</option>
-								</select>
+								{{form.Gole_Type|as_crispy_field}}
+								
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Subject</label>
-								<input class="form-control" type="text">
+								{{form.Subject|as_crispy_field}}
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Target Achievement</label>
-								<input class="form-control" type="text">
+								{{form.Target_Achievement|as_crispy_field}}
 							</div>
 						</div>
 						
+						
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Start Date <span class="text-danger">*</span></label>
-								<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label>End Date <span class="text-danger">*</span></label>
-								<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+								{{form.End_Date|as_crispy_field}}
 							</div>
 						</div>
 						
+						
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label>Description <span class="text-danger">*</span></label>
-								<textarea class="form-control" rows="4"></textarea>
+								{{form.Discription|as_crispy_field}}
 							</div>
 						</div>
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label class="col-form-label">Status</label>
-								<select class="select">
-									<option>Active</option>
-									<option>Inactive</option>
-								</select>
-							</div>
-						</div>
-					</div> -->
+					</div>
 					<div class="submit-section">
 						<button class="btn btn-primary submit-btn" type="submit" >Submit</button>
 					</div>

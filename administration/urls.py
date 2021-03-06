@@ -13,8 +13,9 @@ urlpatterns = [
 # ------------------------------client--------------------------------------------------------------------------
 
 # ------------------------------Lead---------------------------------------------------------------------------
-    path('leads/',views.CreateLeadView.as_view(),name='leads' ),
+  path('leads/',views.CreateLeadView.as_view(),name='leads' ),
     path('leads_list/',views.CreateLeadListView.as_view(),name='leads_list' ),
+    path('leads_remove/<int:id>',views.LeadsRemove.as_view(),name='leads_remove' ),
 # ------------------------------/Lead--------------------------------------------------------------------------
 
     path('projects/',views.projectsView.as_view(),name='projects' ),

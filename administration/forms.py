@@ -12,8 +12,10 @@ class ClientForm(forms.ModelForm):
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = "__all__"
-
+        widgets = {
+            'lead_created':forms.DateInput(attrs={'type':'date'})
+        }
+        fields = "__all__"  
 # --------------------------------------/Assets----------------------------------------------------
 
 # --------------------------------------Lead----------------------------------------------------
