@@ -1,0 +1,60 @@
+{% include 'administration/base.html' %}
+				<!-- Edit Policy Modal -->
+				<!-- <div id="edit_policy" class="modal custom-modal fade" role="dialog"> -->
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Edit Policy</h5>
+                                <a href="{% url 'policy_list' %}">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+                            </a>
+							</div>
+							<div class="modal-body">
+								<form method="POST" action="{% url 'policy_manage' policy_update.id %}">
+                                    {% csrf_token %}
+
+									<div class="form-group">
+										<label>Policy Name <span class="text-danger">*</span></label>
+										<input class="form-control" type="text" name="Policy_name" value="{{policy_update.Policy_name}}">
+									</div>
+									<div class="form-group">
+										<label>Description <span class="text-danger">*</span></label>
+										<textarea class="form-control" name="Policy_Description" rows="4">{{policy_update.Policy_Description}}</textarea>
+									</div>
+                                    <div class="form-group">
+										<label>Department <span class="text-danger">*</span></label>
+										<input class="form-control" type="text" name="Policy_Department" value="{{policy_update.Policy_Department}}">
+									</div>
+									<!-- <div class="form-group">
+										<label class="col-form-label">Department</label>
+										<select class="select">
+											<option>All Departments</option>
+											<option>Web Development</option>
+											<option>Marketing</option>
+											<option>IT Management</option>
+										</select>
+									</div> -->
+									<!-- <div class="form-group">
+										<label>Upload Policy <span class="text-danger">*</span></label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="edit_policy_upload">
+											<label class="custom-file-label" for="edit_policy_upload">Choose file</label>
+										</div>
+									</div> -->
+                                    <div class="form-group">
+										<label>Upload Policy <span class="text-danger">*</span></label>
+										<input type="file" name="Policy_Upload_Policy" 
+										 value="{{policy_update.Policy_Upload_Policy}}">
+										
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn" type="submit">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Edit Policy Modal -->

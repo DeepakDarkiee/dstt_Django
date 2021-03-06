@@ -27,4 +27,5 @@ urlpatterns = [
     path('performances/',include('performances.urls')),
     path('employee/',include('employee.urls')),
     # url(r'^groups-manager/', include('groups_manager.urls', namespace='groups_manager')),
-]+static(settings.STATIC_URL,document_root=settings.MEDIA_ROOT) 
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
+# +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

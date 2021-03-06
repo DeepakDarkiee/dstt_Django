@@ -1,0 +1,164 @@
+{% include 'administration/base.html' %}
+{% block css %}
+  	<!-- Favicon -->
+      <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+      
+      <!-- Fontawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+      
+      <!-- Lineawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+      
+      <!-- Select2 CSS -->
+      <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+      
+      <!-- Datetimepicker CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+      
+      <!-- Tagsinput CSS -->
+      <link rel="stylesheet" href="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+      
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+		
+{% endblock css %}
+ <!-- Experience Modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Experience Informations</h5>
+            <a href="{% url 'update_employees' update_info.id %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-scroll">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Experience Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="Digital Devlopment Inc">
+                                            <label class="focus-label">Company Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="United States">
+                                            <label class="focus-label">Location</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="Web Developer">
+                                            <label class="focus-label">Job Position</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" value="01/07/2007">
+                                            </div>
+                                            <label class="focus-label">Period From</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" value="08/06/2018">
+                                            </div>
+                                            <label class="focus-label">Period To</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Experience Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="Digital Devlopment Inc">
+                                            <label class="focus-label">Company Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="United States">
+                                            <label class="focus-label">Location</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <input type="text" class="form-control floating" value="Web Developer">
+                                            <label class="focus-label">Job Position</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" value="01/07/2007">
+                                            </div>
+                                            <label class="focus-label">Period From</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" value="08/06/2018">
+                                            </div>
+                                            <label class="focus-label">Period To</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-more">
+                                    <a href="javascript:void(0);"><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Experience Modal -->
+
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datetimepicker JS -->
+<script src="/static/assets/js/moment.min.js"></script>
+<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Tagsinput JS -->
+<script src="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+
+</body>
+</html>

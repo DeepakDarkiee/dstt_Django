@@ -1,0 +1,137 @@
+{% include 'administration/base.html' %}
+{% block css %}
+<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="/static/assets/css/style.css">
+{% endblock css %}
+
+
+
+<!-- Personal Info Modal -->
+<!-- <div class="modal custom-modal fade" role="dialog"> -->
+    <!-- Page Wrapper -->
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Personal Information</h5>
+                    <a href="{%url 'update_employees' update_info.id %}">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'Update_personal_info' update_info.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Passport No</label>
+                                    <input type="text" class="form-control" value="{{update_info.employee_passport_no}}" name="employee_passport_no">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Passport Expiry Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" type="text" value="{{update_info.employee_passport_expiry_date}}" name="employee_passport_expiry_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tel</label>
+                                    <input class="form-control" type="text" value="{{update_info.employee_tel}}" name="employee_tel">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nationality <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" value="{{update_info.employee_nationality}}" name="employee_nationality">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Religion</label>
+                                    <input class="form-control" type="text" value="{{update_info.employee_religion}}" name="employee_religion">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Marital status <span class="text-danger">*</span></label>
+                                    <select class="select form-control" value="{{update_info.employee_marital_status}}" name="employee_marital_status">
+                                        <option>-</option>
+                                        <option>Single</option>
+                                        <option>Married</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Employment of spouse</label>
+                                    <input class="form-control" type="text" value="{{update_info.employment_of_spouse}}" name="employment_of_spouse">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>No. of children </label>
+                                    <input class="form-control" type="text" value="{{update_info.employee_no_of_children}}" name="employee_no_of_children">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" id="personal_info_modal" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+<!-- </div> -->
+<!-- /Personal Info Modal -->
+
+
+<!-- /Education Modal -->
+
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datetimepicker JS -->
+<script src="/static/assets/js/moment.min.js"></script>
+<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Tagsinput JS -->
+<script src="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.urls.base import reverse
 from django.views import generic
 from django.views.generic import TemplateView,CreateView,ListView
@@ -11,8 +10,181 @@ from .forms import ClientForm,AssetForm,LeadForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.decorators import method_decorator
+from employee.models import Employee
+from django.db import IntegrityError
+from account.models import User
 
 # Create your views here.
+
+
+# -------------------------------------all employee for admin--------------------------------
+@login_required
+def Register_Employee_View(request):
+    if request.method =="POST":
+            employee_first_name = request.POST['employee_first_name']
+            employee_last_name = request.POST['employee_last_name']
+            employee_email = request.POST['employee_email']
+            employee_joining_date = request.POST['employee_joining_date']
+            employee_department = request.POST['employee_department']
+            employee_password = request.POST['employee_password']
+            employee_confirm_password = request.POST['employee_confirm_password']
+            employee_id = request.POST['employee_id']
+            employee_phone = request.POST['employee_phone']
+            
+            # employee_role = Group.objects.get(name=request.POST['employee_role'])
+            try:
+                
+                user = User.objects.create_user(email=employee_email,password=employee_password)
+                user.is_staff=False
+                user.full_name = employee_first_name+' '+employee_last_name
+                user.is_active=True
+                user.is_employee=True
+                user.save()
+                register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
+                register_employee.save()
+                messages.success(request,"Employee Registered Successfully!")
+            except IntegrityError as e:
+                messages.error(request,"Email Already Registered!")
+            
+            
+            return redirect('/administration/all_employee')
+    else:
+        groups=Group.objects.all()
+        return render(request,'administration/employees.html',{'groups':groups})
+            
+
+def All_Employee_View(request):
+    employee = Employee(request.GET)
+    AllEmployee = Employee.objects.filter(employee_status="Active")
+    return render(request,'administration/employees.html',{'Employee':AllEmployee})
+ 
+def Update_profile_info(request,id):
+    update_info = Employee.objects.get(id=id)
+    return render(request,'administration/employee_profile_information.html',{'update_info':update_info})
+
+# def Update_emergency_contact(request,id):
+#     update_info = Employee.objects.get(id=id)
+#     return render(request,'administration/employee_emergency_contact.html',{'update_info':update_info})
+
+# def Update_faimly_information(request,id):
+#     update_info = Employee.objects.get(id=id)
+#     return render(request,'administration/employee_faimly_information.html',{'update_info':update_info})
+
+# def Update_education_information(request,id):
+#     update_info = Employee.objects.get(id=id)
+#     return render(request,'administration/employee_education_information.html',{'update_info':update_info})
+
+
+
+
+def Update_Employees_View(request,id):
+    update_info = Employee.objects.get(id=id)
+    # if request.method == "POST":
+    #     update_info.employee_department = request.POST.get('employee_department','')
+    #     update_info.employee_designation = request.POST.get('employee_designation','')
+    #     update_info.employee_phone = request.POST.get('employee_phone','')
+    #     update_info.employee_address = request.POST.get('employee_address','')
+    #     update_info.employee_state = request.POST.get('employee_state','')
+    #     update_info.employee_country = request.POST.get('employee_country','')
+    #     update_info.employee_pincode = request.POST.get('employee_pincode','')
+    #     update_info.employee_gender = request.POST.get('employee_gender','')
+    #     update_info.employee_birth_date = request.POST.get('employee_birth_date','')
+    #     update_info.employee_reports_to = request.POST.get('employee_reports_to','')
+    #     update_info.employee_status = request.POST.get('employee_status','')
+       
+       
+    #     if "employee_image" in request.FILES:
+    #         img=request.FILES["employee_image"]
+    #         update_info.employee_image =img
+    #         print (img)
+    #     update_info.save()
+    #     return HttpResponse("done")
+    return render(request,"administration/employee_profile.html",{'update_info':update_info})
+
+def Update_personal_info(request,id):
+    update_info = Employee.objects.get(id=id) 
+    print(update_info)
+    if request.method == "POST":
+        update_info.employee_passport_no = request.POST.get('employee_passport_no','')
+        update_info.employee_passport_expiry_date = request.POST.get('employee_passport_expiry_date','')
+        update_info.employee_tel = request.POST.get('employee_tel','')
+        update_info.employee_nationality = request.POST.get('employee_nationality','')
+        update_info.employee_religion = request.POST.get('employee_religion','')
+        update_info.employee_marital_status = request.POST.get('employee_marital_status','')
+        update_info.employee_passport_no = request.POST.get('employee_passport_no','')
+        update_info.employment_of_spouse = request.POST.get('employment_of_spouse','')
+        update_info.employee_no_of_children = request.POST.get('employee_no_of_children','')
+        update_info.save()
+        print(update_info)
+    update_info = Employee.objects.get(id=id)    
+
+
+def Update_emergency_information(request,id):
+    update_info = Employee.objects.get(id=id)
+    if request.method == "POST":
+        update_info.employee_emergency_primary_name = request.POST.get('employee_emergency_primary_name','')
+        update_info.employee_emergency_primary_relationship = request.POST.get('employee_emergency_primary_relationship','')
+        update_info.employee_emergency_primary_phone1 = request.POST.get('employee_emergency_primary_phone1','')
+        update_info.employee_emergency_primary_phone2 = request.POST.get('employee_emergency_primary_phone2','')
+        update_info.employee_emergency_secondary_name = request.POST.get('employee_emergency_secondary_name','')
+        update_info.employee_emergency_secondary_relationship = request.POST.get('employee_emergency_secondary_relationship','')
+        update_info.employee_emergency_secondary_phone1 = request.POST.get('employee_emergency_secondary_phone1','')
+        update_info.employee_emergency_secondary_phone2 = request.POST.get('employee_emergency_secondary_phone2','')
+        update_info.save()
+        print(update_info)
+    return render(request,'administration/employee_emergency_contact.html',{'update_info':update_info})    
+
+
+def Update_faimly_information(request,id):
+    update_info = Employee.objects.get(id=id)
+    if request.method == "POST":
+        update_info.employee_family_member_name = request.POST.get('employee_education_institution','')
+        update_info.employee_family_member_relationship = request.POST.get('employee_family_member_relationship','')
+        update_info.employee_emergency_primary_phone1 = request.POST.get('employee_family_member_date_of_birth','')
+        update_info.employee_emergency_primary_phone2 = request.POST.get('employee_family_member_phone','')
+        update_info.save()
+        print(update_info)
+    return render(request,'administration/employee_faimly_information.html',{'update_info':update_info})  
+
+def Update_education_information(request,id):
+    update_info = Employee.objects.get(id=id)
+    if request.method == "POST":
+        update_info.employee_education_institution = request.POST.get('employee_education_institution','')
+        update_info.employee_education_subject = request.POST.get('employee_education_subject','')
+        update_info.employee_education_starting_date = request.POST.get('employee_education_starting_date','')
+        update_info.employee_education_complete_date = request.POST.get('employee_education_complete_date','')
+        update_info.employee_education_degree = request.POST.get('employee_education_degree','')
+        update_info.employee_education_grade = request.POST.get('employee_education_grade','')
+        update_info.save()
+        print(update_info)
+    return render(request,'administration/employee_education_information.html',{'update_info':update_info})  
+
+def Update_experience_information(request,id):
+    update_info = Employee.objects.get(id=id)
+    if request.method == "POST":
+        update_info.employee_experience_company_name = request.POST.get('employee_experience_company_name','')
+        update_info.employee_experience_company_location = request.POST.get('employee_experience_company_location','')
+        update_info.employee_experience_company_job_position = request.POST.get('employee_experience_company_job_position','')
+        update_info.employee_experience_company_period_from = request.POST.get('employee_experience_company_period_from','')
+        update_info.employee_experience_company_period_to = request.POST.get('employee_experience_company_period_to','')
+        update_info.save()
+    return render(request,'administration/employee_experience.html',{'update_info':update_info})
+
+
+def EditClient(request,id):
+    edit_client = Client.objects.get(id=id) 
+    print(edit_client.id)
+    if request.method == "POST":
+        edit_client.client_first_name = request.POST.get('client_first_name','')
+        edit_client.client_last_name = request.POST.get('client_last_name','')
+        edit_client.client_username =  request.POST.get('client_username','')
+        edit_client.client_email = request.POST.get('client_email','')
+        edit_client.client_id = request.POST.get('client_id','')
+        edit_client.client_address = request.POST.get('client_address','')
+        edit_client.client_phone = request.POST.get('client_phone','')
+        edit_client.client_status = request.POST.get('client_status','')
+        edit_client.save()
+    return render(request,"administration/client_form.html",{'edit_client':edit_client})
 
 class IndexView(TemplateView):
     template_name = "administration/index.html"
