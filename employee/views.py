@@ -1,9 +1,11 @@
 from django.contrib.auth.models import Group
+from django.http.response import HttpResponseRedirect
 from account.models import User
 from django.shortcuts import  redirect, render
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic import View,TemplateView,CreateView,UpdateView
+from django.views.generic.edit import UpdateView
 from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
@@ -110,29 +112,60 @@ class AttendanceEmployeeView(TemplateView):
 # ----------------------------------------Department----------------------------------------------------------------------------------
 class DepartmentCreateView(generic.CreateView):
     model = Department
-    fields = ('department_department_name')
+    fields = ('department_name',)
     template_name = "employee/departments.html"
+    success_url = ('/employee/department_list')
+
+class DepartmentList(generic.ListView):
+    model = Department
+    template_name ="employee/departments.html"
+    context_object_name = "department_list"
     success_url = ('/employee/departments')
-# ----------------------------------------Department----------------------------------------------------------------------------------
 
+class DepartmentRemove(View):
+    def get(self,request,id):
+            department=Department.objects.get(id=id)          
+            department.delete()
+            messages.success(request,f"{department} deleted successfully")
+            return HttpResponseRedirect('/employee/department_list') 
+
+class ManageDepartment(UpdateView):
+    model = Department
+    fields = ['department_name']
+    context_object_name = "department_update"
+    template_name = "employee/department_manage.html"             
+    success_url = ("/employee/department_list/")
+ 
 # ----------------------------------------/Department----------------------------------------------------------------------------------
-class DesignationCreateView(generic.CreateView):
-    model = Designation
-    fields = ('designation_name', 'department_name')
-    template_name = "employee/designations.html"
-    success_url = ('/employee/designations_list')
 
-class DesignationListView(generic.ListView): 
-    model = Designation   
-    template_name = "employee/designations.html" 
-    context_object_name = "designations_list"
-    # success_url = ('/employee/designations_list')
+# ----------------------------------------/Designation----------------------------------------------------------------------------------
+class DesignationCreateView(View):
+    def post(self,request):
+        form = DesignationForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return HttpResponseRedirect('/employee/designation')
+            except:
+                pass
+    def get(self,request):
+        form = DesignationForm()
+        designation = Designation.objects.all()
+        return render(request,'employee/designations.html',{'form':form,'designation':designation})
 
-# ----------------------------------------Department----------------------------------------------------------------------------------
+class DesignationRemove(View):
+    def get(self,request,id):
+            designation=Designation.objects.get(id=id)          
+            designation.delete()
+            messages.success(request,f"{designation} deleted successfully")
+            return HttpResponseRedirect('/employee/designation')  
+
+# class DesignationManage(UpdateView):
+#     template_name = "employee/designation_manage.html"
+# ----------------------------------------/Designation----------------------------------------------------------------------------------
 
 class TimesheetView(TemplateView):
     template_name = "employee/timesheet.html"
 
 class OvertimeView(TemplateView):
     template_name = "employee/overtime.html"
-

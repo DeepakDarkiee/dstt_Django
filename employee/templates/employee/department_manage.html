@@ -1,0 +1,75 @@
+{% include 'administration/base.html' %}
+ {% block css %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+    
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+    
+    <!-- Datatable CSS -->
+    <link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+{% endblock css %}
+{% block department_manage %}
+
+ <!-- Edit Department Modal -->
+ <!-- <div  class="modal custom-modal fade" role="dialog"> -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Edit Department</h5></a>
+                <a href="{% url 'department_list' %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'department_manage' department_update.id %}">
+                    {% csrf_token%}
+                    <!-- {{form.as_p}} -->
+                    <div class="form-group">
+                       <label>Department Name <span class="text-danger">*</span></label>
+                        <input class="form-control"  id="rolemanage" name="department_name" value="{{department_update.department_name}}" type="text">
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit" value="Update" >Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Department Modal -->
+
+<!-- /Edit Department Modal -->
+{% endblock department_manage %}
+<!-- {% block js %} --> -->
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Datatable JS -->
+<script src="/static/assets/js/jquery.dataTables.min.js"></script>
+<script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+<!-- {% endblock js %} -->
+</body>
+</html>

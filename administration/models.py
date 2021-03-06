@@ -1,4 +1,3 @@
-
 from django.db import models
 
 
@@ -9,14 +8,6 @@ cilent_status = (
 )
 
 asset_status = (
-    ('new','new'),
-    ('pending','pending'),
-    ('damaged','damaged'),
-    ('deployed','deployed'),
-    ('approved','approved')
-)
-
-lead_status = (
     ('new','new'),
     ('pending','pending'),
     ('damaged','damaged'),
@@ -66,5 +57,4 @@ class Lead(models.Model):
     lead_project = models.CharField(max_length=100)
     lead_assign_staff = models.CharField(max_length=100)
     lead_created = models.CharField(max_length=100)
-    lead_status = models.CharField(max_length=20,choices=lead_status,default='new')
 #--------------------------------------------------------/Leads-----------------------------------------------------------------------
