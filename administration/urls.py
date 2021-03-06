@@ -4,8 +4,26 @@ from . import views
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
 
+# ------------------------------Employees-----------------------------------------------------------------------#
+    path('update_employees/<int:id>',views.Update_Employees_View,name='update_employees' ),
+    path('Update_profile_info/<int:id>',views.Update_profile_info,name='Update_profile_info' ),
+    path('Update_emergency_information/<int:id>',views.Update_emergency_information,name='Update_emergency_information' ),
+    path('Update_faimly_information/<int:id>',views.Update_faimly_information,name='Update_faimly_information' ),
+    path('Update_education_information/<int:id>',views.Update_education_information,name='Update_education_information' ),
+    path('Update_experience_information/<int:id>',views.Update_experience_information,name='Update_experience_information' ),
+    path('Update_personal_info/<int:id>',views.Update_personal_info,name='Update_personal_info' ),
+    # path('Update_emergency_info/<int:id>',views.Update_emergency_info,name='Update_emergency_info' ),
+    # path('Update_family_info/<int:id>',views.Update_family_info,name='Update_family_info' ),
+    # path('Update_education_info/<int:id>',views.Update_education_info,name='Update_education_info' ),
+    path('all_employee/',views.All_Employee_View,name='all_employee' ),
+    path('registeremployee/',views.Register_Employee_View,name='registeremployee' ),
+    
+# ------------------------------Employees-----------------------------------------------------------------------#
+
+
 # ------------------------------client---------------------------------------------------------------------------
     path('clients/',views.CreateClientsView.as_view(),name='clients' ),
+    path('editClient/<int:id>',views.EditClient,name='editClient'),
     path('clients_list/',views.CreateClientsListView.as_view(),name='clients_list' ),
     path('clients_grid/',views.CreateClientsGridView.as_view(),name='clients_grid' ),
     path('clients_remove/<int:id>',views.ClientRemove.as_view(),name='clients_remove' ),

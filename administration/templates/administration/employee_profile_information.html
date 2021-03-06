@@ -1,0 +1,230 @@
+{% include 'administration/base.html' %}
+{% block css %}
+  	<!-- Favicon -->
+      <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+      
+      <!-- Fontawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+      
+      <!-- Lineawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+      
+      <!-- Select2 CSS -->
+      <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+      
+      <!-- Datetimepicker CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+      
+      <!-- Tagsinput CSS -->
+      <link rel="stylesheet" href="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+      
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+		
+{% endblock css %}
+        
+<!-- Personal Info Modal -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Personal Information</h5>
+                <a href="{% url 'update_employees' update_info.id %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+             
+                <form method="post" action="{% url 'Update_profile_info' update_info.id%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="profile-img-wrap edit-img">
+                                <img class="inline-block" src="/static/assets/img/profiles/avatar-02.jpg" alt="user">
+                                <div class="fileupload btn">
+                                    <span class="btn-text">edit</span>
+                                    <input class="upload" type="file" name="employee_image" value="{{update_info.employee_image}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="John">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="Doe">
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <div class="cal-icon">
+                                            <!-- <input class="form-control datetimepicker" type="text" name="employee_birth_date" value="{{employee_update.employee_birth_date}}"> -->
+                                            <input class="form-control datetimepicker" type="text" name="employee_birth_date" value="{{update_info.employee_birth_date}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select class="select form-control" value="{{update_info.employee_gender}}" name="employee_gender" >
+                                            <option value="">select gender </option>
+                                            {% if update_info.employee_gender == "Male" %}
+                                            <option value="Male" selected="selected">Male</option>
+                                            {% else %}
+                                            <option value="Male">Male</option>
+                                            {% endif %}
+                                            {% if update_info.employee_gender == "Female" %}
+                                            <option value="Female" selected="selected">Female</option>
+                                            {% else %}
+                                            <option value="Female">Female</option>
+                                            {% endif %}
+                                        </select>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                 <input type="text" class="form-control" value="{{update_info.employee_address}}"  name="employee_address">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_state}}"  name="employee_state">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_country}}"  name="employee_country">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pin Code</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_pincode}}" name="employee_pincode">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_phone}}" name="employee_phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employee Department</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_department}}" name="employee_department">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employee Designation</label>
+                                <input type="text" class="form-control" value="{{update_info.employee_designation}}"  name="employee_designation">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status<span class="text-danger">*</span></label>
+                                <select class="select" value="{{update_info.employee_status}}" name="employee_status">
+                                    {% if update_info.employee_status == "Active" %}
+                                    <option value="Active" selected="selected">Active</option>
+                                    {% else %}
+                                    <option value="Active">Active</option>
+                                    {% endif %}
+                                    {% if update_info.employee_status == "Inactive" %}
+                                    <option value="Inactive" selected="selected">Inactive</option>
+                                    {% else %}
+                                    <option value="Inactive">Inactive</option>
+                                    {% endif %}
+                                    
+                                </select>
+                            </div>
+                        </div> 
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Department <span class="text-danger">*</span></label>
+                                <select class="select">
+                                    <option>Select Department</option>
+                                    <option>Web Development</option>
+                                    <option>IT Management</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Designation <span class="text-danger">*</span></label>
+                                <select class="select">
+                                    <option>Select Designation</option>
+                                    <option>Web Designer</option>
+                                    <option>Web Developer</option>
+                                    <option>Android Developer</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Reports To <span class="text-danger">*</span></label>
+                                <select class="select">
+                                    <option>-</option>
+                                    <option>Wilmer Deluna</option>
+                                    <option>Lesley Grauer</option>
+                                    <option>Jeffery Lalor</option>
+                                </select>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit" id="profile_info">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<!-- /Personal Info Modal -->
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datetimepicker JS -->
+<script src="/static/assets/js/moment.min.js"></script>
+<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Tagsinput JS -->
+<script src="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     class Meta:
         model = Employee
         fields = '__all__'
-        
+   
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     class Meta:

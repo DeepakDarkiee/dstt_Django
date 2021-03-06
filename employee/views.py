@@ -23,71 +23,71 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 # -------------------------------------all employee for admin--------------------------------
-@login_required(login_url='/')
-def RegisterEmployeeView(request):
-    if request.method =="POST":
-            employee_first_name = request.POST['employee_first_name']
-            employee_last_name = request.POST['employee_last_name']
-            employee_email = request.POST['employee_email']
-            employee_joining_date = request.POST['employee_joining_date']
-            employee_department = request.POST['employee_department']
-            employee_password = request.POST['employee_password']
-            employee_confirm_password = request.POST['employee_confirm_password']
-            employee_id = request.POST['employee_id']
-            employee_phone = request.POST['employee_phone']
-            # employee_role = Group.objects.get(name=request.POST['employee_role'])
-            try:
+# @login_required(login_url='/')
+# def RegisterEmployeeView(request):
+#     if request.method =="POST":
+#             employee_first_name = request.POST['employee_first_name']
+#             employee_last_name = request.POST['employee_last_name']
+#             employee_email = request.POST['employee_email']
+#             employee_joining_date = request.POST['employee_joining_date']
+#             employee_department = request.POST['employee_department']
+#             employee_password = request.POST['employee_password']
+#             employee_confirm_password = request.POST['employee_confirm_password']
+#             employee_id = request.POST['employee_id']
+#             employee_phone = request.POST['employee_phone']
+#             # employee_role = Group.objects.get(name=request.POST['employee_role'])
+#             try:
                 
-                user = User.objects.create_user(email=employee_email,password=employee_password)
-                user.is_staff=False
-                user.full_name = employee_first_name+' '+employee_last_name
-                user.is_active=True
-                user.is_employee=True
-                user.save()
-                register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
-                register_employee.save()
-                messages.success(request,"Employee Registered Successfully!")
-            except IntegrityError as e:
-                messages.error(request,"Email Already Registered!")
+#                 user = User.objects.create_user(email=employee_email,password=employee_password)
+#                 user.is_staff=False
+#                 user.full_name = employee_first_name+' '+employee_last_name
+#                 user.is_active=True
+#                 user.is_employee=True
+#                 user.save()
+#                 register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
+#                 register_employee.save()
+#                 messages.success(request,"Employee Registered Successfully!")
+#             except IntegrityError as e:
+#                 messages.error(request,"Email Already Registered!")
             
             
-            return redirect('/employee/allemployee')
-    else:
-        groups=Group.objects.all()
-        return render(request,'administration/employees.html',{'groups':groups})
+#             return redirect('/employee/allemployee')
+#     else:
+#         groups=Group.objects.all()
+#         return render(request,'administration/employees.html',{'groups':groups})
             
 
-# ------------------------all employees for Administration ------------------------
-@login_required(login_url='/')
+# # ------------------------all employees for Administration ------------------------
+# @login_required(login_url='/')
 
-def AllEmployeeview(request):
-    employee = Employee(request.GET)
-    AllEmployee = Employee.objects.all()
-    print(AllEmployee)
-    return render(request,'administration/employees.html',{'Employee':AllEmployee})
-
-
+# def AllEmployeeview(request):
+#     employee = Employee(request.GET)
+#     AllEmployee = Employee.objects.all()
+#     print(AllEmployee)
+#     return render(request,'administration/employees.html',{'Employee':AllEmployee})
 
 
-@login_required(login_url='/')
 
-def UpdateEmployeesview(request,id):
-    employee_update = Employee.objects.get(id=id)  
-    if request.method == "POST":
-        employee_update.employee_department = request.POST.get('employee_department','')
-        employee_update.employee_designation = request.POST.get('employee_designation','')
-        employee_update.employee_phone = request.POST.get('employee_phone','')
-        employee_update.employee_address = request.POST.get('employee_address','')
-        employee_update.employee_state = request.POST.get('employee_state','')
-        employee_update.employee_country = request.POST.get('employee_country','')
-        employee_update.employee_pincode = request.POST.get('employee_pincode','')
-        employee_update.employee_reports_to = request.POST.get('employee_reports_to','')
-        if "employee_image" in request.FILES:   
-            img=request.FILES["employee_image"]
-            employee_update.employee_image =img
-        employee_update.save()
-        # return HttpResponse("done")
-    return render(request,"employee/employee_profile.html",{'employee_update':employee_update})
+
+# @login_required(login_url='/')
+
+# def UpdateEmployeesview(request,id):
+#     employee_update = Employee.objects.get(id=id)  
+#     if request.method == "POST":
+#         employee_update.employee_department = request.POST.get('employee_department','')
+#         employee_update.employee_designation = request.POST.get('employee_designation','')
+#         employee_update.employee_phone = request.POST.get('employee_phone','')
+#         employee_update.employee_address = request.POST.get('employee_address','')
+#         employee_update.employee_state = request.POST.get('employee_state','')
+#         employee_update.employee_country = request.POST.get('employee_country','')
+#         employee_update.employee_pincode = request.POST.get('employee_pincode','')
+#         employee_update.employee_reports_to = request.POST.get('employee_reports_to','')
+#         if "employee_image" in request.FILES:   
+#             img=request.FILES["employee_image"]
+#             employee_update.employee_image =img
+#         employee_update.save()
+#         # return HttpResponse("done")
+#     return render(request,"employee/employee_profile.html",{'employee_update':employee_update})
 
 class EmployeeDashboardView(TemplateView):
     template_name = "employee/employee_dashboard.html"

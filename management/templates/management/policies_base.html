@@ -34,7 +34,11 @@
 								</button>
 							</div>
 							<div class="modal-body">
+<<<<<<< HEAD
 								<form method="post" enctype="multipart/form-data">
+=======
+								<form method="post" action = "{% url 'policy'%}" enctype="multipart/form-data"	>
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 									{% csrf_token %}
 									<!-- {{form.as_p}} -->
 									<div class="form-group">
@@ -43,6 +47,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description <span class="text-danger">*</span></label>
+<<<<<<< HEAD
 										<textarea class="form-control" rows="4" name="Policy_Description" cols="40" rows="10" maxlength="200" required id="id_Policy_Description"></textarea>
 									</div>
 									<div class="form-group">
@@ -56,12 +61,29 @@
 											<option>Marketing</option>
 											<option>IT Management</option>
 										</select> -->
+=======
+										<textarea class="form-control" name="Policy_Description" cols="40" rows="10" maxlength="200" required id="id_Policy_Description"></textarea>
+									</div>
+									<div class="form-group">
+										<label>Department <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" name="Policy_Department" maxlength="200" required id="id_Policy_Department">
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 									</div>
 									<div class="form-group">
 										<label>Upload Policy <span class="text-danger">*</span></label>
+										<input type="file" name="Policy_Upload_Policy" id="id_Policy_Upload_Policy">
+										
+									</div>
+									<!-- <div class="form-group">
+										<label>Upload Policy <span class="text-danger">*</span></label>
 										<div class="custom-file">
+<<<<<<< HEAD
 											<!-- <label class="custom-file-label" for="policy_upload">Choose file</label> -->
 											<input type="file"  id="policy_upload" name="Policy_Upload_Policy" id="id_Policy_Upload_Policy" >
+=======
+											<label  class="custom-file-label" for="policy_upload">Choose file</label>
+											<input type="file" name="Policy_Upload_Policy" id="id_Policy_Upload_Policy">
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 										</div>
 									</div>
 									<div class="submit-section">

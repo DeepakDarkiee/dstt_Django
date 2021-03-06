@@ -34,15 +34,24 @@
 											<th>Policy Name </th>
 											<th>Department </th>
 											<!-- <th>Description </th> -->
+<<<<<<< HEAD
 											<th>Upload Policy </th>
+=======
+											<th>File </th>
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+<<<<<<< HEAD
 										
 										{% for policy in policy %}
 											
 										
+=======
+										{% for policy in object_list %}
+										  
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 										<tr>
 											<td>{{policy.id}}</td>
 											<td>{{policy.Policy_name}}</td>
@@ -54,8 +63,8 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#"><i class="fa fa-download m-r-5"></i> Download</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_policy"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_policy"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="{% url 'policy_manage' policy.id %}" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_policy" onclick="getId('{{policy.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
@@ -87,51 +96,8 @@
 				<!-- /Page Content -->
                 {% block policies_add %}
 				{% endblock policies_add %}
-				<!-- Edit Policy Modal -->
-				<div id="edit_policy" class="modal custom-modal fade" role="dialog">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Edit Policy</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form>
-									<div class="form-group">
-										<label>Policy Name <span class="text-danger">*</span></label>
-										<input class="form-control" type="text" value="Leave Policy">
-									</div>
-									<div class="form-group">
-										<label>Description <span class="text-danger">*</span></label>
-										<textarea class="form-control" rows="4"></textarea>
-									</div>
-									<div class="form-group">
-										<label class="col-form-label">Department</label>
-										<select class="select">
-											<option>All Departments</option>
-											<option>Web Development</option>
-											<option>Marketing</option>
-											<option>IT Management</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label>Upload Policy <span class="text-danger">*</span></label>
-										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="edit_policy_upload">
-											<label class="custom-file-label" for="edit_policy_upload">Choose file</label>
-										</div>
-									</div>
-									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /Edit Policy Modal -->
+
+
 				
 				<!-- Delete Policy Modal -->
 				<div class="modal custom-modal fade" id="delete_policy" role="dialog">
@@ -145,7 +111,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="policy_delete" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -183,5 +149,11 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		<script>
+			function getId(id){
+				var a = document.getElementById("policy_delete") ;
+				a.href = "/management/policy_remove/" +id
+			}
+		</script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+{% include 'administration/base.html' %}
+{% block css %}
+  	<!-- Favicon -->
+      <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+      
+      <!-- Fontawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+      
+      <!-- Lineawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+      
+      <!-- Select2 CSS -->
+      <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+      
+      <!-- Datetimepicker CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+      
+      <!-- Tagsinput CSS -->
+      <link rel="stylesheet" href="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+      
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+		
+{% endblock css %}
+<!-- Emergency Contact Modal -->
+<!-- Personal Info Modal -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Personal Information</h5>
+                <a href="{% url 'update_employees' update_info.id %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'Update_emergency_information' update_info.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Primary Contact</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" value="{{update_info.employee_emergency_primary_name}}" name="employee_emergency_primary_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Relationship <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" value="{{update_info.employee_emergency_primary_relationship}}" name="employee_emergency_primary_relationship">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" value="{{update_info.employee_emergency_primary_phone1}}" name="employee_emergency_primary_phone1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone 2</label>
+                                        <input class="form-control" type="text" value="{{update_info.employee_emergency_primary_phone2}}" name="employee_emergency_primary_phone2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Secondary Contact</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="employee_emergency_secondary_name" value="{{update_info.employee_emergency_secondary_name}}"> 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Relationship <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" value="{{update_info.employee_emergency_secondary_relationship}}" name="employee_emergency_secondary_relationship">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="employee_emergency_secondary_phone1" value="{{update_info.employee_emergency_secondary_phone1}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone 2</label>
+                                        <input class="form-control" type="text" value="{{update_info.employee_emergency_secondary_phone2}}" name="employee_emergency_secondary_phone2"> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" id="emergency_contact_modal" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datetimepicker JS -->
+<script src="/static/assets/js/moment.min.js"></script>
+<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Tagsinput JS -->
+<script src="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+
+</body>
+</html>

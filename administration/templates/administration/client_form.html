@@ -34,7 +34,11 @@
 			<div class="dropdown profile-action">
 				<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 				<div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
 					<a class="dropdown-item" href="{% url 'client_manage_grid' client.id %}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+=======
+					<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_client" onClick="getId('{{client.id}}')"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+>>>>>>> 94e9c1d51d738170a8e6ed58ffdfbd1f5ea32d11
 					<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client" onClick="getId('{{client.id}}')"><i class="fa fa-trash-o m-r-5" ></i> Delete</a>
 				</div>
 			</div>
@@ -66,209 +70,59 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
+							
 							<div class="modal-body">
-								<form>
+								<form method="POST" action="{% url 'editClient' 2  %}" enctype="multipart/form-data">
+									{% csrf_token %}
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
+												
 												<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-												<input class="form-control" value="Barry" type="text">
+												<input class="form-control" value="{{edit_client.client_first_name}}" type="text" name="client_first_name">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-form-label">Last Name</label>
-												<input class="form-control" value="Cuda" type="text">
+												<input class="form-control"  type="text" value="{{edit_client.client_last_name}}" name="client_last_name">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-form-label">Username <span class="text-danger">*</span></label>
-												<input class="form-control" value="barrycuda" type="text">
+												<input class="form-control" type="text" value="{{edit_client.client_username}}" name="client_username">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-form-label">Email <span class="text-danger">*</span></label>
-												<input class="form-control floating" value="barrycuda@example.com" type="email">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">Password</label>
-												<input class="form-control" value="barrycuda" type="password">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="col-form-label">Confirm Password</label>
-												<input class="form-control" value="barrycuda" type="password">
+												<input class="form-control floating" value="{{edit_client.client_email}}" type="email" name="client_email">
 											</div>
 										</div>
 										<div class="col-md-6">  
 											<div class="form-group">
 												<label class="col-form-label">Client ID <span class="text-danger">*</span></label>
-												<input class="form-control floating" value="CLT-0001" type="text">
+												<input class="form-control floating" value="{{edit_client.client_id}}" type="text" name="client_id">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-form-label">Phone </label>
-												<input class="form-control" value="9876543210" type="text">
+												<input class="form-control" value="{{edit_client.client_phone}}" type="text" name="client_phone">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="col-form-label">Company Name</label>
-												<input class="form-control" type="text" value="Global Technologies">
+												<label class="col-form-label">Address</label>
+												<input class="form-control" value="{{edit_client.client_address}}" type="text" name="client_address">
 											</div>
 										</div>
+									
 									</div>
-									<div class="table-responsive m-t-15">
-										<table class="table table-striped custom-table">
-											<thead>
-												<tr>
-													<th>Module Permission</th>
-													<th class="text-center">Read</th>
-													<th class="text-center">Write</th>
-													<th class="text-center">Create</th>
-													<th class="text-center">Delete</th>
-													<th class="text-center">Import</th>
-													<th class="text-center">Export</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Projects</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Tasks</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Chat</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-									estimates				<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Estimates</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Invoices</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-												<tr>
-													<td>Timing Sheets</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-													<td class="text-center">
-														<input checked="" type="checkbox">
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+									
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
+										<button class="btn btn-primary submit-btn" id="edit_client" type="submit">Submit</button>
 									</div>
 								</form>
 							</div>
@@ -323,12 +177,20 @@
 		
 		<!-- Custom JS -->
 		<script src="/static/assets/js/app.js"></script>
+		
 		<script>
 			function getId(id) {
 				var a =document.getElementById('deleteclient');
 				a.href = "/administration/clients_remove_grid/"+id;
 			}
 		</script>	
+		<script>
+			function getId(id) {
+				alert(id)
+				var a = document.getElementById('edit_client');
+				a.href = "/administration/editClient/"+id;
+			}
+		</script>
 		
 		
 </body>

@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
 from django.views import generic
 from .models import Policy
-from django.views.generic import TemplateView,CreateView,ListView
+from django.views.generic import TemplateView,CreateView,ListView,UpdateView
+from django.views.generic.base import View
+from django.contrib import messages
 
 # Create your views here.
 class estimatesView(TemplateView):
@@ -42,7 +44,30 @@ class PolicyCreateView(generic.CreateView):
     model = Policy
     fields = ('Policy_name', 'Policy_Description', 'Policy_Department', 'Policy_Upload_Policy',)
     template_name = "management/policies.html"
-    success_url = ('/management/policy')
+    success_url = ('/management/policy_list')
+
+class PolicyListView(ListView):
+    model = Policy
+    # form_class = PolicyForm 
+    template_name = "management/policies.html"
+    context_object_name = "object_list" 
+
+
+class PolicyManage(UpdateView):
+    model = Policy
+    context_object_name = "policy_update" 
+    fields = ('Policy_name','Policy_Description','Policy_Department','Policy_Upload_Policy')
+    template_name = "management/policies_manage.html"
+    success_url = ('/management/policy_list/')
+
+
+class PolicyRemove(View):
+    def get(self,request,id):
+        policy = Policy.objects.get(id=id)
+        policy.delete()
+        messages.success(request,"Deleted successfully") 
+        return HttpResponseRedirect('/management/policy_list') 
+
 
 class PolicyListView(generic.ListView):
     model = Policy

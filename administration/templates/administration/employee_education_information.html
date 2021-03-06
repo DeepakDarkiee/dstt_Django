@@ -1,0 +1,177 @@
+{% include 'administration/base.html' %}
+{% block css %}
+  	<!-- Favicon -->
+      <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+      
+      <!-- Fontawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+      
+      <!-- Lineawesome CSS -->
+      <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+      
+      <!-- Select2 CSS -->
+      <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+      
+      <!-- Datetimepicker CSS -->
+      <link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+      
+      <!-- Tagsinput CSS -->
+      <link rel="stylesheet" href="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+      
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+		
+{% endblock css %}
+<!-- Education Modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Education Informations</h5>
+                <a href="{% url 'update_employees' update_info.id %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'Update_education_information' update_info.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-scroll">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text"  class="form-control floating" value="{{update_info.employee_education_institution }}" name="employee_education_institution">
+                                            <label class="focus-label">Institution</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" class="form-control floating" name="employee_education_subject" value="{{update_info.employee_education_subject}}">
+                                            <label class="focus-label">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" name="employee_education_starting_date" value="{{update_info.employee_education_starting_date}}">
+                                            </div>
+                                            <label class="focus-label">Starting Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control floating datetimepicker" name="employee_education_complete_date" value="{{update_info.employee_education_complete_date}}">
+                                            </div>
+                                            <label class="focus-label">Complete Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text"  class="form-control floating" value="{{update_info.employee_education_degree}}" name="employee_education_degree">
+                                            <label class="focus-label">Degree</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" class="form-control floating" name="employee_education_grade" value="{{update_info.employee_education_grade}}">
+                                            <label class="focus-label">Grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text"  class="form-control floating">
+                                            <label class="focus-label">Institution</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text"  class="form-control floating">
+                                            <label class="focus-label">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input type="text"  class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Starting Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <div class="cal-icon">
+                                                <input type="text"  class="form-control floating datetimepicker">
+                                            </div>
+                                            <label class="focus-label">Complete Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text" class="form-control floating">
+                                            <label class="focus-label">Degree</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-focus focused">
+                                            <input type="text"  class="form-control floating">
+                                            <label class="focus-label">Grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-more">
+                                    <a href="javascript:void(0);"><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" id="education_info" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Education Modal -->
+
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datetimepicker JS -->
+<script src="/static/assets/js/moment.min.js"></script>
+<script src="/static/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Tagsinput JS -->
+<script src="/static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+
+</body>
+</html>
