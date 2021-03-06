@@ -15,15 +15,16 @@ urlpatterns = [
     path('attendance_employee/',views.AttendanceEmployeeView.as_view(),name='attendance_employee' ),
 # -------------------------------------------Departments-----------------------------------------------------------
     path('departments/',views.DepartmentCreateView.as_view(),name='departments' ),
-    path('department_list/',views.DepartmentList.as_view(),name='department_list' ),
+    path('department_list/',views.DepartmentList.as_view(),name='department_list'),
     path('department_remove/<int:id>',views.DepartmentRemove.as_view(),name='department_remove' ),
-    # path('department_manage/<int:id>',views.DepartmentManage.as_view(),name='department_manage' ),
+    path('department_manage/<int:pk>',views.ManageDepartment.as_view(),name='department_manage' ),
 # -------------------------------------------/Departments-----------------------------------------------------------
 
 # -------------------------------------------designation-----------------------------------------------------------
-   path('designation/',views.DesignationCreateView.as_view(),name='designations' ),
+   path('designation/',views.DesignationCreateView.as_view(),name='designation' ),
     # path('designations_list/',views.DesignationListView.as_view(),name='designations_list' ),
     path('designations_remove/<int:id>',views.DesignationRemove.as_view(),name='designations_remove' ),
+    #  path('designation_manage/',views.DesignationManage.as_view(),name='designation_manage' ),
 # -------------------------------------------designation-----------------------------------------------------------
     
     path('timesheet/',views.TimesheetView.as_view(),name='timesheet' ),

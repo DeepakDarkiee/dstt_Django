@@ -5,6 +5,7 @@ from django.shortcuts import  redirect, render
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic import View,TemplateView,CreateView,UpdateView
+from django.views.generic.edit import UpdateView
 from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
@@ -128,12 +129,12 @@ class DepartmentRemove(View):
             messages.success(request,f"{department} deleted successfully")
             return HttpResponseRedirect('/employee/department_list') 
 
-class ManageDepartment(View):
-    def get(self,request,id):
-        department=Department.objects.get(id=id)
-        department.update()
-        messages.success(request,f"{department} updated successfully")
-        return HttpResponseRedirect('/employee/department_list')             
+class ManageDepartment(UpdateView):
+    model = Department
+    fields = ['department_name']
+    context_object_name = "department_update"
+    template_name = "employee/department_manage.html"             
+    success_url = ("/employee/department_list/")
  
 # ----------------------------------------/Department----------------------------------------------------------------------------------
 
@@ -158,6 +159,9 @@ class DesignationRemove(View):
             designation.delete()
             messages.success(request,f"{designation} deleted successfully")
             return HttpResponseRedirect('/employee/designation')  
+
+# class DesignationManage(UpdateView):
+#     template_name = "employee/designation_manage.html"
 # ----------------------------------------/Designation----------------------------------------------------------------------------------
 
 class TimesheetView(TemplateView):

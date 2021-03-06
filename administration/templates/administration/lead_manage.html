@@ -1,0 +1,117 @@
+{% include 'administration/base.html' %}
+{% block css %}
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+<!-- Fontawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+
+<!-- Lineawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+
+<!-- Datatable CSS -->
+<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="/static/assets/css/select2.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/static/assets/css/style.css">
+{% endblock css %}
+<div class="page-wrapper">
+        
+    <!-- Page Content -->
+    <div class="content container-fluid">
+<!-- Edit Client Modal -->
+<!-- <div id="edit_client" class="modal custom-modal fade" role="dialog"> -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Lead</h5>
+                <a href="{% url 'leads_list' %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'leads_manage' lead_update.id %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Lead Name<span class="text-danger">*</span></label>
+                                <input class="form-control" value="{{lead_update.lead_name}}" type="text" name="lead_name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Email</label>
+                                <input class="form-control" value="{{lead_update.lead_email}}" type="email" name="lead_email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Phone <span class="text-danger">*</span></label>
+                                <input class="form-control" value="{{lead_update.lead_phone}}" type="text" name="lead_phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Project <span class="text-danger">*</span></label>
+                                <input class="form-control floating" value="{{lead_update.lead_project}}" type="text" name="lead_project">
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="col-md-6">  
+                            <div class="form-group">
+                                <label class="col-form-label">Assigned Staff <span class="text-danger">*</span></label>
+                                <input class="form-control floating" value="{{lead_update.lead_assign_staff}}" type="text" name="lead_assign_staff">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Created </label>
+                                <!-- <div class="cal-icon"> -->
+                                    <input class="form-control datetimepicker" value="{{lead_update.lead_created}}" type="date" name="lead_created" maxlength="100" >
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                       
+
+                    </div>
+                   
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" value="submit"> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Edit Client Modal -->
+
+
+ <!-- jQuery -->
+ <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+		
+ <!-- Bootstrap Core JS -->
+ <script src="/static/assets/js/popper.min.js"></script>
+ <script src="/static/assets/js/bootstrap.min.js"></script>
+ 
+ <!-- Slimscroll JS -->
+ <script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+ 
+ <!-- Select2 JS -->
+ <script src="/static/assets/js/select2.min.js"></script>
+ 
+ <!-- Custom JS -->
+ <script src="/static/assets/js/app.js"></script>
+</body>
+</html>

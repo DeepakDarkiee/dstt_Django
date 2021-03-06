@@ -38,7 +38,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method ="POST" action="{% url 'designations' %}" >
+                <form method ="POST" action="{% url 'designation' %}" >
                     {% csrf_token %}
                     <div class="form-group">
                         {{ form.Designation_Name|as_crispy_field }}

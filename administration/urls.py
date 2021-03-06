@@ -10,12 +10,15 @@ urlpatterns = [
     path('clients_grid/',views.CreateClientsGridView.as_view(),name='clients_grid' ),
     path('clients_remove/<int:id>',views.ClientRemove.as_view(),name='clients_remove' ),
     path('clients_remove_grid/<int:id>',views.ClientRemoveGrid.as_view(),name='clients_remove_grid' ),
+    path('client_manage_grid/<int:pk>',views.ClientManageGrid.as_view(),name='client_manage_grid' ),
+    path('client_manage_list/<int:pk>',views.ClientManageList.as_view(),name='client_manage_list' ),
 # ------------------------------client--------------------------------------------------------------------------
 
 # ------------------------------Lead---------------------------------------------------------------------------
-  path('leads/',views.CreateLeadView.as_view(),name='leads' ),
+    path('leads/',views.CreateLeadView.as_view(),name='leads' ),
     path('leads_list/',views.CreateLeadListView.as_view(),name='leads_list' ),
     path('leads_remove/<int:id>',views.LeadsRemove.as_view(),name='leads_remove' ),
+    path('leads_manage/<int:pk>',views.LeadManage.as_view(),name='leads_manage' ),
 # ------------------------------/Lead--------------------------------------------------------------------------
 
     path('projects/',views.projectsView.as_view(),name='projects' ),

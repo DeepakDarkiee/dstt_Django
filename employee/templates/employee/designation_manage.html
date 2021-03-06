@@ -1,0 +1,81 @@
+{% include 'administration/base.html' %}
+{% block css %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/static/sets/css/font-awesome.min.css">
+    
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+    
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+    
+    <!-- Datatable CSS -->
+    <link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+    
+{% endblock css %}
+{% block designation_manage %}
+<!-- Edit Designation Modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Designation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Designation Name <span class="text-danger">*</span></label>
+                        <input class="form-control" value="Web Developer" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Department <span class="text-danger">*</span></label>
+                        <select class="select">
+                            <option>Select Department</option>
+                            <option>Web Development</option>
+                            <option>IT Management</option>
+                            <option>Marketing</option>
+                        </select>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Designation Modal -->
+{% endblock designation_manage  %}
+
+    <!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="/static/assets/js/select2.min.js"></script>
+
+<!-- Datatable JS -->
+<script src="/static/assets/js/jquery.dataTables.min.js"></script>
+<script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+</body>
+</html>  

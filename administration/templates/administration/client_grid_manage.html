@@ -1,0 +1,144 @@
+{% include 'administration/base.html' %}
+
+{% block css %}
+   
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+    
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+    
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="/static/assets/css/select2.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+{% endblock css %}
+
+<div class="page-wrapper">
+        
+    <!-- Page Content -->
+    <div class="content container-fluid">
+<!-- Edit Client Modal -->
+<!-- <div id="edit_client" class="modal custom-modal fade" role="dialog"> -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Client</h5>
+                <a href="{% url 'clients_grid' %}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'client_manage_grid' client_update.id %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                <input class="form-control" value="{{client_update.client_first_name}}" type="text" name="client_first_name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Last Name</label>
+                                <input class="form-control" value="{{client_update.client_last_name}}" type="text" name="client_last_name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Username <span class="text-danger">*</span></label>
+                                <input class="form-control" value="{{client_update.client_username}}" type="text" name="client_username">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                                <input class="form-control floating" value="{{client_update.client_email}}" type="email" name="client_email">
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="col-md-6">  
+                            <div class="form-group">
+                                <label class="col-form-label">Client ID <span class="text-danger">*</span></label>
+                                <input class="form-control floating" value="{{client_update.client_id}}" type="text" name="client_id">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Phone </label>
+                                <input class="form-control" value="{{client_update.client_phone}}" type="text" name="client_phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Address</label>
+                                <input class="form-control" type="text" value="{{client_update.client_address}}" name="client_address">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Status</label>
+                                <select class="select form-control" value="{{client_update.client_status}}" name="client_status">
+                                    <option>Select Status</option>
+                                    {% if client_update.client_status == "Active" %}
+                                    <option value="Active" selected>Active</option>
+                                    {% else %}
+                                    <option value="Active">active</option>
+                                    {% endif %}
+                                    {% if client_update.client_status == "Inactive" %}
+                                    <option value="Inactive" selected>Inactive</option>
+                                    {% else %}
+                                    <option value="Inactive">Inactive</option>
+                                    {% endif %}
+                                </select>
+                                <!-- <input class="form-control" type="text" value="{{client_update.client_phone}}"> -->
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Edit Client Modal -->
+
+
+
+
+            <!-- jQuery -->
+            <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+		
+            <!-- Bootstrap Core JS -->
+            <script src="/static/assets/js/popper.min.js"></script>
+            <script src="/static/assets/js/bootstrap.min.js"></script>
+            
+            <!-- Slimscroll JS -->
+            <script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+            
+            <!-- Select2 JS -->
+            <script src="/static/assets/js/select2.min.js"></script>
+            
+            <!-- Custom JS -->
+            <script src="/static/assets/js/app.js"></script>
+            	
+            
+            
+    </body>
+    </html>

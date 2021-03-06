@@ -15,14 +15,6 @@ asset_status = (
     ('approved','approved')
 )
 
-lead_status = (
-    ('new','new'),
-    ('pending','pending'),
-    ('damaged','damaged'),
-    ('deployed','deployed'),
-    ('approved','approved')
-)
-
 
 
 #--------------------------------------------------------Client-----------------------------------------------------------------------
@@ -64,6 +56,5 @@ class Lead(models.Model):
     lead_phone = models.CharField(max_length=100)
     lead_project = models.CharField(max_length=100)
     lead_assign_staff = models.CharField(max_length=100)
-    lead_created = models.DateField()
-    lead_status = models.CharField(max_length=20,choices=lead_status,default='new')
+    lead_created = models.CharField(max_length=100)
 #--------------------------------------------------------/Leads-----------------------------------------------------------------------

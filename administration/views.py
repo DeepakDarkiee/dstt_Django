@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render,HttpResponse
 from django.urls.base import reverse
 from django.views import generic
-from django.views.generic import TemplateView,CreateView,ListView
+from django.views.generic import TemplateView,CreateView,ListView,UpdateView
 from django.views.generic.base import View
 from .models import Client,Asset,Lead
 from .forms import ClientForm,AssetForm,LeadForm
@@ -56,12 +56,27 @@ class ClientRemoveGrid(View):
         client.delete()
         messages.success(request,'deleted successfully')
         return HttpResponseRedirect('/administration/clients_grid') 
+
+
+class ClientManageGrid(UpdateView):
+    model = Client
+    fields = ['client_first_name','client_last_name','client_username','client_email','client_id','client_address','client_phone','client_status']
+    context_object_name = "client_update"
+    template_name = "administration/client_grid_manage.html"             
+    success_url = ("/administration/clients_grid/")    
+
+class ClientManageList(UpdateView):
+    model = Client
+    fields = ['client_first_name','client_last_name','client_username','client_email','client_id','client_address','client_phone','client_status'] 
+    context_object_name = "client_list_update"
+    template_name = "administration/client_list_manage.html"
+    success_url = ("/administration/clients_list/")
 # -----------------------------------/client----------------------------------------------------------------
   
 # -------------------------------------Lead----------------------------------------------------------------
 class CreateLeadView(generic.CreateView):
     model = Lead
-    fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created', 'lead_status')
+    fields = ('lead_name', 'lead_email', 'lead_phone', 'lead_project', 'lead_assign_staff', 'lead_created',)
     template_name = "administration/leads.html" 
     success_url = ('/administration/leads_list')
 
@@ -77,6 +92,13 @@ class LeadsRemove(View):
         lead.delete()
         messages.success(request,f"{lead} deleted successfully")
         return HttpResponseRedirect('/administration/leads_list') 
+
+class LeadManage(UpdateView):
+    model = Lead
+    fields = ['lead_name','lead_email','lead_phone','lead_project','lead_assign_staff','lead_created'] 
+    context_object_name = "lead_update"
+    template_name = "administration/lead_manage.html"
+    success_url = ("/administration/leads_list/")
 
 # ---------------------------------------/Lead----------------------------------------------------------------
 class projectsView(TemplateView):
