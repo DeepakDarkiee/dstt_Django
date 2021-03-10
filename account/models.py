@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
             email=email, 
             last_login=now,
             date_joined=now,
+           
              
             **extra_fields
     )

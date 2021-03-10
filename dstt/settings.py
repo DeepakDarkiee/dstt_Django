@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'account.LoginCheckMiddleWare.LoginCheckMiddleWare'
+    'account.LoginCheckMiddleWare.LoginCheckMiddleWare'
 ]
 
 ROOT_URLCONF = 'dstt.urls'

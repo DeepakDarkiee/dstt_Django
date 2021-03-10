@@ -119,9 +119,6 @@ def Update_personal_info(request,id):
 #         print(update_info)
 #     update_info = Employee.objects.get(id=id)  
     return render(request,"administration/employee_personal_Information.html",{'update_info':update_info})
-  
-
-
 def Update_emergency_information(request,id):
     update_info = Employee.objects.get(id=id)
 #     if request.method == "POST":
