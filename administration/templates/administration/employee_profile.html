@@ -56,8 +56,8 @@
                             <div class="profile-img-wrap">
                                 <div class="profile-img">
                                     
-                                    {% if  update_info.employee_image %}
-                                    <a href="#"><img alt="" src="{{update_info.employee_image.url}}"></a>
+                                    {% if  myprofile.employee_image %}
+                                    <a href="#"><img alt="" src="{{myprofile.employee_image.url}}"></a>
                                     {% endif %}
                                     <a href="#"><img alt="" src="/static/assets/img/user.jpg"></a>
                                         
@@ -67,11 +67,11 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="profile-info-left">
-                                            <h3 class="user-name m-t-0 mb-0">{{update_info.employee_first_name}}</h3>
-                                            <h6 class="text-muted">{{update_info.employee_department}}</h6>
-                                            <small class="text-muted">{{update_info.employee_department}}</small>
-                                            <div class="staff-id">Employee ID : {{update_info.employee_id}}</div>
-                                            <div class="small doj text-muted">Date of Join : {{update_info.employee_joining_date}}</div>
+                                            <h3 class="user-name m-t-0 mb-0">{{myprofile.employee_first_name}}</h3>
+                                            <h6 class="text-muted">{{myprofile.employee_department}}</h6>
+                                            <small class="text-muted">{{myprofile.employee_department}}</small>
+                                            <div class="staff-id">Employee ID : {{myprofile.employee_id}}</div>
+                                            <div class="small doj text-muted">Date of Join : {{myprofile.employee_joining_date}}</div>
                                             <div class="staff-msg"><a class="btn btn-custom" href="chat.html">Send Message</a></div>
                                         </div>
                                     </div>
@@ -79,20 +79,20 @@
                                         <ul class="personal-info">
                                             <li>
                                                 <div class="title">Phone:</div>
-                                                <div class="text"><a href="">{{update_info.employee_phone}}</a></div>
+                                                <div class="text"><a href="">{{myprofile.employee_phone}}</a></div>
                                             </li>
                                             <li>
                                                 <div class="title">Email:</div>
-                                                <div class="text"><a href="">{{update_info.employee_email}}</a></div>
+                                                <div class="text"><a href="">{{myprofile.employee_email}}</a></div>
                                             </li>
                                            
                                             <li>
                                                 <div class="title">Address:</div>
-                                                <div class="text">{{update_info.employee_address}}</div>
+                                                <div class="text">{{myprofile.employee_address}}</div>
                                             </li>
                                             <li>
                                                 <div class="title">Gender:</div>
-                                                <div class="text">{{update_info.employee_gender}}</div>
+                                                <div class="text">{{myprofile.employee_gender}}</div>
                                             </li>
                                             <li>
                                                 <div class="title">Reports to:</div>
@@ -109,7 +109,7 @@
                                             </li>
                                             <li>
                                                 <div class="title">Birthday:</div>
-                                                <div class="text">{{update_info.employee_birth_date}}</div>
+                                                <div class="text">{{myprofile.employee_birth_date}}</div>
                                             </li>
                                         </ul>
                                         <!-- <ul class="personal-info">
@@ -347,7 +347,7 @@
                                             <div class="experience-content">
                                                 <div class="timeline-content">
                                                     <a href="#" class="name">{{update_info.employee_education_institution }}</a>
-                                                    <div>{{update_info.employee_education_subject}}</div>
+                                                    /static/                        <div>{{update_info.employee_education_subject}}</div>
                                                     <div>{{update_info.employee_education_degree}}</div>
                                                     <div>{{update_info.employee_education_grade}}</div>
                                                     <span class="time">{{update_info.employee_education_complete_date}} - {{update_info.employee_education_complete_date}}</span>

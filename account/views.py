@@ -32,7 +32,7 @@ class SignInView(View):
                 if user.groups.all().exists() or user.is_superuser or user.is_admin:
                     return HttpResponseRedirect('/administration/index')
                 else:
-                    return HttpResponse("This Is Employee")
+                    return HttpResponseRedirect("/employee/employee_dashboard")
             else:
                 return HttpResponse("Inactive user.")
         else:

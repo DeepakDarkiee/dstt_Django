@@ -337,9 +337,9 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{% url 'index' %}">Admin Dashboard</a></li>
+									<!-- <li><a href="{% url 'index' %}">Admin Dashboard</a></li> -->
 									<li><a href="{% url 'employee_dashboard' %}">Employee Dashboard</a></li>
-									<li><a href="{% url 'role' %}">Roles & Permissions</a></li>
+									<!-- <li><a href="{% url 'role' %}">Roles & Permissions</a></li> -->
 								</ul>
 							</li>
 							<li class="submenu">
@@ -370,7 +370,7 @@
 									<!-- <li> 
 										<a href="{% url 'employeepolicies' %}"><i class="la la-file-pdf-o"></i> <span></span>Policies</span></a>
 									</li> -->
-									<li><a href="#"><i class="la la-user"></i> <span> My Profile</span> </a></li>
+									<li><a href="{% url 'employee_profile' %}"><i class="la la-user"></i> <span> My Profile</span> </a></li>
 									<li><a href="{% url 'holiday' %}"><i class="la la-money"></i> <span>Holidays</span></a></li>
 									<!-- <li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li> -->
 									<li><a href="{% url 'leaves_employee' %}"><i class="la la-building"></i> <span>Leaves (Employee)</span></a></li>
