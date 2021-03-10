@@ -36,6 +36,7 @@ class SignInView(View):
             else:
                 return HttpResponse("Inactive user.")
         else:
+            
             return HttpResponseRedirect(settings.LOGIN_URL)
     def get(self,request):
         return render(request, "account/login.html")
