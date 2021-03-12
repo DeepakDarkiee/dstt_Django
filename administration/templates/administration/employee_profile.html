@@ -56,7 +56,7 @@
                             <div class="profile-img-wrap">
                                 <div class="profile-img">
                                     
-                                    {% if  update_info.employee_image %}
+                                    {% if  myprofile.employee_image %}
                                     <a href="#"><img alt="" src="{{update_info.employee_image.url}}"></a>
                                     {% endif %}
                                     <a href="#"><img alt="" src="/static/assets/img/user.jpg"></a>
@@ -347,7 +347,7 @@
                                             <div class="experience-content">
                                                 <div class="timeline-content">
                                                     <a href="#" class="name">{{update_info.employee_education_institution }}</a>
-                                                    <div>{{update_info.employee_education_subject}}</div>
+                                                    /static/                        <div>{{update_info.employee_education_subject}}</div>
                                                     <div>{{update_info.employee_education_degree}}</div>
                                                     <div>{{update_info.employee_education_grade}}</div>
                                                     <span class="time">{{update_info.employee_education_complete_date}} - {{update_info.employee_education_complete_date}}</span>
