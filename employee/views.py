@@ -22,6 +22,13 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 # Create your views here.
 
+def Employees_Profile_View(request):
+    print(request.user)
+    employee = Employee(request.GET)
+    MyProfile = Employee.objects.filter(employee_email=request.user)
+    print(MyProfile)
+    return render(request,'employee/profile.html',{'myprofile':MyProfile})
+
 # -------------------------------------all employee for admin--------------------------------
 # @login_required(login_url='/')
 # def RegisterEmployeeView(request):

@@ -58,3 +58,6 @@ class Lead(models.Model):
     lead_assign_staff = models.CharField(max_length=100)
     lead_created = models.CharField(max_length=100)
 #--------------------------------------------------------/Leads-----------------------------------------------------------------------
+
+
+

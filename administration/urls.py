@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
-
 # ------------------------------Employees-----------------------------------------------------------------------#
     path('update_employees/<int:id>',views.Update_Employees_View,name='update_employees' ),
     path('Update_profile_info/<int:id>',views.Update_profile_info,name='Update_profile_info' ),
@@ -12,6 +11,7 @@ urlpatterns = [
     path('Update_education_information/<int:id>',views.Update_education_information,name='Update_education_information' ),
     path('Update_experience_information/<int:id>',views.Update_experience_information,name='Update_experience_information' ),
     path('Update_personal_info/<int:id>',views.Update_personal_info,name='Update_personal_info' ),
+    # path('Remove_employees/<str:name>/<int:id>',views.RemoveUserToRole.as_view(),name='RemoveUserToRole'),
     # path('Update_emergency_info/<int:id>',views.Update_emergency_info,name='Update_emergency_info' ),
     # path('Update_family_info/<int:id>',views.Update_family_info,name='Update_family_info' ),
     # path('Update_education_info/<int:id>',views.Update_education_info,name='Update_education_info' ),
