@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'performances',
     'employee',
     'crispy_forms',
-   
-    
+    'sweetify'  
 ]
 
 MIDDLEWARE = [
@@ -58,8 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'account.LoginCheckMiddleWare.LoginCheckMiddleWare'
 ]
-
-ROOT_URLCONF = 'dstt.urls'
 
 TEMPLATES = [
     {
@@ -148,3 +145,12 @@ MESSAGE_TAGS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+import sweetify
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+sweetify.DEFAULT_OPTS = {
+    'showConfirmButton': True,
+    'timer': 3000,
+    'allowOutsideClick': True,
+    'confirmButtonText': 'OK',
+}
+ROOT_URLCONF = 'dstt.urls'

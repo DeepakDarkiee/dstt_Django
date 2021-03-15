@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from employee.models import Employee
 from django.db import IntegrityError
 from account.models import User
-
+import sweetify
 # Create your views here.
 
 
@@ -43,7 +43,9 @@ def Register_Employee_View(request):
                     user.save()
                     register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
                     register_employee.save()
-                    messages.success(request,"Employee Registered Successfully!")
+                    # messages.success(request,"Employee Registered Successfully!")
+                    sweetify.success(request, 'Employee Registered Successfully!', button='Ok', timer=3000)
+
                 else:
                     messages.error(request," Confirm password and password does not match!")
             except IntegrityError as e:
@@ -54,7 +56,7 @@ def Register_Employee_View(request):
     else:
         groups=Group.objects.all()
         return render(request,'administration/employees.html',{'groups':groups})
-            
+           
 @login_required
 def All_Employee_View(request):
     AllEmployee = Employee.objects.filter(employee_status="Active")
@@ -63,7 +65,6 @@ def All_Employee_View(request):
 @login_required
 def Update_Employees_View(request,id):
     update_info = Employee.objects.get(id=id)
-    print(update_info)
     return render(request,'administration/employee_profile.html',{'update_info':update_info})
 
 # def Update_emergency_contact(request,id):
