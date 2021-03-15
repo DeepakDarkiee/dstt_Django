@@ -8,7 +8,7 @@ urlpatterns = [
     # path('update_employees/<int:id>',views.UpdateEmployeesview,name='update_employees' ),
     path('employee_profile/',views.Employees_Profile_View,name='employee_profile' ),
     path('employee_dashboard/',views.EmployeeDashboardView.as_view(),name='employee_dashboard' ),
-    path('holiday/',views.HolidayView.as_view(),name='holiday' ),
+    path('holiday/',views.HolidayCreateView.as_view(),name='holiday' ),
     path('leaves_admin/',views.LeavesAdminView.as_view(),name='leaves_admin' ),
     path('leaves_employee/',views.LeavesEmployeeView.as_view(),name='leaves_employee' ),
     path('leaves_settings/',views.LeavesSettingsView.as_view(),name='leaves_settings' ),
@@ -24,7 +24,7 @@ urlpatterns = [
 # -------------------------------------------designation-----------------------------------------------------------
    path('designation/',views.DesignationCreateView.as_view(),name='designation' ),
     # path('designations_list/',views.DesignationListView.as_view(),name='designations_list' ),
-    path('designations_remove/<int:id>',views.DesignationRemove.as_view(),name='designations_remove' ),
+   path('designations_remove/<int:id>',views.DesignationRemove.as_view(),name='designations_remove' ),
     #  path('designation_manage/',views.DesignationManage.as_view(),name='designation_manage' ),
 # -------------------------------------------designation-----------------------------------------------------------
     

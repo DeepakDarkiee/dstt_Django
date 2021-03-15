@@ -44,6 +44,7 @@ def Register_Employee_View(request):
                     register_employee = Employee(user=user,employee_first_name=employee_first_name,employee_last_name=employee_last_name,employee_email=employee_email,employee_joining_date=employee_joining_date,employee_department=employee_department,employee_id=employee_id,employee_phone=employee_phone)
                     register_employee.save()
                     messages.success(request,"Employee Registered Successfully!")
+                else:
                     messages.error(request," Confirm password and password does not match!")
             except IntegrityError as e:
                 messages.error(request,"Email Already Registered!")
@@ -53,16 +54,27 @@ def Register_Employee_View(request):
     else:
         groups=Group.objects.all()
         return render(request,'administration/employees.html',{'groups':groups})
+   
             
 @login_required
 def All_Employee_View(request):
-    employee = Employee(request.GET)
     AllEmployee = Employee.objects.filter(employee_status="Active")
     return render(request,'administration/employees.html',{'Employee':AllEmployee})
+
+
+@login_required
+def Remove_Employee(request,id):
+    Employees = Employee.objects.get(id=id)
+    print(Employees)
+    Employees.delete()
+    messages.success(request,"deleted successfully")
+    return HttpResponseRedirect('/administration/all_employee') 
+
     
 @login_required
 def Update_Employees_View(request,id):
     update_info = Employee.objects.get(id=id)
+    print(update_info)
     return render(request,'administration/employee_profile.html',{'update_info':update_info})
 
 # def Update_emergency_contact(request,id):
@@ -165,6 +177,7 @@ def Update_education_information(request,id):
         print(update_info)
         return redirect("/administration/update_employees/"+str(id))
     return render(request,'administration/employee_education_information.html',{'update_info':update_info})  
+
 @login_required
 def Update_experience_information(request,id):
     update_info = Employee.objects.get(id=id)

@@ -99,8 +99,7 @@ def Employees_Profile_View(request):
 class EmployeeDashboardView(TemplateView):
     template_name = "employee/employee_dashboard.html"
 
-class HolidayView(TemplateView):
-    template_name = "employee/holidays.html"
+
 
 class LeavesAdminView(TemplateView):
     template_name = "employee/leaves_admin.html"
@@ -170,6 +169,14 @@ class DesignationRemove(View):
 # class DesignationManage(UpdateView):
 #     template_name = "employee/designation_manage.html"
 # ----------------------------------------/Designation----------------------------------------------------------------------------------
+
+
+class HolidayCreateView(View):
+    def post(self,request):
+        form = DesignationForm(request.POST)
+    template_name = "employee/holidays.html"
+
+    
 
 class TimesheetView(TemplateView):
     template_name = "employee/timesheet.html"

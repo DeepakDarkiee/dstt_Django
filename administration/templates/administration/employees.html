@@ -31,6 +31,13 @@
   z-index: 2;
 			}
 			
+			#toggleConfirmPassword {
+				float: right;
+  margin-right: 10px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 2;
+			}
 
 					</style>
 {% endblock css %}
@@ -106,7 +113,7 @@
 									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee" onClick="getId('{{employee.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 									</div>
 								</div>
 								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{% url 'update_employees' employee.id %}">{{employee.employee_first_name}}</a></h4>
@@ -173,6 +180,7 @@
 												<label class="col-form-label">Confirm Password</label>
 												<input class="form-control" type="password" name="employee_confirm_password"
 													id="id_employee_confirm_password">
+													<i class="far fa-eye" id="toggleConfirmPassword"></i>
 											</div>
 										</div>
 										<div class="col-sm-6">
@@ -228,7 +236,7 @@
 		
 							</form>
 							</div>
-						</div>
+						</div>Employee
 					</div>
 				</div>
 				<!-- /Add Employee Modal -->
@@ -540,7 +548,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+											<a href="javascript:void(0);"  id="delete" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -589,5 +597,26 @@
     this.classList.toggle('fa-eye-slash');
 });
 		</script>
+
+<script>
+	const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+	const password1 = document.querySelector('#id_employee_confirm_password');
+	toggleConfirmPassword.addEventListener('click', function (e) {
+// toggle the type attribute
+const type = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+password1.setAttribute('type', type);
+// toggle the eye slash icon
+this.classList.toggle('fa-eye-slash');
+});
+</script>
+
+<script>
+	function getId(id) {
+		// alert(id)
+		var a =document.getElementById('delete');
+		a.href = "/administration/Remove_employee/"+id;
+	}
+</script>
+
 </body>
 </html>

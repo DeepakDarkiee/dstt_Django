@@ -31,7 +31,6 @@ class SignInView(View):
                 login(request, user)
                 if user.groups.all().exists() or user.is_superuser or user.is_admin:
                     return HttpResponseRedirect('/administration/index')
-                    
                 else:
                     return HttpResponseRedirect("/employee/employee_dashboard")
             else:
@@ -159,9 +158,7 @@ class RolePermissionView(View):
         'delete_employee':delete_employee
         })
 
-        
-class demoview(TemplateView):
-    template_name = "account/demo.html"  
+  
 
     
 class UserToRole(View):

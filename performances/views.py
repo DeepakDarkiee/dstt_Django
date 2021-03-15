@@ -271,7 +271,7 @@ class TerminationCreate(View):
         form = TerminationForm(request.POST or None)  
         if form.is_valid():  
             try:  
-                # Notice_Date = form.cleaned_data['Notice_Date']
+                Termination_Date = form.cleaned_data['Termination_Date']
                 form.save()  
                 return HttpResponseRedirect('/performances/termination/')
             except:  
@@ -293,4 +293,4 @@ class TerminationRemove(View):
         return HttpResponseRedirect('/performances/termination')
         
 
-# ------------------------------------------- /Termination ------------------------------------------
+# ------------------------------------------- /Termination -----------------------------------------------------------------------
