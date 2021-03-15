@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('index/',views.IndexView.as_view(),name='index' ),
-
 # ------------------------------Employees-----------------------------------------------------------------------#
     path('update_employees/<int:id>',views.Update_Employees_View,name='update_employees' ),
     path('Update_profile_info/<int:id>',views.Update_profile_info,name='Update_profile_info' ),

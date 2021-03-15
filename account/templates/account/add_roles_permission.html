@@ -65,7 +65,21 @@
 								</div>
 
 							</li>
+							<!-- Departments -->
+							<li class="list-group-item">
+								Department
+								<div class="status-toggle">
+									<input type="hidden" value="False" class="check" name="view_department">
+									{% if view_department == 'True' %}
+									<input type="checkbox" id="department_module" value="True" class="check" name="view_department" checked>
+									{% else %}
+									<input type="checkbox" id="department_module" value="True" class="check" name="view_department" >
+									{% endif %}
 
+									<label for="department_module" class="checktoggle">checkbox</label>
+								</div>
+							</li>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 							<div class="table-responsive">
 								<table class="table table-striped custom-table">
 									<thead>
@@ -112,6 +126,45 @@
 												<input type="hidden" name="delete_employee" value="False">
 												{% if delete_employee == 'True' %}
 												<input type="checkbox" name="delete_employee" checked value="True">
+												{% else %}
+												<input type="checkbox" name="delete_employee" value="True">
+												{% endif %}
+											</td>
+										</tr>
+										<tr>
+											<td>Department</td>
+
+											<!-- <td class="text-center">
+												<input type="hidden" name="view_employee" value="False">
+												{% if view_employee == 'True' %}
+												<input type="checkbox" name="view_employee" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="view_employee" value="True">
+												{% endif %}
+											</td> -->
+
+											<td class="text-center">
+												<input type="hidden" name="add_department" value="False">
+												{% if add_department == 'True' %}
+												<input type="checkbox" name="add_department" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="add_department" value="True">
+												{% endif %}
+											</td>
+
+											<td class="text-center">
+												<input type="hidden" name="change_department" value="False">
+												{% if change_department == 'True' %}
+												<input type="checkbox" name="change_department" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="change_department" value="True">
+												{% endif %}
+											</td>
+
+											<td class="text-center">
+												<input type="hidden" name="delete_department" value="False">
+												{% if delete_department == 'True' %}
+												<input type="checkbox" name="delete_department" checked value="True">
 												{% else %}
 												<input type="checkbox" name="delete_employee" value="True">
 												{% endif %}

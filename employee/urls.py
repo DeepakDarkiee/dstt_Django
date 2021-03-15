@@ -6,6 +6,7 @@ urlpatterns = [
     # path('registeremployee/',views.RegisterEmployeeView,name='registeremployee' ),
     # path('allemployee/',views.AllEmployeeview,name='allemployee' ),
     # path('update_employees/<int:id>',views.UpdateEmployeesview,name='update_employees' ),
+    path('employee_profile/',views.Employees_Profile_View,name='employee_profile' ),
     path('employee_dashboard/',views.EmployeeDashboardView.as_view(),name='employee_dashboard' ),
     path('holiday/',views.HolidayView.as_view(),name='holiday' ),
     path('leaves_admin/',views.LeavesAdminView.as_view(),name='leaves_admin' ),

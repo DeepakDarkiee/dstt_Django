@@ -86,5 +86,5 @@ class Designation(models.Model):
     Department_Name=models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.designation_name
+        return self.Designation_Name
 #------------------------------------/Designation------------------------------------------------------------

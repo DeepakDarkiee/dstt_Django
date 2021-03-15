@@ -17,7 +17,9 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
+					{% if perms.employee.add_department %}	
                     <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i> Add Department</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
