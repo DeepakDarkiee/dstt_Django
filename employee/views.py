@@ -1,25 +1,19 @@
 from django.contrib.auth.models import Group
 from django.http.response import HttpResponseRedirect
 from account.models import User
-from django.shortcuts import  redirect, render
-from django.shortcuts import render
+from django.shortcuts import  redirect, render,HttpResponse
 from django.views import generic
 from django.views.generic import View,TemplateView,CreateView,UpdateView
 from django.views.generic.edit import UpdateView
 from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
-
-from django.shortcuts import  render
-from django.shortcuts import render,HttpResponse
-from django.views import generic
 from django.views.generic import TemplateView,CreateView,ListView
-from .models import Employee,Department,Designation
-from .forms import DepartmentForm,DesignationForm
-from .forms import EmployeeForm
-
+from .models import Employee,Department,Designation,Holiday
+from .forms import DepartmentForm,DesignationForm ,EmployeeForm, HolidayForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from datetime import datetime
 # Create your views here.
 
 def Employees_Profile_View(request):
@@ -167,19 +161,38 @@ class DesignationRemove(View):
             return HttpResponseRedirect('/employee/designation')  
 
 # class DesignationManage(UpdateView):
-#     template_name = "employee/designation_manage.html"
+#     model = Designation
+#     fields = ['Designation_Name','Department_Name']
+#     context_object_name = "designation_manage"
+#     template_name = "employee/designation_manage.html"             
+#     success_url = ("/employee/department_list/")
 # ----------------------------------------/Designation----------------------------------------------------------------------------------
 
 
 class HolidayCreateView(View):
     def post(self,request):
-        form = DesignationForm(request.POST)
-    template_name = "employee/holidays.html"
+        form = HolidayForm(request.POST)
+        if form.is_valid():
+            Holiday_Date =  form.cleaned_data['Holiday_Date'] 
+            print(Holiday_Date|weekday) 
+            form.save()
+            return HttpResponseRedirect('/employee/holiday')
+           
+    def get(self,request):
+        form = HolidayForm()
+        Holidays = Holiday.objects.all()
+        return render(request,'employee/holidays.html',{'form':form,'Holiday':Holidays})
 
-    
+
+class HolidayRemoveView(View):
+    def get(self,request,id):
+            holiday=Holiday.objects.get(id=id)          
+            holiday.delete()
+            messages.success(request,f"{holiday} deleted successfully")
+            return HttpResponseRedirect('/employee/holiday') 
 
 class TimesheetView(TemplateView):
-    template_name = "employee/timesheet.html"
+    template_name = "employee/timesheet.html"   
 
 class OvertimeView(TemplateView):
     template_name = "employee/overtime.html"

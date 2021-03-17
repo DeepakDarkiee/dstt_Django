@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Employee,Department,Designation
+from .models import Employee,Department,Designation,Holiday
 class  EmployeeForm(forms.Form):
     employee_first_name = forms.CharField(max_length=30, required=False, help_text='Optional') 
     employee_last_name = forms.CharField(max_length=30, required=False, help_text='Optional')
@@ -24,7 +24,10 @@ class DesignationForm(forms.ModelForm):
         fields = "__all__"
 # --------------------------------------------/designation------------------------------------------
 
-    
+class HolidayForm(forms.ModelForm):
+    class Meta:
+        model = Holiday
+        fields = "__all__"  
 
 
     

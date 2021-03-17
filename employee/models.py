@@ -91,8 +91,8 @@ class Designation(models.Model):
 
 #------------------------------------holidays-----------------------------------------------------------------------------------
 class Holiday(models.Model):
-    Holiday_Name = models.CharField(max_length=100)
-    Holiday_Date = models.CharField(max_length=100)
+    Holiday_Name = models.CharField(max_length=1000,null=True,blank=True)
+    Holiday_Date = models.DateField()
     def __str__(self):
         return self.Holiday_Name
     
