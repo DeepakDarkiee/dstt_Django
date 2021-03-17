@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import  Group, Permission
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
-from employee.models import Department, Employee
+from employee.models import Department, Designation, Employee
 from django.conf import settings
 from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponseRedirect
@@ -231,6 +231,39 @@ class RolePermissionView(View):
         sweetify.info(self.request, 'Permision Granted', button='Ok', timer=3000)
         
         #______________Department end_________________________________________
+
+        # ----------------------Department-----------------------
+        view_designation=request.POST['view_designation']
+        add_designation=request.POST['add_designation']
+        change_designation=request.POST['change_designation']
+        delete_designation=request.POST['delete_designation']
+        
+        content_type = ContentType.objects.get_for_model(Designation,for_concrete_model=False)
+        designation_permision=Permission.objects.filter(content_type=content_type)
+        for permission in designation_permision:
+            if permission.codename == 'view_designation':
+                if view_designation == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'add_designation':
+                if add_designation == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'change_designation':
+                if change_designation == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'delete_designation':
+                if delete_designation == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+        sweetify.info(self.request, 'Permision Granted', button='Ok', timer=3000)
+        
+        #______________Department end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
         'view_employee':view_employee,
@@ -242,6 +275,11 @@ class RolePermissionView(View):
         'add_department':add_department,
         'change_department':change_department,
         'delete_department':delete_department,
+
+        'view_designation':view_designation,
+        'add_designation':add_designation,
+        'change_designation':change_designation,
+        'delete_designation':delete_designation,
         })
 
 

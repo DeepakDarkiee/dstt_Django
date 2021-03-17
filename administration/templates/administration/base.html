@@ -390,8 +390,10 @@
 									{% if perms.employee.view_department %}	
 									<li><a href="{% url 'department_list' %}">Departments</a></li>
 									{% endif %}	
-									
+									{% if perms.employee.view_designation %}	
 									<li><a href="{% url 'designation' %}">Designations</a></li>
+									{% endif %}	
+
 									<li><a href="{% url 'timesheet' %}">Timesheet</a></li>
 									<li><a href="{% url 'overtime' %}">Overtime</a></li>
 								</ul>
