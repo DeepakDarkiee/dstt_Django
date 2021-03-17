@@ -1,3 +1,4 @@
+from . import search
 from django.urls import path
 from . import views
 
@@ -64,4 +65,5 @@ urlpatterns = [
     path('settingnotification/',views.SettingNotificationView.as_view(),name='settingnotification'),
     path('changepasswordView/',views.ChangePasswordView.as_view(),name='changepasswordView'),
     path('leavetype/',views.LeaveTypeView.as_view(),name='leavetype'),
+    path('employee_search/',search.EmployeeSearchResultsView.as_view(),name='employee_search')
 ]

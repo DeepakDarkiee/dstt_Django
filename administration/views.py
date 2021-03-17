@@ -16,7 +16,7 @@ from django.db import IntegrityError
 from account.models import User
 import sweetify
 # Create your views here.
-
+from django.db.models import Q
 
 # -------------------------------------all employee for admin--------------------------------
 @login_required
@@ -60,7 +60,7 @@ def Register_Employee_View(request):
 @login_required
 def All_Employee_View(request):
     AllEmployee = Employee.objects.filter(employee_status="Active")
-    return render(request,'administration/employees.html',{'Employee':AllEmployee})
+    return render(request,'administration/employees.html',{'Employees':AllEmployee})
     
 @login_required
 def Update_Employees_View(request,id):
