@@ -61,6 +61,16 @@ def Register_Employee_View(request):
 def All_Employee_View(request):
     AllEmployee = Employee.objects.filter(employee_status="Active")
     return render(request,'administration/employees.html',{'Employees':AllEmployee})
+
+
+@login_required
+def Remove_Employee(request,id):
+    Employees = Employee.objects.get(id=id)
+    print(Employees)
+    Employees.delete()
+    messages.success(request,"deleted successfully")
+    return HttpResponseRedirect('/administration/all_employee') 
+
     
 @login_required
 def Update_Employees_View(request,id):
@@ -167,6 +177,7 @@ def Update_education_information(request,id):
         print(update_info)
         return redirect("/administration/update_employees/"+str(id))
     return render(request,'administration/employee_education_information.html',{'update_info':update_info})  
+
 @login_required
 def Update_experience_information(request,id):
     update_info = Employee.objects.get(id=id)

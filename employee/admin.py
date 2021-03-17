@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee,Department,Designation
+from .models import Employee,Department,Designation,Holiday
 # Register your models here.
 
 
@@ -22,3 +22,8 @@ class DesignationAdmin(admin.ModelAdmin):
         model = Designation
         fields = '__all__'
 
+@admin.register(Holiday)
+class HolidayAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Holiday
+        fields = '__all__'

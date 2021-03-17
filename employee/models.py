@@ -73,18 +73,26 @@ class Employee(models.Model):
 # -------------------------------/Employee Model---------------------------------------------------------------------------------
 
 
-#------------------------------------Depaartment------------------------------------------------------------
+#------------------------------------Depaartment---------------------------------------------------------------------------------
 class Department(models.Model):
     department_name = models.CharField(max_length=100)
-    
+
     def __str__(self):
         return self.department_name
-#------------------------------------/Depaartment------------------------------------------------------------
-#------------------------------------Designation------------------------------------------------------------
+#------------------------------------/Depaartment--------------------------------------------------------------------------------
+#------------------------------------Designation---------------------------------------------------------------------------------
 class Designation(models.Model):
     Designation_Name = models.CharField(max_length=100)
     Department_Name=models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.Designation_Name
-#------------------------------------/Designation------------------------------------------------------------
+#------------------------------------/Designation--------------------------------------------------------------------------------
+
+#------------------------------------holidays-----------------------------------------------------------------------------------
+class Holiday(models.Model):
+    Holiday_Name = models.CharField(max_length=1000,null=True,blank=True)
+    Holiday_Date = models.DateField()
+    def __str__(self):
+        return self.Holiday_Name
+    
