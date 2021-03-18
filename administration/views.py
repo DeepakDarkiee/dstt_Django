@@ -62,6 +62,19 @@ def All_Employee_View(request):
     AllEmployee = Employee.objects.filter(employee_status="Active")
     return render(request,'administration/employees.html',{'Employees':AllEmployee})
 
+@login_required
+def All_Employee_List_View(request):
+    AllEmployee = Employee.objects.filter(employee_status="Active")
+    return render(request,'administration/employees_list.html',{'Employees':AllEmployee})
+
+@login_required
+def Remove_Employee_List(request,id):
+    Employees = Employee.objects.get(id=id)
+    print(Employees)
+    Employees.delete()
+    messages.success(request,"deleted successfully")
+    return HttpResponseRedirect('/administration/all_employee_list')
+
 
 @login_required
 def Remove_Employee(request,id):

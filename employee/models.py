@@ -23,7 +23,7 @@ class Employee(models.Model):
     employee_email=models.EmailField(max_length=100)
     employee_joining_date=models.CharField(max_length=50)
     employee_department=models.CharField(max_length=100)
-    employee_designation =models.DateTimeField(auto_now=True)
+    employee_designation =models.CharField(max_length=100)
     employee_id=models.CharField(max_length=100)
     employee_phone=models.CharField(max_length=100,null=True)
     employee_birth_date=models.CharField(max_length=100,null=True)

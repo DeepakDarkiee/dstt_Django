@@ -16,6 +16,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 import sweetify
+from performances.models import  Goal
 
 # Signs Up View
 
@@ -232,7 +233,7 @@ class RolePermissionView(View):
         
         #______________Department end_________________________________________
 
-        # ----------------------Department-----------------------
+        # ----------------------designation-----------------------
         view_designation=request.POST['view_designation']
         add_designation=request.POST['add_designation']
         change_designation=request.POST['change_designation']
@@ -263,6 +264,39 @@ class RolePermissionView(View):
                     role.permissions.remove(permission)
         sweetify.info(self.request, 'Permision Granted', button='Ok', timer=3000)
         
+        #Designation end_________________________________________
+
+        # ----------------------goal-----------------------
+        view_goal=request.POST['view_goal']
+        add_goal=request.POST['add_goal']
+        change_goal=request.POST['change_goal']
+        delete_goal=request.POST['delete_goal']
+        
+        content_type = ContentType.objects.get_for_model(Goal,for_concrete_model=False)
+        goal_permision=Permission.objects.filter(content_type=content_type)
+        for permission in goal_permision:
+            if permission.codename == 'view_goal':
+                if view_goal == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'add_goal':
+                if add_goal == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'change_goal':
+                if change_goal == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+            if permission.codename == 'delete_goal':
+                if delete_goal == 'True':
+                    role.permissions.add(permission)
+                else:
+                    role.permissions.remove(permission)
+        sweetify.info(self.request, 'Permision Granted', button='Ok', timer=3000)
+        
         #______________Department end_________________________________________
         return render(request,'account/add_roles_permission.html',
         {'role':role,
@@ -280,6 +314,11 @@ class RolePermissionView(View):
         'add_designation':add_designation,
         'change_designation':change_designation,
         'delete_designation':delete_designation,
+        
+        'view_goal':view_goal,
+        'add_goal':add_goal,
+        'change_goal':change_goal,
+        'delete_goal':delete_goal,
         })
 
 
