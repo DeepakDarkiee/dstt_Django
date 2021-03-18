@@ -31,6 +31,5 @@ class EmployeeSearchResultsView(ListView):
         Employees = Employee.objects.filter(
             Q(employee_email__icontains=email) | Q(employee_first_name__icontains=email)
         )
-        print(Employees)
         return Employees
          

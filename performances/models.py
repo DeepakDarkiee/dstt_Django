@@ -96,7 +96,7 @@ class TrainingType(models.Model):
 # --------------------------------------------------Termination----------------------------------------------------
 class Termination(models.Model):
     # employee_name= models.ForeignKey('Employee',on_delete=models.CASCADE )
-    Employee_Email= models.ForeignKey(Employee,on_delete=models.CASCADE )
+    Employee_Email= models.OneToOneField(Employee,on_delete=models.CASCADE)
     Termination_Type = models.CharField(max_length=100)
     Termination_Date = models.DateField()
     Reason = models.TextField(max_length=100)

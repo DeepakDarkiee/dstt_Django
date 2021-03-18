@@ -96,6 +96,22 @@
 								</div>
 							</li>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+							<!-- Goal -->
+							<li class="list-group-item">
+								Goal
+								<div class="status-toggle">
+									<input type="hidden" value="False" class="check" name="view_goal">
+									{% if view_goal == 'True' %}
+									<input type="checkbox" id="goal_module" value="True" class="check" name="view_goal" checked>
+									{% else %}
+									<input type="checkbox" id="goal_module" value="True" class="check" name="view_goal" >
+									{% endif %}
+
+									<label for="goal_module" class="checktoggle">checkbox</label>
+								</div>
+							</li>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 							<div class="table-responsive">
 								<table class="table table-striped custom-table">
 									<thead>
@@ -222,6 +238,45 @@
 												<input type="checkbox" name="delete_designation" checked value="True">
 												{% else %}
 												<input type="checkbox" name="delete_designation" value="True">
+												{% endif %}
+											</td>
+										</tr>
+		
+											<td>Goal</td>
+
+											<!-- <td class="text-center">
+												<input type="hidden" name="view_employee" value="False">
+												{% if view_employee == 'True' %}
+												<input type="checkbox" name="view_employee" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="view_employee" value="True">
+												{% endif %}
+											</td> -->
+
+											<td class="text-center">
+												<input type="hidden" name="add_goal" value="False">
+												{% if add_goal == 'True' %}
+												<input type="checkbox" name="add_goal" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="add_goal" value="True">
+												{% endif %}
+											</td>
+
+											<td class="text-center">
+												<input type="hidden" name="change_goal" value="False">
+												{% if change_goal == 'True' %}
+												<input type="checkbox" name="change_goal" value="True" checked>
+												{% else %}
+												<input type="checkbox" name="change_goal" value="True">
+												{% endif %}
+											</td>
+
+											<td class="text-center">
+												<input type="hidden" name="delete_goal" value="False">
+												{% if delete_goal == 'True' %}
+												<input type="checkbox" name="delete_goal" checked value="True">
+												{% else %}
+												<input type="checkbox" name="delete_goal" value="True">
 												{% endif %}
 											</td>
 										</tr>

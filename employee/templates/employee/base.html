@@ -398,6 +398,7 @@
 						<!-- <li> 
 										<a href="{% url 'employeepolicies' %}"><i class="la la-file-pdf-o"></i> <span></span>Policies</span></a>
 									</li> -->
+
 						<li><a href="{% url 'employee_profile' %}"><i class="la la-user"></i> <span> My Profile</span>
 							</a></li>
 						<li><a href="{% url 'holiday' %}"><i class="la la-money"></i> <span>Holidays</span></a></li>
@@ -640,4 +641,91 @@
 	{% endblock nav %}
 
 	<!-- </body>
+									<li><a href="{% url 'employee_profile' %}"><i class="la la-user"></i> <span> My Profile</span> </a></li>
+									<li><a href="{% url 'holiday' %}"><i class="la la-money"></i> <span>Holidays</span></a></li>
+									<!-- <li><a href="{% url 'leaves_admin' %}">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li> -->
+									<li><a href="{% url 'leaves_employee' %}"><i class="la la-building"></i> <span>Leaves (Employee)</span></a></li>
+									<li><a href="{% url 'leaves_settings' %}"><i class="la la-cogs"></i> <span>Leave Settings</span></a></li>
+									<!-- <li><a href="{% url 'attendance_admin' %}">Attendance (Admin)</a></li> -->
+									<li><a href="{% url 'attendance_employee' %}"><i class="la la-hand-o-up"></i> <span> Attendance (Employee) </span></a></li>
+								
+									<li><a href="{% url 'timesheet' %}"><i class="la la-building"></i> <span>Timesheet</span></a></li>
+									<li><a href="{% url 'overtime' %}"><i class="la la-globe"></i> <span>Overtime</span></a></li>
+								<!-- </ul>
+							</li> -->
+							
+							<li> 
+								<a href="{% url 'ticket' %}"><i class="la la-ticket"></i> <span>Tickets</span></a>
+							</li>
+							<li class="menu-title"> 
+								<span>HR</span>
+							</li>
+							
+							<li class="submenu">
+								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{% url 'employeesalary' %}"> Employee Salary </a></li>
+									<li><a href="{% url 'employeepayslip' %}"> Payslip </a></li>
+									<li><a href="{% url 'employeepayrollitems' %}"> Payroll Items </a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="{% url 'employeepolicies' %}"><i class="la la-file-pdf-o"></i> <span>Policies</span></a>
+							</li>
+						
+							<li class="menu-title"> 
+								<span>Performance</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="la la-graduation-cap"></i> <span> Performance </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{% url 'performanceindicator'%}"> Performance Indicator </a></li>
+									<li><a href="{% url 'performance'%}"> Performance Review </a></li>
+									<li><a href="{% url 'performanceappraisal'%}"> Performance Appraisal </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{% url 'goaltracking'%}"> Goal List </a></li>
+									<li><a href="{% url 'goaltype' %}"> Goal Type </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="la la-edit"></i> <span> Training </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{% url 'trainings' %}"> Training List </a></li>
+									<li><a href="{% url 'trainers' %}"> Trainers</a></li>
+									<li><a href="#"> Training Type </a></li>
+								</ul>
+							</li>
+							<!-- <li><a href="{% url 'promotion' %}"><i class="la la-bullhorn"></i> <span>Promotion</span></a></li> -->
+							<li><a href="{% url 'resignation' %}"><i class="la la-external-link-square"></i> <span>Resignation</span></a></li>
+							<!-- <li><a href="{% url 'termination' %}"><i class="la la-times-circle"></i> <span>Termination</span></a></li> -->
+							<li class="menu-title"> 
+								<span>Administration</span>
+							</li>
+							<li> 
+								<a href="{% url 'assets' %}"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
+							</li>
+							
+							<li> 
+								<a href="{% url 'settings' %}"><i class="la la-cog"></i> <span>Settings</span></a>
+							</li>
+							
+						</ul>
+					</div>
+                </div>
+            </div>
+			<!-- /Sidebar -->
+			
+				
+			
+        </div>
+		<!-- /Main Wrapper -->
+		{% block nav %}
+		
+		{% endblock nav %}
+		
+    <!-- </body>
 </html> -->

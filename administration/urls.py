@@ -12,10 +12,13 @@ urlpatterns = [
     path('Update_education_information/<int:id>',views.Update_education_information,name='Update_education_information' ),
     path('Update_experience_information/<int:id>',views.Update_experience_information,name='Update_experience_information' ),
     path('Update_personal_info/<int:id>',views.Update_personal_info,name='Update_personal_info' ),
+    path('Remove_employee/<int:id>',views.Remove_Employee,name='Remove_employee'),
+    path('Remove_Employee_List/<int:id>',views.Remove_Employee_List,name='Remove_Employee_List'),
     # path('Update_emergency_info/<int:id>',views.Update_emergency_info,name='Update_emergency_info' ),
     # path('Update_family_info/<int:id>',views.Update_family_info,name='Update_family_info' ),
     # path('Update_education_info/<int:id>',views.Update_education_info,name='Update_education_info' ),
     path('all_employee/',views.All_Employee_View,name='all_employee' ),
+    path('all_employee_list/',views.All_Employee_List_View,name='all_employee_list' ),
     path('registeremployee/',views.Register_Employee_View,name='registeremployee' ),
     
 # ------------------------------Employees-----------------------------------------------------------------------#
