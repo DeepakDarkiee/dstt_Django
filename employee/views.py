@@ -9,13 +9,13 @@ from .models import Employee
 from django.db import IntegrityError
 from django.contrib import messages
 from django.views.generic import TemplateView,CreateView,ListView
-from .models import Employee,Department,Designation,Holiday
-from .forms import DepartmentForm,DesignationForm ,EmployeeForm, HolidayForm
+from .models import Employee,Department,Designation,Holiday,AddLeave,AddLeaveType
+from .forms import DepartmentForm,DesignationForm ,EmployeeForm, HolidayForm,LeaveForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from datetime import datetime
 # Create your views here.
-
+import sweetify
 def Employees_Profile_View(request):
     print(request.user)
     employee = Employee(request.GET)
@@ -93,13 +93,9 @@ def Employees_Profile_View(request):
 class EmployeeDashboardView(TemplateView):
     template_name = "employee/employee_dashboard.html"
 
-
-
 class LeavesAdminView(TemplateView):
     template_name = "employee/leaves_admin.html"
 
-class LeavesEmployeeView(TemplateView):
-    template_name = "employee/leaves_employee.html"
 
 class LeavesSettingsView(TemplateView):
     template_name = "employee/leaves_settings.html"
@@ -174,9 +170,16 @@ class HolidayCreateView(View):
         form = HolidayForm(request.POST)
         if form.is_valid():
             Holiday_Date =  form.cleaned_data['Holiday_Date'] 
-            print(Holiday_Date|weekday) 
-            form.save()
+            if Holiday_Date.weekday() != 6:
+                form.save()
+                sweetify.error(self.request, f'Holiday Created on {Holiday_Date}', button='Ok', timer=3000)
+            else:
+                messages.error(request,f'Sunday Can not be Added')
             return HttpResponseRedirect('/employee/holiday')
+        else:
+            messages.error(request,f'Holiday is already decleared on this date')
+            return HttpResponseRedirect('/employee/holiday')
+
            
     def get(self,request):
         form = HolidayForm()
@@ -191,8 +194,55 @@ class HolidayRemoveView(View):
             messages.success(request,f"{holiday} deleted successfully")
             return HttpResponseRedirect('/employee/holiday') 
 
+
 class TimesheetView(TemplateView):
     template_name = "employee/timesheet.html"   
 
+
 class OvertimeView(TemplateView):
     template_name = "employee/overtime.html"
+
+
+
+# -------------------------------------------AddLeaves-------------------------------------
+
+class LeavesEmployeeView(View):
+    def post(self,request):  
+        Leave_Type = request.POST['Leave_Type']
+        Leave_From = request.POST['Leave_From']
+        Leave_To =  request.POST['Leave_To']
+        Number_of_days =  request.POST['Number_of_days']
+        Remaining_Leaves = request.POST['Remaining_Leaves']
+        Leave_Reason = request.POST['Leave_Reason']
+        Leave = AddLeave(Leave_Type=Leave_Type,Leave_From=Leave_From,Leave_To=Leave_To,Number_of_days=Number_of_days,Remaining_Leaves=Remaining_Leaves,Leave_Reason=Leave_Reason)
+        Leave.save()
+        return redirect('/employee/leaves_employee')
+    def get(self,request):
+        form = LeaveForm() 
+        remining_leave = AddLeaveType.objects.filter('Number_of_days')
+        print(remining_leave)
+        Leave = AddLeave.objects.all()
+        return render(request,'employee/leaves_employee.html',{'form':form,'Leave':Leave,'remining_leave': remining_leave})
+
+
+
+    #     form = LeaveForm(request.POST)  
+    #     if form.is_valid():  
+    #         Leave_From =  form.cleaned_data['Leave_From'] 
+    #         Leave_Type =  form.cleaned_data['Leave_Type'] 
+    #         Leave_To =  form.cleaned_data['Leave_To'] 
+    #         no_of_day=(Leave_To-Leave_From)
+    #         print(Leave_Type)
+    #         print(no_of_day)
+    #         try:  
+    #             form.save()  
+    #             return render(request,'employee/leaves_employee.html',{'no_of_day':no_of_day})
+    #             # return HttpResponseRedirect('/employee/leaves_employee/')
+    #         except:  
+    #             pass  
+    # def get(self,request):
+    #     form = LeaveForm() 
+    #     Leave = AddLeave.objects.all()
+    #     # leave = AddLeave.objects.filter()
+    #     return render(request,'employee/leaves_employee.html',{'form':form,'Leave':Leave,
+    #         })

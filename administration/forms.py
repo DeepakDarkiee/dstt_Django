@@ -1,5 +1,6 @@
 from django import forms
-from .models import Client,Asset,Lead
+from .models import Client,Asset,Lead,Project
+from employee.models import AddLeaveType
 
 # --------------------------------------Client----------------------------------------------------
 class ClientForm(forms.ModelForm):
@@ -26,3 +27,14 @@ class LeadForm(forms.ModelForm):
 
 # --------------------------------------/Lead----------------------------------------------------
 
+#---------------------------------------Project---------------------------------------------------
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = "__all__"
+    
+#-----------------------------------------AddLeaveType-------------------------------------------------
+class AddLeaveTypeForm(forms.ModelForm):
+    class Meta:
+        model = AddLeaveType
+        fields = "__all__"

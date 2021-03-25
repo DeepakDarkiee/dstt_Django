@@ -1,136 +1,146 @@
 {% include 'administration/base.html' %}
 {% include 'employee/departments_base.html' %}
 {% block css %}
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
-		
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
-    
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
-    
-    <!-- Lineawesome CSS -->
-    <link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
-    
-    <!-- Datatable CSS -->
-    <link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
-    
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/static/assets/css/style.css">
-    
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+<!-- Fontawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+
+<!-- Lineawesome CSS -->
+<link rel="stylesheet" href="/static/assets/css/line-awesome.min.css">
+
+<!-- Datatable CSS -->
+<link rel="stylesheet" href="/static/assets/css/dataTables.bootstrap4.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/static/assets/css/style.css">
+
 {% endblock css %}
-    
-    <!-- {% block content %} -->
-        
-    
-    {% block departments_base %}
-        
-    {% endblock departments_base %}
-        
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            <table class="table table-striped custom-table mb-0 datatable">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 30px;">#</th>
-                                        <th>Department Name</th>
-                                        <th class="text-right">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    {% for department in department_list %}
-                                        
-                                    <tr>
-                                        <td>{{department.id}}</td>
-                                        <td>{{department.department_name}}</td>
-                                        <td class="text-right">
-                                        <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false" onClick="getId('{{id}}')"><i class="material-icons">more_vert</i></a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{% url 'department_manage' department.id %}" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_department" onClick="getId('{{department.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                            </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Page Content -->
-            {% block departments_add %}
+<!-- {% block content %} -->
 
-            {% endblock departments_add %}
-            
-            
-            <!-- Delete Department Modal -->
-            <div class="modal custom-modal fade" id="delete_department" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="form-header">
-                                <h3>Delete Department</h3>
-                                <p>Are you sure want to delete?</p>
-                            </div>
-                            <div class="modal-btn delete-action">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a href="" id="deletedepartment" class="btn btn-primary continue-btn">Delete</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Delete Department Modal -->
-            
-        </div>
-        <!-- /Page Wrapper -->
 
-    </div>
-    <!-- /Main Wrapper -->
-    
-    
-    
-    <!-- {% endblock content %}
+{% block departments_base %}
+
+{% endblock departments_base %}
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div>
+			<table class="table table-striped custom-table mb-0 datatable">
+				<thead>
+					<tr>
+						<th style="width: 30px;">#</th>
+						<th>Department Name</th>
+						<th class="text-right">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for department in department_list %}
+
+					<tr>
+						<td>{{department.id}}</td>
+						<td>{{department.department_name}}</td>
+						<td class="text-right">
+							<div class="dropdown dropdown-action">
+								<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+									onClick="getId('{{id}}')"><i class="material-icons">more_vert</i></a>
+								<div class="dropdown-menu dropdown-menu-right">
+									{% if perms.employee.change_department %}
+									<a class="dropdown-item" href="{% url 'department_manage' department.id %}"><i
+											class="fa fa-pencil m-r-5"></i> Edit</a>
+									{% endif %}
+									{% if perms.employee.delete_department %}
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_department"
+										onClick="getId('{{department.id}}')"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+										{% endif %}
+									
+
+								</div>
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+<!-- /Page Content -->
+{% block departments_add %}
+
+{% endblock departments_add %}
+
+
+<!-- Delete Department Modal -->
+<div class="modal custom-modal fade" id="delete_department" role="dialog">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="form-header">
+					<h3>Delete Department</h3>
+					<p>Are you sure want to delete?</p>
+				</div>
+				<div class="modal-btn delete-action">
+					<div class="row">
+						<div class="col-6">
+							<a href="" id="deletedepartment" class="btn btn-primary continue-btn">Delete</a>
+						</div>
+						<div class="col-6">
+							<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Delete Department Modal -->
+
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+
+<!-- {% endblock content %}
 
     
     {% block js %} -->
-        <!-- jQuery -->
-    <script src="/static/assets/js/jquery-3.2.1.min.js"></script>
-    
-    <!-- Bootstrap Core JS -->
-    <script src="/static/assets/js/popper.min.js"></script>
-    <script src="/static/assets/js/bootstrap.min.js"></script>
-    
-    <!-- Slimscroll JS -->
-    <script src="/static/assets/js/jquery.slimscroll.min.js"></script>
-    
-    <!-- Datatable JS -->
-    <script src="/static/assets/js/jquery.dataTables.min.js"></script>
-    <script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="/static/assets/js/app.js"></script>
-    <!-- {% endblock js %} -->
-    <script>
-        function getId(id) {
-            var a =document.getElementById('deletedepartment');
-            a.href = "/employee/department_remove/" +id;
-        }
-    </script>
-      
+<!-- jQuery -->
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+
+<!-- Slimscroll JS -->
+<script src="/static/assets/js/jquery.slimscroll.min.js"></script>
+
+<!-- Datatable JS -->
+<script src="/static/assets/js/jquery.dataTables.min.js"></script>
+<script src="/static/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/assets/js/app.js"></script>
+<!-- {% endblock js %} -->
+<script>
+	function getId(id) {
+		var a = document.getElementById('deletedepartment');
+		a.href = "/employee/department_remove/" + id;
+	}
+</script>
+
 </body>
-</html>       
+
+</html>

@@ -127,8 +127,8 @@
 				</div>
 				<!-- /Edit Client Modal -->
 				
-				<!-- Delete Client Modal -->
-				<div class="modal custom-modal fade" id="delete_client" role="dialog">
+				 <!-- Delete Client Modal -->
+				 <div class="modal custom-modal fade" id="delete_client" role="dialog">
 					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -139,7 +139,7 @@
 								<div class="modal-btn delete-action">
 									<div class="row">
 										<div class="col-6">
-											<a href="" id="deleteclient" class="btn btn-primary continue-btn">Delete</a>
+											<a href="" id="deleteclients" class="btn btn-primary continue-btn">Delete</a>
 										</div>
 										<div class="col-6">
 											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -176,17 +176,18 @@
 		
 		<script>
 			function getId(id) {
-				var a =document.getElementById('deleteclient');
-				a.href = "/administration/clients_remove_grid/"+id;
+				alert(id)
+				var a =document.getElementById('deleteclients');
+				a.href = "/administration/clients_remove_grid/" +id;
 			}
 		</script>	
-		<script>
+		<!-- <script>
 			function getId(id) {
-				alert(id)
+				// alert(id)
 				var a = document.getElementById('edit_client');
 				a.href = "/administration/editClient/"+id;
 			}
-		</script>
+		</script> -->
 		
 		
 </body>

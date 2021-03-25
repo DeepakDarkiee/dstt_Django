@@ -6,17 +6,17 @@ from django.urls.base import reverse
 from django.views import generic
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView
 from django.views.generic.base import View
-from .models import Client,Asset,Lead
-from .forms import ClientForm,AssetForm,LeadForm
+from .models import Client,Asset,Lead,Project
+from .forms import ClientForm,AssetForm,LeadForm,ProjectForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.decorators import method_decorator
-from employee.models import Employee
+from employee.models import Employee,AddLeaveType
 from django.db import IntegrityError
 from account.models import User
 import sweetify
 # Create your views here.
-
+from django.db.models import Q
 
 # -------------------------------------all employee for admin--------------------------------
 @login_required
@@ -60,8 +60,12 @@ def Register_Employee_View(request):
 @login_required
 def All_Employee_View(request):
     AllEmployee = Employee.objects.filter(employee_status="Active")
-    return render(request,'administration/employees.html',{'Employee':AllEmployee})
-
+    return render(request,'administration/employees.html',{'Employees':AllEmployee})
+           
+@login_required
+def All_Employee_List_View(request):
+    AllEmployee = Employee.objects.filter(employee_status="Active")
+    return render(request,'administration/employees_list.html',{'Employees':AllEmployee})
 
 @login_required
 def Remove_Employee(request,id):
@@ -71,6 +75,14 @@ def Remove_Employee(request,id):
     messages.success(request,"deleted successfully")
     return HttpResponseRedirect('/administration/all_employee') 
 
+
+@login_required
+def Remove_Employee_List(request,id):
+    Employees = Employee.objects.get(id=id)
+    print(Employees)
+    Employees.delete()
+    messages.success(request,"deleted successfully")
+    return HttpResponseRedirect('/administration/all_employee_list') 
     
 @login_required
 def Update_Employees_View(request,id):
@@ -246,8 +258,8 @@ class ClientRemoveGrid(View):
     def get(self,request,id):
         client=Client.objects.get(id=id)          
         client.delete()
-        messages.success(request,'deleted successfully')
-        return HttpResponseRedirect('/administration/clients_grid') 
+        messages.success(request,'deleted successfuully')
+        return HttpResponseRedirect('/administration/clients_grid')  
 
 
 class ClientManageGrid(UpdateView):
@@ -293,8 +305,13 @@ class LeadManage(UpdateView):
     success_url = ("/administration/leads_list/")
 
 # ---------------------------------------/Lead----------------------------------------------------------------
-class projectsView(TemplateView):
+
+#---------------------------------------project-------------------------------------------------------------------
+class projectsView(View):
+    model = Project
+    fields = ['project_name','client','start_date','end_date','rate','rate_type','priority','add_project_leader','description','upload_files']
     template_name = "administration/projects.html"
+    success_url = ("/administration/projects/")
  
 class taskboardView(TemplateView):
     template_name = "administration/taskboard.html" 
@@ -320,11 +337,11 @@ class AssetRemove(View):
         return HttpResponseRedirect('/administration/asset_list') 
                               
 class AssetManage(View):
-     def get(self,request,name):
+    def get(self,request,name):
         asset=Asset.objects.get(name=name)
         asset.update()
         messages.success(request,f"{asset} updated successfully")
-        return HttpResponseRedirect('/administration/asset_list'    )                      
+        return HttpResponseRedirect('/administration/asset_list')                      
 # ----------------------------------/Assets------------------------------------------------
 
 class jobsView(TemplateView):
@@ -372,6 +389,28 @@ class SettingNotificationView(TemplateView):
 class ChangePasswordView(TemplateView):
     template_name = "administration/setting_change_password.html" 
 
-class LeaveTypeView(TemplateView):
+class LeaveTypeView(generic.CreateView):
+    model = AddLeaveType
+    fields = ['Leave_Type','Number_of_days']
+    template_name = "administration/setting_leave_type.html"
+    success_url = ("/administration/leavetypelist/")
+ 
+class LeaveTypeListView(generic.ListView):
+    model = AddLeaveType
     template_name = "administration/setting_leave_type.html" 
-   
+    context_object_name = "leavetype_list"
+    success_url = ('/administration/leavetypelist/')   
+
+class LeaveTypeRemoveView(View):
+    def get(self,request,id):
+        Leave_Type=AddLeaveType.objects.get(id=id)          
+        Leave_Type.delete()
+        messages.success(request,f"{Leave_Type} deleted successfully")
+        return HttpResponseRedirect('/administration/leavetypelist')
+
+class LeaveTypeManageView(View):
+    model = AddLeaveType
+    fields = ['Leave_Type','Number_of_days']
+    context_object_name = "LeaveType"
+    template_name = "administration/settingleavetype_manage.html"             
+    success_url = ("/administration/manageleavetype/")    

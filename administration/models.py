@@ -47,7 +47,7 @@ class Asset(models.Model):
     asset_user = models.CharField(max_length=100)
     asset_description = models.TextField()
     asset_status = models.CharField(max_length=20,choices=asset_status,default='new')
-#--------------------------------------------------------/Assets-----------------------------------------------------------------------
+#--------------------------------------------------------/Assets---------------------------------------------------------------------
 
 #--------------------------------------------------------Leads-----------------------------------------------------------------------
 class Lead(models.Model):
@@ -59,5 +59,17 @@ class Lead(models.Model):
     lead_created = models.CharField(max_length=100)
 #--------------------------------------------------------/Leads-----------------------------------------------------------------------
 
-
-
+#-------------------------------------------------------Project-----------------------------------------------------------------------
+class Project(models.Model):
+    project_name = models.CharField(max_length=100)
+    client = models.ForeignKey('Client',on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    rate = models.CharField(max_length=100)
+    rate_type = models.CharField(max_length=100)
+    priority = models.CharField(max_length=100)
+    add_project_leader = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    upload_files = models.FileField(upload_to='media/',blank=True)
+    
+     

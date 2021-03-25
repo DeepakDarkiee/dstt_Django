@@ -11,7 +11,6 @@ urlpatterns = [
     path('holiday/',views.HolidayCreateView.as_view(),name='holiday' ),
     path('HolidayRemove/<int:id>',views.HolidayRemoveView.as_view(),name='HolidayRemove' ),
     path('leaves_admin/',views.LeavesAdminView.as_view(),name='leaves_admin' ),
-    path('leaves_employee/',views.LeavesEmployeeView.as_view(),name='leaves_employee' ),
     path('leaves_settings/',views.LeavesSettingsView.as_view(),name='leaves_settings' ),
     path('attendance_admin/',views.AttendanceAdminView.as_view(),name='attendance_admin' ),
     path('attendance_employee/',views.AttendanceEmployeeView.as_view(),name='attendance_employee' ),
@@ -30,5 +29,8 @@ urlpatterns = [
 # -------------------------------------------designation-----------------------------------------------------------
     
     path('timesheet/',views.TimesheetView.as_view(),name='timesheet' ),
-    path('overtime/',views.OvertimeView.as_view(),name='overtime' ),   
+    path('overtime/',views.OvertimeView.as_view(),name='overtime' ), 
+
+    # -----------------------------------------------Employeeleave-----------------------------------------------------------  
+    path('leaves_employee/',views.LeavesEmployeeView.as_view(),name='leaves_employee'),
 ]

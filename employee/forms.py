@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Employee,Department,Designation,Holiday
+from .models import Employee,Department,Designation,Holiday,AddLeave
 class  EmployeeForm(forms.Form):
     employee_first_name = forms.CharField(max_length=30, required=False, help_text='Optional') 
     employee_last_name = forms.CharField(max_length=30, required=False, help_text='Optional')
@@ -29,5 +29,14 @@ class HolidayForm(forms.ModelForm):
         model = Holiday
         fields = "__all__"  
 
+# -----------------------------------------Addleave---------------------------------------------------
 
-    
+class LeaveForm(forms.ModelForm):
+    class Meta:
+        model= AddLeave
+        widgets = {
+            'Leave_From' : forms.DateInput(attrs={'type':'date'}),
+            'Leave_To' : forms.DateInput(attrs={'type':'date'})
+        }
+        fields = "__all__"
+# -------------------------------------/addleave---------------------------------------------- 

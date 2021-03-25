@@ -1,3 +1,4 @@
+from . import search
 from django.urls import path
 from . import views
 
@@ -12,10 +13,12 @@ urlpatterns = [
     path('Update_experience_information/<int:id>',views.Update_experience_information,name='Update_experience_information' ),
     path('Update_personal_info/<int:id>',views.Update_personal_info,name='Update_personal_info' ),
     path('Remove_employee/<int:id>',views.Remove_Employee,name='Remove_employee'),
+    path('Remove_Employee_List/<int:id>',views.Remove_Employee_List,name='Remove_Employee_List'),
     # path('Update_emergency_info/<int:id>',views.Update_emergency_info,name='Update_emergency_info' ),
     # path('Update_family_info/<int:id>',views.Update_family_info,name='Update_family_info' ),
     # path('Update_education_info/<int:id>',views.Update_education_info,name='Update_education_info' ),
     path('all_employee/',views.All_Employee_View,name='all_employee' ),
+    path('all_employee_list/',views.All_Employee_List_View,name='all_employee_list' ),
     path('registeremployee/',views.Register_Employee_View,name='registeremployee' ),
     
 # ------------------------------Employees-----------------------------------------------------------------------#
@@ -65,4 +68,11 @@ urlpatterns = [
     path('settingnotification/',views.SettingNotificationView.as_view(),name='settingnotification'),
     path('changepasswordView/',views.ChangePasswordView.as_view(),name='changepasswordView'),
     path('leavetype/',views.LeaveTypeView.as_view(),name='leavetype'),
+    path('leavetypelist/',views.LeaveTypeListView.as_view(),name='leavetypelist'),
+    path('removeleavetype/<int:id>',views.LeaveTypeRemoveView.as_view(),name='removeleavetype'),
+    path('manageleavetype/<int:pk>',views.LeaveTypeManageView.as_view(),name='manageleavetype'),
+    path('employee_search/',search.EmployeeSearchResultsView.as_view(),name='employee_search'),
+
+#-------------------------------------------------------leave setting-------------------------------------------------------------------
+    
 ]

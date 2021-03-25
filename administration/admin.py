@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client,Asset,Lead
+from .models import Client,Asset,Lead,Project
 
 # Register your models here.
 # -------------------------------------Client---------------------------------------------------
@@ -25,3 +25,8 @@ class LeadAdmin(admin.ModelAdmin):
         model = Lead
         fields = '__all__'
 # -------------------------------------/Leads---------------------------------------------------
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Project
+        fields = "__all__"
